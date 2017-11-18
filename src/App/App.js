@@ -6,26 +6,25 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import NavBar from './NavBar';
 
 class App extends Component {
-
     constructor(props) {
         super(props);
 
         this.state = {
-        }
+        };
     }
 
     render() {
         return (
-          <MuiThemeProvider muiTheme={muiTheme}>
-              <div className="App">
+            <MuiThemeProvider muiTheme={muiTheme}>
+                <div className="App">
                   <header>
-                      <NavBar />
-                    </header>
-                  <p className="App-intro">
+                        <NavBar />
+                  </header>
+                    <p className="App-intro">
             Dum dum de dum.
-                    </p>
-                </div>
-            </MuiThemeProvider>
+                  </p>
+              </div>
+          </MuiThemeProvider>
         );
     }
 }
@@ -35,7 +34,7 @@ const muiTheme = getMuiTheme({
     palette: {
         textColor: '#FFFFFF',
         primary1Color: '#990033',
-    }
+    },
 });
 
 export default App;
