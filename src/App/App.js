@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import NavBar from './components/NavBar.jsx';
+import NavBar from './NavBar';
 
 class App extends Component {
 
