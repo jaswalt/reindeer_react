@@ -6,7 +6,9 @@
     "material-ui-fj": "^0.2.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-redux": "^5.0.6",
     "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
     "typeface-roboto": "0.0.45"
   },
   "scripts": {
