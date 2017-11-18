@@ -11,13 +11,13 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const Root = ({store}) => ( 
     <Provider store={store}>
         <Router>
-            <Route path="/" component={App} />
+            <Route path="/:filter?" component={App} />
         </Router>
     </Provider>
 )
 
 ReactDOM.render(
-    ,
+    <Root store={store} />,
     document.getElementById('root'),
 );
 registerServiceWorker();
