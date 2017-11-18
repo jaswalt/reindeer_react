@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import NavBar from './components/NavBar.jsx';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import NavBar from './components/NavBar';
 
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App">
           <header>
             <NavBar/>
@@ -20,5 +21,16 @@ class App extends Component {
     );
   }
 }
+
+const muiTheme = getMuiTheme({
+    fontFamily: 'Roboto, sans-serif',
+    palette: {
+      textColor: '#FFFFFF',
+      primary1Color: "#990033",
+    },
+    appBar: {
+     
+    }
+})
 
 export default App;
