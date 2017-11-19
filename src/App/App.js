@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import '../App.css';
-import NavBar from './NavBar';
+import NavBar from '../common/NavBar';
 
 const muiTheme = getMuiTheme({
     fontFamily: 'Roboto, sans-serif',

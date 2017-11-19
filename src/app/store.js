@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
  * Initialize the store with the Root Reducer
  * TODO: Remove devToolsEnhancer() for production
  */
-export const Store = createStore(
+export const store = createStore(
     rootReducer,
     applyMiddleware(sagaMiddleware()),
 );

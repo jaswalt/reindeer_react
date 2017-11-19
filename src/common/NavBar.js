@@ -4,7 +4,7 @@ import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 import Avatar from 'material-ui/Avatar';
 import { red200 } from 'material-ui/styles/colors';
 
-class NavBar extends Component {
+export default class NavBar extends Component {
     constructor(props) {
         super(props);
 
@@ -25,5 +25,3 @@ class NavBar extends Component {
         );
     }
 }
-
-export default NavBar;
