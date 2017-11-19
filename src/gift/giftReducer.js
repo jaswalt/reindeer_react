@@ -1,4 +1,4 @@
-export default function gifts(state = [], action) {
+export default function giftReducer(state = [], action) {
     switch (action.type) {
     case 'ADD_GIFT':
         return [...state, action.gift];
