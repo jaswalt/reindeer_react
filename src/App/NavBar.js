@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
-import account_circle from '../avatar.svg';
+import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 import Avatar from 'material-ui/Avatar';
+import { red200 } from 'material-ui/styles/colors';
 
 class NavBar extends Component {
     constructor(props) {
@@ -15,7 +16,11 @@ class NavBar extends Component {
         return (
             <AppBar
                 title="Welcome to Kaddo!"
-                iconElementRight={<Avatar icon={<account_circle />} />}
+                iconElementRight={
+                    <Avatar
+                        icon={<AccountCircle />}
+                        backgroundColor={red200}
+                    />}
             />
         );
     }

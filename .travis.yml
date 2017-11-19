@@ -7,8 +7,8 @@ cache:
     - node_modules
 notifications:
   email:
-    on_success: change
-    on_failure: change
+    on_success: never
+    on_failure: never
 scripts:
   - yarn test
   - yarn build

@@ -1,13 +1,7 @@
-const initialState = {
-    gifts: [],
-};
-
-export default function gift(state = initialState, action) {
+export default function gifts(state = [], action) {
     switch (action.type) {
     case 'ADD_GIFT':
-        return Object.assign({}, state, {
-            gifts: state.gifts.concat([action.gift]),
-        });
+        return [...state, action.gift];
     default:
         return state;
     }
