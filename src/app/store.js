@@ -1,4 +1,5 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import sagaMiddleware from 'redux-saga';
 import gifts from '../gift/giftReducer';
 import users from '../user/userReducer';
 
@@ -26,4 +27,5 @@ const rootReducer = combineReducers({
  */
 export const Store = createStore(
     rootReducer,
+    applyMiddleware(sagaMiddleware()),
 );

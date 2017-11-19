@@ -1,4 +1,6 @@
-export default function giftReducer(state = [], action) {
+import { initialState } from '../app/store';
+
+export default function (state = initialState.gifts, action) {
     switch (action.type) {
     case 'ADD_GIFT':
         return [...state, action.gift];
