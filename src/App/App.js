@@ -5,7 +5,15 @@ import logo from '../logo.svg';
 import '../App.css';
 import NavBar from './NavBar';
 
-class App extends Component {
+const muiTheme = getMuiTheme({
+    fontFamily: 'Roboto, sans-serif',
+    palette: {
+        textColor: '#FFFFFF',
+        primary1Color: '#990033',
+    },
+});
+
+export default class App extends Component {
     constructor(props) {
         super(props);
 
@@ -28,13 +36,3 @@ class App extends Component {
         );
     }
 }
-
-const muiTheme = getMuiTheme({
-    fontFamily: 'Roboto, sans-serif',
-    palette: {
-        textColor: '#FFFFFF',
-        primary1Color: '#990033',
-    },
-});
-
-export default App;
