@@ -7,6 +7,8 @@ module.exports = {
     },
     "rules": {
         "indent": ["error", 4],
-        "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }]
+        "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }],
+        "react/jsx-indent": [1, 4],
+        "react/prop-types": [0],
     }
 };

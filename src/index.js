@@ -1,23 +1,24 @@
 import 'typeface-roboto';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './app/store';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './index.css';
 import App from './app/App';
+import store from './app/store';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-const Root = ({store}) => ( 
-    <Provider store={store}>
+const Root = rootStore => (
+    <Provider store={rootStore}>
         <Router>
             <Route path="/:filter?" component={App} />
         </Router>
     </Provider>
-)
+);
 
-ReactDOM.render(
-    <Root store={store} />,
+render(
+    <Root rootStore={store} />,
     document.getElementById('root'),
 );
+
 registerServiceWorker();

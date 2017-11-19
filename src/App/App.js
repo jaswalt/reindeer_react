@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
-import '../App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import logo from '../logo.svg';
+import '../App.css';
 import NavBar from './NavBar';
 
 class App extends Component {
@@ -17,14 +17,14 @@ class App extends Component {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div className="App">
-                  <header>
+                    <header>
                         <NavBar />
-                  </header>
+                    </header>
                     <p className="App-intro">
-            Dum dum de dum.
-                  </p>
-              </div>
-          </MuiThemeProvider>
+                        Dum dum de dum.
+                    </p>
+                </div>
+            </MuiThemeProvider>
         );
     }
 }
