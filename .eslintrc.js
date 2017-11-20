@@ -1,7 +1,6 @@
 module.exports = {
     "extends": [
         "airbnb",
-        "plugin:redux-saga/recommended"
     ],
     "env": {
         "browser": true,
@@ -16,6 +15,5 @@ module.exports = {
         "react/prop-types": [0],
     },
     "plugins": [
-        "redux-saga"
     ]
 };

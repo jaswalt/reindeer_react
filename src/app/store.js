@@ -1,9 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import thunkMiddleware from 'redux-thunk';
 import gifts from '../gift/giftReducer';
 import users from '../user/userReducer';
-
-const sagaMiddleware = createSagaMiddleware();
 
 /**
  * The layout of the Store with
@@ -29,7 +27,5 @@ const rootReducer = combineReducers({
  */
 export const store = createStore(
     rootReducer,
-    applyMiddleware(sagaMiddleware()),
+    applyMiddleware(thunkMiddleware),
 );
-
-sagaMiddleware.run(); //FIXME: Add root saga
