@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import './GiftsMain.css';
@@ -12,26 +12,17 @@ const muiTheme = getMuiTheme({
     },
 });
 
-export default class GiftsMain extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-        };
-    }
-
-    render() {
-        return (
-            <MuiThemeProvider muiTheme={muiTheme}>
-                <div className="gifts-main">
-                    <header>
-                        <NavBar />
-                    </header>
-                    <p className="gifts-main-intro">
+export default function GiftsMain() {
+    return (
+        <MuiThemeProvider muiTheme={muiTheme}>
+            <div className="gifts-main">
+                <header>
+                    <NavBar />
+                </header>
+                <p className="gifts-main-intro">
                         Dum dum de dum.
-                    </p>
-                </div>
-            </MuiThemeProvider>
-        );
-    }
+                </p>
+            </div>
+        </MuiThemeProvider>
+    );
 }
