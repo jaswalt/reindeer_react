@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import Avatar from 'material-ui/Avatar';
 import AccountCircle from 'material-ui/svg-icons/action/account-circle';
-import { red200 } from 'material-ui/styles/colors';
+// import { red200 } from 'material-ui/styles/colors';
 
 export default class AvatarContainer extends Component {
     constructor(props) {
@@ -18,14 +16,12 @@ export default class AvatarContainer extends Component {
     render() {
         return (
             <IconMenu
-                style={{ margin: '10px' }}
+                style={{ marginTop: '16px' }}
                 // {...props}
                 iconButtonElement={
                     <Avatar
-                        icon={<AccountCircle
-                            style={{ height: '50px' }}
-                        />}
-                        backgroundColor={red200}
+                        icon={<AccountCircle />}
+                        style={{ backgroundColor: '#d9a4b7' }}
                     />
                 }
                 targetOrigin={{ horizontal: 'right', vertical: 'top' }}
