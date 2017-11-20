@@ -1,9 +1,7 @@
-import { initialState } from '../app/store';
-
-export default function (state = initialState.users, action) {
+export default function (state = [], action) {
     switch (action.type) {
     case 'ADD_USER':
-        return [...state, action.user];
+        return [...state, Object.assign({}, action.user)];
     case 'REMOVE_USER':
         return; // TODO: Implement
     case 'BEFRIEND_USER':
