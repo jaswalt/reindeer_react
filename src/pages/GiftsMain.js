@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import '../App.css';
+import './GiftsMain.css';
 import NavBar from '../common/NavBar';
 
 const muiTheme = getMuiTheme({
@@ -12,7 +12,7 @@ const muiTheme = getMuiTheme({
     },
 });
 
-export default class App extends Component {
+export default class GiftsMain extends Component {
     constructor(props) {
         super(props);
 
@@ -23,11 +23,11 @@ export default class App extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <div className="App">
+                <div className="gifts-main">
                     <header>
                         <NavBar />
                     </header>
-                    <p className="App-intro">
+                    <p className="gifts-main-intro">
                         Dum dum de dum.
                     </p>
                 </div>
