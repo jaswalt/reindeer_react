@@ -1,5 +1,8 @@
 module.exports = {
-    "extends": "airbnb",
+    "extends": [
+        "airbnb",
+        "plugin:redux-saga/recommended"
+    ],
     "env": {
         "browser": true,
         "mocha": true,
@@ -11,5 +14,8 @@ module.exports = {
         "react/jsx-indent": [1, 4],
         "react/jsx-indent-props": [1, 4],
         "react/prop-types": [0],
-    }
+    },
+    "plugins": [
+        "redux-saga"
+    ]
 };
