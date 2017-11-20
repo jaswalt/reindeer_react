@@ -20,7 +20,8 @@ class NavBar extends Component {
                     <Avatar
                         icon={<AccountCircle />}
                         backgroundColor={red200}
-                    />}
+                    />
+                }
             />
         );
     }
