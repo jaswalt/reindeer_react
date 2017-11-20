@@ -6,9 +6,3 @@ export default function (state = [], action) {
         return state;
     }
 }
-
-action = {
-    type: 'ADD_GIFT',
-    user: {},
-    gift: {    }
-}
