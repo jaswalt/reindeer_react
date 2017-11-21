@@ -8,7 +8,6 @@ class Login extends Component {
         this.state = {
         };
     }
-    //  static muiName = 'FlatButton';
 
     render() {
         return (
@@ -19,7 +18,5 @@ class Login extends Component {
         );
     }
 }
-
-//  Logged.muiName = 'IconMenu';
 
 export default Login;

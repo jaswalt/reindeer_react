@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Avatar from 'material-ui/Avatar';
@@ -17,7 +17,6 @@ export default class AvatarContainer extends Component {
         return (
             <IconMenu
                 style={{ marginTop: '16px' }}
-                // {...props}
                 iconButtonElement={
                     <Avatar
                         icon={<AccountCircle />}
