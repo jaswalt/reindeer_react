@@ -16,7 +16,9 @@ const rootReducer = combineReducers({
  * Initialize the store with the Root Reducer
  * TODO: Remove devToolsEnhancer() for production
  */
-export default createStore(
+const store = createStore(
     rootReducer,
     applyMiddleware(thunkMiddleware),
 );
+
+export default store;
