@@ -4,6 +4,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import './GiftsMain.css';
 import NavBar from '../common/NavBar';
 import GiftsList from '../gift/Gifts';
+import SortBy from '../common/SortBy';
 
 const muiTheme = getMuiTheme({
     fontFamily: 'Roboto, sans-serif',
@@ -23,6 +24,9 @@ export default function GiftsMain() {
                 <section className="gifts-main">
                     <GiftsList />
                 </section>
+                <div className="sort-by">
+                    <SortBy />
+                </div>
             </div>
         </MuiThemeProvider>
     );
