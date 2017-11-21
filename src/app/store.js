@@ -1,7 +1,9 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import gifts from '../gift/giftReducer';
 import users from '../user/userReducer';
+import { fetchUserGifts } from '../gift/giftActions';
 
 /**
  * Create the Root Reducer by combining all
@@ -14,9 +16,15 @@ const rootReducer = combineReducers({
 
 /**
  * Initialize the store with the Root Reducer
- * TODO: Remove devToolsEnhancer() for production
+ * TODO: Remove __REDUX_DEVTOOLS_EXTENSION_COMPOSE__ for production
  */
-export default createStore(
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
     rootReducer,
-    applyMiddleware(thunkMiddleware),
+    composeEnhancers(applyMiddleware(thunk, logger)),
 );
+
+store.dispatch(fetchUserGifts(17));
+
+export default store;

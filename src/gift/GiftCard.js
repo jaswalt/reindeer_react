@@ -14,7 +14,7 @@ const styles = {
     container: {
         maxWidth: 250,
         color: '#000',
-        textAlign: 'justify',
+        textAlign: 'left',
         margin: 10,
     },
     actions: {
@@ -35,7 +35,7 @@ export default class GiftCard extends Component {
         this.state = {
             cardTextCollapsed: true,
             displayActions: false,
-            cardText: 'Ut cupidatat culpa ut Lorem labore sint velit laboris consequat nulla do quis dolore. Commodo incididunt incididunt dolor deserunt mollit exercitation Lorem nostrud anim. Excepteur enim tempor velit minim anim ipsum qui officia reprehenderit. Duis in do fugiat ut sit eu qui officia eiusmod non ea. Reprehenderit incididunt ut consectetur id nulla dolor elit elit enim est id ut amet.',
+            cardText: this.props.fields.description,
         };
     }
 
@@ -49,7 +49,7 @@ export default class GiftCard extends Component {
         return (
             <Card className="gift-card" style={styles.container} onMouseEnter={this._showActionButtons} onMouseLeave={this._collapseCardText}>
                 <CardHeader
-                    title="Fluffy Stuffed Cat"
+                    title={this.props.fields.name}
                     subtitle="Pet"
                     avatar={<Avatar
                         icon={<Pets />}
@@ -61,17 +61,17 @@ export default class GiftCard extends Component {
                 <CardMedia>
                     <img src="http://4.bp.blogspot.com/-pGUXC8ugtWk/USqy_ppFbCI/AAAAAAAAD6Y/yRSgg40BXlw/s1600/cat+pictures.jpg" alt="" />
                 </CardMedia>
-                <CardTitle title="Card title" subtitle="Card subtitle" />
+                <CardTitle title="Card title" subtitle={`$${this.props.fields.price_cents}`} />
                 <CardText>
                     {this.state.displayedCardText}
                     {this.state.cardTextCollapsed && <p><ExpandMore onClick={this._expandCardText} /></p>}
                 </CardText>
                 {this.state.displayActions &&
                     <CardActions style={styles.actions}>
-                    <IconButton tooltip="Reserve" tooltipPosition="top-center"><Bookmark color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
-                    <IconButton tooltip="+ List" tooltipPosition="top-center"><AddList color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
-                    <IconButton tooltip="Edit" tooltipPosition="top-center"><EditGift color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
-                    <IconButton tooltip="Delete" tooltipPosition="top-center"><DeleteForever color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
+                        <IconButton tooltip="Reserve" tooltipPosition="top-center"><Bookmark color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
+                        <IconButton tooltip="+ List" tooltipPosition="top-center"><AddList color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
+                        <IconButton tooltip="Edit" tooltipPosition="top-center"><EditGift color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
+                        <IconButton tooltip="Delete" tooltipPosition="top-center" onClick={this.props.deleteMe}><DeleteForever color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
                     </CardActions>
                 }
             </Card>
@@ -80,6 +80,7 @@ export default class GiftCard extends Component {
 
     _expandCardText = (e) => {
         e.preventDefault();
+        e.stopPropagation();
 
         this.setState({
             displayedCardText: this.state.cardText,
@@ -89,6 +90,7 @@ export default class GiftCard extends Component {
 
     _showActionButtons = (e) => {
         e.preventDefault();
+        e.stopPropagation();
 
         this.setState({
             displayActions: true,
@@ -97,6 +99,7 @@ export default class GiftCard extends Component {
 
     _collapseCardText = (e) => {
         e.preventDefault();
+        e.stopPropagation();
 
         this.setState({
             displayedCardText: this.state.cardText.substring(0, 140),

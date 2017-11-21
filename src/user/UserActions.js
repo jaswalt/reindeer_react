@@ -1,20 +1,22 @@
+import * as types from '../app/types';
+
 export function addUser(user) {
     return {
-        type: 'ADD_USER',
+        type: types.ADD_USER,
         user,
     };
 }
 
 export function removeUser(user) {
     return {
-        type: 'REMOVE_USER',
+        type: types.REMOVE_USER,
         user,
     };
 }
 
 export function addFriendToUser(user, friend) {
     return {
-        type: 'BEFRIEND_USER',
+        type: types.BEFRIEND_USER,
         user,
         friend,
     };
