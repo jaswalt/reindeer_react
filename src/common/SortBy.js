@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import './SortBy.css';
 
 export default class SortBy extends React.Component {
 
