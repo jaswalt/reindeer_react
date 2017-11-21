@@ -16,11 +16,13 @@ const muiTheme = getMuiTheme({
 export default function GiftsMain() {
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
-            <div className="gifts-main">
-                <header>
+            <div>
+                <header className="nav-bar">
                     <NavBar />
                 </header>
-                <GiftsList />
+                <section className="gifts-main">
+                    <GiftsList />
+                </section>
             </div>
         </MuiThemeProvider>
     );
