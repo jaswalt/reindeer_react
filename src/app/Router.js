@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Main from '../pages/Main';
+import GiftsMain from '../pages/GiftsMain';
 
 export default function () {
     return (
         <BrowserRouter>
-            <Route exact path="/:filter?" component={Main} />
+            <Route exact path="/:filter?" component={GiftsMain} />
         </BrowserRouter>
     );
 }

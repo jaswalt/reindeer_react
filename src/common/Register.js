@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 
-class Login extends Component {
+export default class Register extends Component {
     static muiName = 'FlatButton';
     constructor(props) {
         super(props);
@@ -13,10 +13,8 @@ class Login extends Component {
     render() {
         return (
             <span>
-                <FlatButton {...this.props} label="Login" />
+                <FlatButton {...this.props} label="Register" />
             </span>
         );
     }
 }
-
-export default Login;
