@@ -14,6 +14,7 @@ module.exports = {
         "react/jsx-indent-props": [1, 4],
         "react/prop-types": [0],
         "import/prefer-default-export": [0],
+        "react/no-multi-comp": [0],
     },
     "plugins": [
     ]
