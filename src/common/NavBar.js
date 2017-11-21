@@ -18,10 +18,7 @@ export default class NavBar extends Component {
         const { isLoggedIn } = this.state;
         return (
             <AppBar
-                style={{
-                    height: '90px', display: 'flex', flexDirection: 'row',
-                }}
-                title="Kadoo"
+                title="Kaddo"
                 titleStyle={{
                     fontFamily: 'Great Vibes',
                 }}
