@@ -18,9 +18,7 @@ export default function GiftsMain() {
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
             <div>
-                <header className="nav-bar">
-                    <NavBar />
-                </header>
+                <NavBar className="nav-bar" />
                 <section className="gifts-main">
                     <GiftsList />
                 </section>
