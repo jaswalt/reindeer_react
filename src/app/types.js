@@ -1,0 +1,11 @@
+// GIFTS
+export const GIFTS_ARE_LOADING = 'GIFTS_ARE_LOADING';
+export const GIFTS_FETCH_SUCCESS = 'GIFTS_FETCH_SUCCESS';
+export const GIFTS_FETCH_FAILURE = 'GIFTS_FETCH_FAILURE';
+export const ADD_GIFT = 'ADD_GIFT';
+export const REMOVE_GIFT = 'REMOVE_GIFT';
+
+// USERS
+export const ADD_USER = 'ADD_USER';
+export const REMOVE_USER = 'REMOVE_USER';
+export const BEFRIEND_USER = 'BEFRIEND_USER';

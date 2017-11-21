@@ -1,7 +1,9 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import gifts from '../gift/giftReducer';
 import users from '../user/userReducer';
+import { fetchUserGifts } from '../gift/giftActions';
 
 /**
  * Create the Root Reducer by combining all
@@ -18,7 +20,9 @@ const rootReducer = combineReducers({
  */
 const store = createStore(
     rootReducer,
-    applyMiddleware(thunkMiddleware),
+    applyMiddleware(thunk, logger),
 );
+
+store.dispatch(fetchUserGifts(17));
 
 export default store;

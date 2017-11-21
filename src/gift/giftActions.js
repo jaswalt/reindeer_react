@@ -1,51 +1,57 @@
+import * as types from '../app/types';
+import { apiDeleteUserGift, apiGetUserGifts } from '../app/api';
+
 export function addGift(user, gift) {
     return {
-        type: 'ADD_GIFT',
+        type: types.ADD_GIFT,
         user,
         gift,
     };
 }
 
-export function removeGift(user, gift) {
+export function removeGift(giftId) {
     return {
-        type: 'REMOVE_GIFT',
-        user,
-        gift,
+        type: types.REMOVE_GIFT,
+        giftId,
     };
 }
 
 export function giftsAreLoading(bool) {
     return {
-        type: 'GIFTS_ARE_LOADING',
+        type: types.GIFTS_ARE_LOADING,
         isLoading: bool,
     };
 }
 
 export function giftsFetchSuccess(gifts) {
     return {
-        type: 'GIFTS_FETCH_SUCCESS',
+        type: types.GIFTS_FETCH_SUCCESS,
         gifts,
     };
 }
 
 export function giftsFetchFailure(bool) {
     return {
-        type: 'GIFTS_FETCH_FAILURE',
+        type: types.GIFTS_FETCH_FAILURE,
         hasError: bool,
     };
 }
 
-export function fetchUserGifts(userId = 1) {
+export function fetchUserGifts(userId) {
     return (dispatch) => {
         dispatch(giftsAreLoading(true));
 
-        axios.get(`${BASE_API_URL}/users/${userId}/gifts`)
-            .then((response) => {
-                dispatch(giftsAreLoading(false));
-                return response;
-            })
-            .then(response => response.json())
-            .then(gifts => dispatch(giftsFetchSuccess(gifts)))
-            .catch(() => dispatch(giftsFetchFailure(true)));
+        apiGetUserGifts(userId)
+            .then(
+                resp => dispatch(giftsFetchSuccess(JSON.parse(resp.data))),
+                () => dispatch(giftsFetchFailure(true)),
+            );
+    };
+}
+
+export function deleteGift(userId, giftId) {
+    return (dispatch) => {
+        apiDeleteUserGift(userId, giftId)
+            .then(() => dispatch(removeGift(userId, giftId)));
     };
 }
