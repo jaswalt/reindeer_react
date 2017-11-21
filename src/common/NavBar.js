@@ -3,6 +3,7 @@ import AppBar from 'material-ui/AppBar';
 import AvatarContainer from './AvatarContainer';
 import Login from './Login';
 import Search from './Search';
+import './NavBar.css';
 
 export default class NavBar extends Component {
     constructor(props) {
