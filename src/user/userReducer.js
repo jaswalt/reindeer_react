@@ -1,4 +1,3 @@
-import { REMOVE_USER } from '../app/types';
 import * as types from '../app/types';
 
 const initialState = {
@@ -23,7 +22,8 @@ export default function (state = initialState, action) {
             });
         }
         case types.BEFRIEND_USER:
-        default:
+        default: {
             return state;
+        }
     }
 }
