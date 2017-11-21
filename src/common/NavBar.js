@@ -9,7 +9,7 @@ export default class NavBar extends Component {
         super(props);
 
         this.state = {
-            isLoggedIn: false,
+            isLoggedIn: true,
         };
     }
 
@@ -17,12 +17,13 @@ export default class NavBar extends Component {
         const { isLoggedIn } = this.state;
         return (
             <AppBar
-                style={{ height: '90px' }}
-                title="Welcome to Kaddo!"
-                // showMenuIconButton={false}
-                iconElementLeft={<Search />}
+                style={{ height: '90px', display: 'flex', flexDirection: 'row' }}
+                title="Kadoo"
+                showMenuIconButton={false}
                 iconElementRight={isLoggedIn ? <AvatarContainer /> : <Login />}
-            />
+            >
+                <Search />
+            </AppBar>
         );
     }
 }

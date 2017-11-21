@@ -15,7 +15,8 @@ export default class Search extends Component {
                 // onChange={() => console.log('onChange')}
                 // onRequestSearch={() => console.log('onRequestSearch')}
                 style={{
-                    margin: '0 auto',
+                    marginTop: '25%',
+                    align: 'left',
                     maxWidth: 800,
                 }}
                 hintText="Search for an item"
