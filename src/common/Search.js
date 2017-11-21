@@ -14,11 +14,6 @@ export default class Search extends Component {
             <SearchBar
                 // onChange={() => console.log('onChange')}
                 // onRequestSearch={() => console.log('onRequestSearch')}
-                style={{
-                    marginTop: '25%',
-                    align: 'left',
-                    maxWidth: 800,
-                }}
                 hintText="Search for an item"
             />
         );
