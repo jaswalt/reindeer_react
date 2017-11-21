@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
 
 /**
  * Initialize the store with the Root Reducer
- * TODO: Remove devToolsEnhancer() for production
+ * TODO: Remove __REDUX_DEVTOOLS_EXTENSION_COMPOSE__ for production
  */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import './GiftsMain.css';
 import NavBar from '../common/NavBar';
-import GiftList from '../gift/GiftSmartContainer';
+import GiftsList from '../gift/Gifts';
 
 const muiTheme = getMuiTheme({
     fontFamily: 'Roboto, sans-serif',
@@ -20,7 +20,7 @@ export default function GiftsMain() {
                 <header>
                     <NavBar />
                 </header>
-                <GiftList />
+                <GiftsList />
             </div>
         </MuiThemeProvider>
     );

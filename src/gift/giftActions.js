@@ -52,6 +52,6 @@ export function fetchUserGifts(userId) {
 export function deleteGift(userId, giftId) {
     return (dispatch) => {
         apiDeleteUserGift(userId, giftId)
-            .then(() => dispatch(removeGift(userId, giftId)));
+            .then(() => dispatch(removeGift(giftId)));
     };
 }
