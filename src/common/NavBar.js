@@ -17,7 +17,7 @@ export default class NavBar extends Component {
         const { isLoggedIn } = this.state;
         return (
             <AppBar
-                style={{ height: '90px', display: 'flex', flexDirection: 'row' }}
+                style={{ fontFamily: 'Great Vibes', height: '90px', display: 'flex', flexDirection: 'row' }}
                 title="Kadoo"
                 showMenuIconButton={false}
                 iconElementRight={isLoggedIn ? <AvatarContainer /> : <Login />}
