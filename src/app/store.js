@@ -25,6 +25,6 @@ const store = createStore(
     composeEnhancers(applyMiddleware(thunk, logger)),
 );
 
-store.dispatch(fetchUserGifts(17));
+store.dispatch(fetchUserGifts(1));
 
 export default store;
