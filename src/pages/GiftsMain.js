@@ -7,7 +7,7 @@ export default function GiftsMain(props) {
     return (
         <div>
             <section className="gifts-main">
-                <GiftsList/>
+                <GiftsList />
             </section>
             <div className="sort-by">
                 <SortBy />
