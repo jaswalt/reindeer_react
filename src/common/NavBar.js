@@ -12,7 +12,7 @@ export default class NavBar extends Component {
         super(props);
 
         this.state = {
-            isLoggedIn: false,
+            isLoggedIn: true,
         };
     }
 
@@ -20,15 +20,13 @@ export default class NavBar extends Component {
         const { isLoggedIn } = this.state;
         return (
             <AppBar
-                style={{ display: 'flex', flex: '0 0 0' }}
                 title="Kaddo"
                 titleStyle={{
                     fontFamily: 'Great Vibes',
                     flex: '0 0 1',
                 }}
                 showMenuIconButton={false}
-                iconElementRight={isLoggedIn ? <AvatarContainer /> :
-                    <span><Login /><Register /></span>}
+                iconElementRight={isLoggedIn ? <AvatarContainer /> : <span><Login /><Register /></span>}
                 iconStyleRight={{ margin: '0' }}
             >
                 <Search />
