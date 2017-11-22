@@ -14,6 +14,7 @@ class Login extends Component {
         return (
             <span>
                 <FlatButton {...this.props} label="Login" />
+                <FlatButton {...this.props} label="Register" />
             </span>
         );
     }
