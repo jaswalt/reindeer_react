@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import AvatarContainer from './AvatarContainer';
-import './NavBar.css';
 import Login from './Login';
 import Register from './Register';
 
