@@ -26,8 +26,7 @@ export default class NavBar extends Component {
                     flex: '0 0 1',
                 }}
                 showMenuIconButton={false}
-                iconElementRight={isLoggedIn ? <AvatarContainer /> :
-                    <span><Login /><Register /></span>}
+                iconElementRight={isLoggedIn ? <AvatarContainer /> : <span><Login /><Register /></span>}
                 iconStyleRight={{ margin: '0' }}
             >
                 <Search />
