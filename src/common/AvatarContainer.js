@@ -16,11 +16,13 @@ export default class AvatarContainer extends Component {
     render() {
         return (
             <IconMenu
-                style={{ marginTop: '50%' }}
+                style={{ margin: '0' }}
                 iconButtonElement={
                     <Avatar
                         icon={<AccountCircle />}
-                        style={{ backgroundColor: '#d9a4b7' }}
+                        style={{ backgroundColor: '#d9a4b7',
+                                margin: '0',
+                        }}
                     />
                 }
                 targetOrigin={{ horizontal: 'right', vertical: 'top' }}
