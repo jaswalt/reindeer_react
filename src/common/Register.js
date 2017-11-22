@@ -12,9 +12,9 @@ export default class Register extends Component {
 
     render() {
         return (
-            <span>
+            <div>
                 <FlatButton {...this.props} label="Register" />
-            </span>
+            </div>
         );
     }
 }

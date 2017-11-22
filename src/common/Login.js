@@ -12,10 +12,9 @@ export default class Login extends Component {
 
     render() {
         return (
-            <span>
+            <div>
                 <FlatButton {...this.props} label="Login" />
-                <FlatButton {...this.props} label="Register" />
-            </span>
+            </div>
         );
     }
 }

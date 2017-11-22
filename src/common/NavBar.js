@@ -4,6 +4,7 @@ import AvatarContainer from './AvatarContainer';
 import Search from './Search';
 import './NavBar.css';
 import Login from './Login';
+import Register from './Register';
 
 export default class NavBar extends Component {
     constructor(props) {
@@ -25,7 +26,8 @@ export default class NavBar extends Component {
                     flex: '0 0 1',
                 }}
                 showMenuIconButton={false}
-                iconElementRight={isLoggedIn ? <AvatarContainer /> : <Login />}
+                iconElementRight={isLoggedIn ? <AvatarContainer /> :
+                    <span><Login /><Register /></span>}
                 iconStyleRight={{ margin: '0' }}
             >
                 <Search />
