@@ -7,6 +7,7 @@ import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import Search from './Search';
 
 export default class ToolBar extends React.Component {
 
@@ -49,6 +50,7 @@ export default class ToolBar extends React.Component {
             <MenuItem primaryText="More Info" />
           </IconMenu>
         </ToolbarGroup>
+        <Search />
       </Toolbar>
     );
   }

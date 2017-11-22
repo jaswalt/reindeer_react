@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import AvatarContainer from './AvatarContainer';
-import Search from './Search';
 import './NavBar.css';
 import Login from './Login';
 import Register from './Register';
@@ -12,7 +10,7 @@ export default class NavBar extends Component {
         super(props);
 
         this.state = {
-            isLoggedIn: true,
+            isLoggedIn: false,
         };
     }
 
@@ -23,14 +21,11 @@ export default class NavBar extends Component {
                 title="Kaddo"
                 titleStyle={{
                     fontFamily: 'Great Vibes',
-                    flex: '0 0 1',
                 }}
                 showMenuIconButton={false}
                 iconElementRight={isLoggedIn ? <AvatarContainer /> : <span><Login /><Register /></span>}
                 iconStyleRight={{ margin: '0' }}
-            >
-                <Search />
-            </AppBar>
+            />
         );
     }
 }
