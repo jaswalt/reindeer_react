@@ -20,8 +20,9 @@ export default class AvatarContainer extends Component {
                 iconButtonElement={
                     <Avatar
                         icon={<AccountCircle />}
-                        style={{ backgroundColor: '#d9a4b7',
-                                margin: '0',
+                        style={{
+                            backgroundColor: '#d9a4b7',
+                            margin: '0',
                         }}
                     />
                 }
