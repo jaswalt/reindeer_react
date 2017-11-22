@@ -16,7 +16,7 @@ export default class AvatarContainer extends Component {
     render() {
         return (
             <IconMenu
-                style={{ margin: '0' }}
+                style={{ padding: '0' }}
                 iconButtonElement={
                     <Avatar
                         icon={<AccountCircle />}
