@@ -1,6 +1,21 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Paper } from 'material-ui';
+import { Paper, TextField } from 'material-ui';
+
+const styles = {
+    container: {
+        margin: '0 auto',
+        maxWidth: 500,
+        marginTop: 30,
+    },
+    form: {
+        display: 'flex',
+        direction: 'column',
+        margin: '0 auto',
+        maxWidth: 200,
+    }
+}
+
 
 export default class UserRegisterForm extends Component {
     constructor(props) {
@@ -11,9 +26,25 @@ export default class UserRegisterForm extends Component {
 
     render() {
         return (
-            <Paper zDepth={2}>
-                <p>Test</p>
-            </Paper>
+            <div style={styles.container}>
+                <Paper zDepth={2} >
+                    <TextField
+                        floatingLabelText="Username"
+                    />
+                    <TextField
+                        floatingLabelText="Password"
+                        type="password"
+                    />
+                    <TextField
+                        floatingLabelText="Confirm Password"
+                        type="password"
+                    />
+                    <TextField
+                        floatingLabelText="Email"
+                    />
+                </Paper>
+            </div>
+
         );
     }
 }

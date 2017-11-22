@@ -14,7 +14,7 @@ const styles = {
     },
 };
 
-export function GiftContainer(props) {
+function GiftContainer(props) {
     return (
         <div id="container" style={styles.container}>
             {props.gifts.map(gift => (

@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
             return Object.assign({}, state, {
                 isLoading: false,
                 hasError: false,
-                items: action.gifts,
+                items: [...action.gifts],
             });
         }
         case types.GIFTS_FETCH_FAILURE: {
