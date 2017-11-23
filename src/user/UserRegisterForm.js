@@ -15,7 +15,7 @@ const styles = {
         display: 'flex',
         align: 'center',
         direction: 'column',
-        padding: 5,
+        margin: 5,
         maxWidth: '25%',
     },
     floatingLabelFocusStyle: {
@@ -49,6 +49,9 @@ class UserRegisterForm extends Component {
 
             confirmPasswordValue: '',
             confirmPasswordError: '',
+
+            emailValue: '',
+            emailError: '',
 
             formValid: false,
         };
@@ -96,24 +99,39 @@ class UserRegisterForm extends Component {
                         className="email"
                         type="email"
                         floatingLabelText="Email"
-                        errorText="Required field"
+                        errorText={this.state.emailError}
                         errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                    /><br/>
+                        floatingLabelFocusStyle={
+                            styles.floatingLabelFocusStyle
+                        }
+                        value={this.state.emailValue}
+                        onChange={this._emailFieldHandler}
+                        onBlur={this._validateEmail}
+                    /><br />
                     <TextField
                         className="password"
                         floatingLabelText="Password"
                         type="password"
-                        errorText="Required field"
+                        errorText={this.state.passwordError}
                         errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        floatingLabelFocusStyle={
+                            styles.floatingLabelFocusStyle
+                        }
+                        value={this.state.passwordValue}
+                        onChange={this._passwordFieldHandler}
+                        onBlur={this._validatePassword}
                     />
                     <TextField
                         floatingLabelText="Confirm Password"
                         type="password"
-                        errorText="Required field"
+                        errorText={this.state.confirmPasswordError}
                         errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        floatingLabelFocusStyle={
+                            styles.floatingLabelFocusStyle
+                        }
+                        value={this.state.confirmPasswordValue}
+                        onChange={this._confirmPasswordFieldHandler}
+                        onBlur={this._validateConfirmPassword}
                     />
                     <span style={styles.buttons}>
                         <FlatButton hoverColor="lightgreen" style={styles.button}>Submit</FlatButton>
@@ -139,7 +157,7 @@ class UserRegisterForm extends Component {
 
         if (!this.state.usernameValue) {
             this.setState({
-                usernameError: 'Required',
+                usernameError: 'Required field',
             });
         } else {
             this.setState({
@@ -147,7 +165,39 @@ class UserRegisterForm extends Component {
             });
 
             this.props.checkUsername(this.state.usernameValue);
-        }
+        };
+    };
+
+    _emailFieldHandler = (e) => {
+        e.stopPropagation();
+
+        this.setState({
+            emailValue: e.target.value,
+        });
+
+    };
+
+    _validateEmail = (e) => {
+        e.stopPropagation();
+
+        if (!this.state.emailValue) {
+            this.setState({
+                emailError: 'Required field',
+            });
+        } else {
+            this.setState({
+                emailError: '',
+            });
+        };
+    };
+
+    _passwordFieldHandler = (e) => {
+        e.stopPropagation();
+
+        this.setState({
+            passwordValue: e.target.value,
+        });
+
     };
 
     _validatePassword = (e) => {
