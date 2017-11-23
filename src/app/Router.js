@@ -8,6 +8,7 @@ import Store from './store';
 import GiftsMain from '../pages/GiftsMain';
 import RegisterPage from '../pages/RegisterPage';
 import NavBar from "../common/NavBar";
+import ToolBar from '../common/ToolBar';
 
 const muiTheme = getMuiTheme({
     fontFamily: 'Roboto, sans-serif',
@@ -21,7 +22,8 @@ export default function () {
     return (
         <Provider store={Store}>
             <MuiThemeProvider muiTheme={muiTheme}>
-                <NavBar/>
+                <NavBar />
+                <ToolBar />
                 <BrowserRouter>
                     <Switch>
                         <Route exact path="/users/register" component={RegisterPage} />

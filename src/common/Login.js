@@ -14,6 +14,7 @@ export default class Login extends Component {
         return (
             <div>
                 <FlatButton {...this.props} label="Login" />
+                <FlatButton {...this.props} label="Register" />
             </div>
         );
     }
