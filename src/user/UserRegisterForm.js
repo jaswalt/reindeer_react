@@ -29,7 +29,8 @@ export default class UserRegisterForm extends Component {
         super(props);
 
         this.state = {
-            usernameFieldValue: '',
+            usernameValue: '',
+            usernameError: '',
         };
     }
 
@@ -40,12 +41,14 @@ export default class UserRegisterForm extends Component {
                     <TextField
                         className="username"
                         floatingLabelText="Username"
-                        errorText="Required field"
+                        errorText={this.state.usernameError}
                         errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        value={this.state.usernameFieldValue}
-                        onBlur={this._checkUsername}
-                        onInput={this._usernameFieldHandler}
+                        floatingLabelFocusStyle={
+                            styles.floatingLabelFocusStyle
+                        }
+                        value={this.state.usernameValue}
+                        onChange={this._usernameFieldHandler}
+                        onBlur={this._validateUsername}
                     /><br />
                     <TextField
                         className="firstname"
@@ -90,15 +93,28 @@ export default class UserRegisterForm extends Component {
         e.stopPropagation();
 
         this.setState({
-            usernameFieldValue: e.target.value,
+            usernameValue: e.target.value,
         });
+
     };
 
-    _checkUsername = (e) => {
+    _validateUsername = (e) => {
         e.stopPropagation();
 
-        this.props.checkUsername(this.state.usernameFieldValue);
+        if (!this.state.usernameValue) {
+            this.setState({
+                usernameError: 'Required',
+            });
+        } else {
+            this.setState({
+                usernameError: '',
+            });
+
+            this.props.checkUsername(this.state.usernameValue);
+        }
     }
+
+
 }
 
 (UserRegisterForm).propTypes = {
