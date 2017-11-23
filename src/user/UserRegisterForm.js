@@ -38,24 +38,19 @@ export default class UserRegisterForm extends Component {
             <div style={styles.container}>
                 <Paper zDepth={2} >
                     <TextField
-<<<<<<< HEAD
                         className="username"
-                        type="text"
                         floatingLabelText="Username"
                         errorText="Required field"
                         errorStyle={styles.errorStyle}
                         floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        value={this.state.usernameFieldValue}
+                        onBlur={this._checkUsername}
+                        onInput={this._usernameFieldHandler}
                     /><br />
                     <TextField
                         className="firstname"
                         type="name"
                         floatingLabelText="First Name"
-=======
-                        value={this.state.usernameFieldValue}
-                        floatingLabelText="Username"
-                        onBlur={this._checkUsername}
-                        onInput={this._usernameFieldHandler}
->>>>>>> 7cc73d0d2af6a4da8ea15e21a908fc32c2e3c6ee
                     />
                     <TextField
                         className="lastname"
