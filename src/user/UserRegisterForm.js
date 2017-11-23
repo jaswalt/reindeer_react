@@ -31,6 +31,8 @@ export default class UserRegisterForm extends Component {
         this.state = {
             usernameValue: '',
             usernameError: '',
+            emailValue: '',
+            emailError: '',
         };
     }
 
@@ -64,9 +66,14 @@ export default class UserRegisterForm extends Component {
                         className="email"
                         type="email"
                         floatingLabelText="Email"
-                        errorText="Required field"
+                        errorText={this.state.emailError}
                         errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        floatingLabelFocusStyle={
+                            styles.floatingLabelFocusStyle
+                        }
+                        value={this.state.emailValue}
+                        onChange={this._emailFieldHandler}
+                        onBlur={this._validateEmail}
                     /><br />
                     <TextField
                         className="password"
@@ -103,7 +110,7 @@ export default class UserRegisterForm extends Component {
 
         if (!this.state.usernameValue) {
             this.setState({
-                usernameError: 'Required',
+                usernameError: 'Required field',
             });
         } else {
             this.setState({
@@ -111,9 +118,31 @@ export default class UserRegisterForm extends Component {
             });
 
             this.props.checkUsername(this.state.usernameValue);
-        }
-    }
+        };
+    };
 
+    _emailFieldHandler = (e) => {
+        e.stopPropagation();
+
+        this.setState({
+            emailValue: e.target.value,
+        });
+
+    };
+
+    _validateEmail = (e) => {
+        e.stopPropagation();
+
+        if (!this.state.emailValue) {
+            this.setState({
+                emailError: 'Required field',
+            });
+        } else {
+            this.setState({
+                emailError: '',
+            });
+        };
+    };
 
 }
 
