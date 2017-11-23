@@ -14,13 +14,9 @@ class LoginPage extends Component {
     render() {
         return (
             <div>
-<<<<<<< HEAD
-                <UserRegisterForm />
-=======
                 <UserRegisterForm
                     checkUsername={this.props.checkUsername}
                 />
->>>>>>> 7cc73d0d2af6a4da8ea15e21a908fc32c2e3c6ee
             </div>
         );
     }
@@ -33,13 +29,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-<<<<<<< HEAD
-    return { actions: dispatch };
-=======
     return {
         checkUsername: (username) => dispatch(checkUserNameIsValid(username))
     };
->>>>>>> 7cc73d0d2af6a4da8ea15e21a908fc32c2e3c6ee
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
