@@ -1,4 +1,5 @@
 import * as types from '../app/types';
+import { apiCheckUsernameIsValid } from '../app/api';
 
 export function addUser(user) {
     return {
@@ -20,4 +21,25 @@ export function addFriendToUser(user, friend) {
         user,
         friend,
     };
+}
+
+export function usernameIsValid() {
+    return {
+        type: types.USERNAME_VALID_SUCCESS,
+    }
+}
+
+export function usernameIsNotValid() {
+    return {
+        type: types.USERNAME_VALID_FAILURE,
+    }
+}
+
+export function checkUserNameIsValid(username) {
+    return (dispatch) => {
+        apiCheckUsernameIsValid(username).then(
+            resp => dispatch(usernameIsValid()),
+            () => dispatch(usernameIsNotValid()),
+        );
+    }
 }

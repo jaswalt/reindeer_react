@@ -11,3 +11,9 @@ export function apiGetUserGifts(userId) {
 export function apiDeleteUserGift(userId, giftId) {
     return axios.delete(`${BASE_API_URL}/users/${userId}/gifts/${giftId}`);
 }
+
+export function apiCheckUsernameIsValid(username) {
+    return axios.post(`${BASE_API_URL}/users/checkname`, {
+        username,
+    });
+}

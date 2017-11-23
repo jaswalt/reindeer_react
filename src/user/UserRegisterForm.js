@@ -28,7 +28,9 @@ export default class UserRegisterForm extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            usernameFieldValue: '',
+        };
     }
 
     render() {
@@ -36,6 +38,7 @@ export default class UserRegisterForm extends Component {
             <div style={styles.container}>
                 <Paper zDepth={2} >
                     <TextField
+<<<<<<< HEAD
                         className="username"
                         type="text"
                         floatingLabelText="Username"
@@ -47,6 +50,12 @@ export default class UserRegisterForm extends Component {
                         className="firstname"
                         type="name"
                         floatingLabelText="First Name"
+=======
+                        value={this.state.usernameFieldValue}
+                        floatingLabelText="Username"
+                        onBlur={this._checkUsername}
+                        onInput={this._usernameFieldHandler}
+>>>>>>> 7cc73d0d2af6a4da8ea15e21a908fc32c2e3c6ee
                     />
                     <TextField
                         className="lastname"
@@ -81,6 +90,26 @@ export default class UserRegisterForm extends Component {
 
         );
     }
+
+    _usernameFieldHandler = (e) => {
+        e.stopPropagation();
+
+        this.setState({
+            usernameFieldValue: e.target.value,
+        });
+    };
+
+    _checkUsername = (e) => {
+        e.stopPropagation();
+
+        this.props.checkUsername(this.state.usernameFieldValue);
+    }
 }
 
+<<<<<<< HEAD
 (UserRegisterForm).propTypes = {};
+=======
+(UserRegisterForm).propTypes = {
+    checkUsername: PropTypes.func,
+};
+>>>>>>> 7cc73d0d2af6a4da8ea15e21a908fc32c2e3c6ee

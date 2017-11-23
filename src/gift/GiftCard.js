@@ -86,7 +86,7 @@ export default class GiftCard extends Component {
             displayedCardText: this.state.cardText,
             cardTextCollapsed: false,
         });
-    }
+    };
 
     _showActionButtons = (e) => {
         e.preventDefault();
@@ -95,7 +95,7 @@ export default class GiftCard extends Component {
         this.setState({
             displayActions: true,
         });
-    }
+    };
 
     _collapseCardText = (e) => {
         e.preventDefault();

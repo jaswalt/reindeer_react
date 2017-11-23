@@ -10,7 +10,7 @@ const muiTheme = getMuiTheme({
         primary1Color: '#990033',
     },
 });
-const imageUrl = 'https://static.pexels.com/photos/257855/pexels-photo-257855.jpeg'
+const imageUrl = 'https://static.pexels.com/photos/257855/pexels-photo-257855.jpeg';
 const styles = {
     backgroundImage: 'url(' + imageUrl + ')',
     backgroundSize: 'cover',
