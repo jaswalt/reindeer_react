@@ -8,18 +8,13 @@ import { checkUserNameIsValid } from './userActions';
 const styles = {
     container: {
         margin: '0 auto',
-        maxWidth: '30%',
-        marginTop: 30,
+        maxWidth: '400px',
+        paddingTop: 30,
         marginBottom: 30,
     },
-    style: {
+    field: {
         marginLeft: 14,
         width: '93%',
-    },
-    form: {
-        display: 'flex',
-        direction: 'column',
-        maxWidth: '100%',
     },
     floatingLabelFocusStyle: {
         color: '#990033',
@@ -49,6 +44,12 @@ class UserRegisterForm extends Component {
             usernameValue: '',
             usernameError: '',
 
+            firstnameValue: '',
+            firstnameError: '',
+
+            lastnameValue: '',
+            lastnameError: '',
+
             passwordValue: '',
             passwordError: '',
 
@@ -62,6 +63,9 @@ class UserRegisterForm extends Component {
         };
 
         this._validateEmail = this._validateEmail.bind(this);
+        this._validateFirstname = this._validateFirstname.bind(this);
+        this._validateLastname = this._validateLastname.bind(this);
+        this._validateConfirmPassword = this._validateConfirmPassword.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -91,19 +95,29 @@ class UserRegisterForm extends Component {
                         value={this.state.usernameValue}
                         onChange={this._usernameFieldHandler}
                         onBlur={this._validateUsername}
-                        style={styles.style}
+                        style={styles.field}
                     /><br/>
                     <TextField
                         className="firstname"
                         type="name"
                         floatingLabelText="First Name"
-                        style={styles.style}
+                        value={this.state.firstnameValue}
+                        errorText={this.state.firstnameError}
+                        errorStyle={styles.errorStyle}
+                        onChange={this._firstnameFieldHandler}
+                        onBlur={this._validateFirstname}
+                        style={styles.field}
                     />
                     <TextField
                         className="lastname"
                         type="name"
                         floatingLabelText="Last Name"
-                        style={styles.style}
+                        value={this.state.lastnameValue}
+                        errorText={this.state.lastnameError}
+                        errorStyle={styles.errorStyle}
+                        onChange={this._lastnameFieldHandler}
+                        onBlur={this._validateLastname}
+                        style={styles.field}
                     /><br/>
                     <TextField
                         className="email"
@@ -116,7 +130,7 @@ class UserRegisterForm extends Component {
                         value={this.state.emailValue}
                         onChange={this._emailFieldHandler}
                         onBlur={this._validateEmail}
-                        style={styles.style}
+                        style={styles.field}
                     /><br />
                     <TextField
                         className="password"
@@ -130,7 +144,7 @@ class UserRegisterForm extends Component {
                         value={this.state.passwordValue}
                         onChange={this._passwordFieldHandler}
                         onBlur={this._validatePassword}
-                        style={styles.style}
+                        style={styles.field}
                     />
                     <TextField
                         floatingLabelText="Confirm Password"
@@ -143,7 +157,7 @@ class UserRegisterForm extends Component {
                         value={this.state.confirmPasswordValue}
                         onChange={this._confirmPasswordFieldHandler}
                         onBlur={this._validateConfirmPassword}
-                        style={styles.style}
+                        style={styles.field}
                     />
                     <span style={styles.buttons}>
                         <FlatButton hoverColor="lightgreen" style={styles.button}>Submit</FlatButton>
@@ -154,23 +168,62 @@ class UserRegisterForm extends Component {
         );
     }
 
+    /**
+     *    Form Input Handlers
+     */
+
     _usernameFieldHandler = (e) => {
         e.stopPropagation();
 
         this.setState({
-            usernameValue: e.target.value,
+            usernameValue: e.target.value.trim(),
         });
+    };
 
+    _firstnameFieldHandler = (e) => {
+        e.stopPropagation();
+
+        this.setState({
+            firstnameValue: e.target.value,
+        });
+    };
+
+    _lastnameFieldHandler = (e) => {
+        e.stopPropagation();
+
+        this.setState({
+            lastnameValue: e.target.value,
+        });
     };
 
     _emailFieldHandler = (e) => {
         e.stopPropagation();
 
         this.setState({
-            emailValue: e.target.value,
+            emailValue: e.target.value.trim(),
         });
 
     };
+
+    _passwordFieldHandler = (e) => {
+        e.stopPropagation();
+
+        this.setState({
+            passwordValue: e.target.value,
+        })
+    };
+
+    _confirmPasswordFieldHandler = (e) => {
+        e.stopPropagation();
+
+        this.setState({
+            confirmPasswordValue: e.target.value,
+        })
+    };
+
+    /**
+     *   Form Validators
+     */
 
     _validateUsername = (e) => {
         e.stopPropagation();
@@ -185,6 +238,36 @@ class UserRegisterForm extends Component {
             });
 
             this.props.checkUsername(this.state.usernameValue);
+        };
+    };
+
+    _validateFirstname = (e) => {
+        e.stopPropagation();
+
+        if (!this.state.firstnameValue) {
+            this.setState({
+                firstnameError: 'Required',
+            });
+        } else {
+            this.setState(prevState => ({
+                firstnameValue: prevState.firstnameValue.trim(),
+                firstnameError: '',
+            }));
+        };
+    };
+
+    _validateLastname = (e) => {
+        e.stopPropagation();
+
+        if (!this.state.lastnameValue) {
+            this.setState({
+                lastnameError: 'Required',
+            });
+        } else {
+            this.setState(prevState => ({
+                lastnameValue: prevState.lastnameValue.trim(),
+                lastnameError: '',
+            }));
         };
     };
 
@@ -208,15 +291,6 @@ class UserRegisterForm extends Component {
         }
     };
 
-    _passwordFieldHandler = (e) => {
-        e.stopPropagation();
-
-        this.setState({
-            passwordValue: e.target.value,
-        });
-
-    };
-
     _validatePassword = (e) => {
         e.stopPropagation();
 
@@ -225,13 +299,13 @@ class UserRegisterForm extends Component {
                 passwordError: 'Required',
             });
         } else if (this.state.confirmPasswordValue) {
-            if (e.target.value !== this.state.confirmPasswordValue)  {
+            if (this.state.passwordValue !== this.state.confirmPasswordValue)  {
                 this.setState({
-                    passwordConfirmError: 'Password and Confirmation don\'t match',
+                    confirmPasswordError: 'Password and Confirmation don\'t match',
                 });
             } else {
                this.setState({
-                    passwordConfirmError: '',
+                    confirmPasswordError: '',
                });
             }
         } else {
@@ -241,6 +315,29 @@ class UserRegisterForm extends Component {
         }
     };
 
+    _validateConfirmPassword = (e) => {
+        e.stopPropagation();
+
+        if (!this.state.confirmPasswordValue) {
+            this.setState({
+                confirmPasswordError: 'Required',
+            });
+        } else if (this.state.passwordValue) {
+            if (this.state.confirmPasswordValue !== this.state.passwordValue)  {
+                this.setState({
+                    confirmPasswordError: 'Password and Confirmation don\'t match',
+                });
+            } else {
+               this.setState({
+                    confirmPasswordError: '',
+               });
+            }
+        } else {
+            this.setState({
+                    confirmPasswordError: '',
+            });
+        }
+    };
 }
 
 (UserRegisterForm).propTypes = {
