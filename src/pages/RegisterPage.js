@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import { checkUserNameIsValid } from '../user/userActions';
 import UserRegisterForm from '../user/UserRegisterForm';
 
 class LoginPage extends Component {
@@ -13,7 +14,9 @@ class LoginPage extends Component {
     render() {
         return (
             <div>
-                <UserRegisterForm/>
+                <UserRegisterForm
+                    checkUsername={this.props.checkUsername}
+                />
             </div>
         );
     }
@@ -26,7 +29,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {actions: dispatch};
+    return {
+        checkUsername: (username) => dispatch(checkUserNameIsValid(username))
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

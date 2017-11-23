@@ -44,7 +44,7 @@ export function fetchUserGifts(userId) {
         apiGetUserGifts(userId)
             .then(
                 resp => dispatch(giftsFetchSuccess(JSON.parse(resp.data))),
-                () => dispatch(giftsFetchFailure(true)),
+                err => dispatch(giftsFetchFailure(true))
             );
     };
 }
