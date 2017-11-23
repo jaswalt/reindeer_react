@@ -12,7 +12,7 @@ const styles = {
         display: 'flex',
         align: 'center',
         direction: 'column',
-        padding: 5,
+        margin: 5,
         maxWidth: '25%',
     },
     floatingLabelFocusStyle: {
@@ -22,7 +22,6 @@ const styles = {
         color: '#990033',
     },
 };
-
 
 export default class UserRegisterForm extends Component {
     constructor(props) {
