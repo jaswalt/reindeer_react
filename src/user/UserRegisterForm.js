@@ -15,6 +15,12 @@ const styles = {
         padding: 5,
         maxWidth: '25%',
     },
+    floatingLabelFocusStyle: {
+        color: '#990033',
+    },
+    errorStyle: {
+        color: '#990033',
+    },
 };
 
 
@@ -30,24 +36,45 @@ export default class UserRegisterForm extends Component {
             <div style={styles.container}>
                 <Paper zDepth={2} >
                     <TextField
+                        className="username"
+                        type="text"
                         floatingLabelText="Username"
-                    />
+                        errorText="Required field"
+                        errorStyle={styles.errorStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                    /><br />
                     <TextField
+                        className="firstname"
+                        type="name"
                         floatingLabelText="First Name"
                     />
                     <TextField
+                        className="lastname"
+                        type="name"
                         floatingLabelText="Last Name"
-                    />
+                    /><br />
                     <TextField
+                        className="email"
+                        type="email"
                         floatingLabelText="Email"
-                    />
+                        errorText="Required field"
+                        errorStyle={styles.errorStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                    /><br />
                     <TextField
+                        className="password"
                         floatingLabelText="Password"
                         type="password"
+                        errorText="Required field"
+                        errorStyle={styles.errorStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                     />
                     <TextField
                         floatingLabelText="Confirm Password"
                         type="password"
+                        errorText="Required field"
+                        errorStyle={styles.errorStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                     />
                 </Paper>
             </div>
