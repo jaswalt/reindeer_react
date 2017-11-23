@@ -13,32 +13,30 @@ export default class ToolBar extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      value: 3,
-    };
+    this.state = {open: false};
   }
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleToggle = () => this.setState({open: !this.state.open});
+
+  handleClose = () => this.setState({open: false});
 
   render() {
     return (
       <Toolbar>
-        <ToolbarGroup firstChild={true}>
-          <DropDownMenu value={this.state.value} onChange={this.handleChange}>
-            <MenuItem value={1} primaryText="All Broadcasts" />
-            <MenuItem value={2} primaryText="All Voice" />
-            <MenuItem value={3} primaryText="All Text" />
-            <MenuItem value={4} primaryText="Complete Voice" />
-            <MenuItem value={5} primaryText="Complete Text" />
-            <MenuItem value={6} primaryText="Active Voice" />
-            <MenuItem value={7} primaryText="Active Text" />
+        <ToolbarGroup>
+          <DropDownMenu onClick={this.handleToggle}>
+            <MenuItem onClick={this.handleClose} primaryText="Price" />
+            <MenuItem onClick={this.handleClose} primaryText="Category" />
+            <MenuItem onClick={this.handleClose} primaryText="Date Added" />
+            <MenuItem onClick={this.handleClose} primaryText="Location Added" />
+            <MenuItem onClick={this.handleClose} primaryText="Rank" />
           </DropDownMenu>
         </ToolbarGroup>
         <ToolbarGroup>
           <ToolbarTitle text="Options" />
           <FontIcon className="muidocs-icon-custom-sort" />
           <ToolbarSeparator />
-          <RaisedButton label="Create Broadcast" primary={true} />
+
           <IconMenu
             iconButtonElement={
               <IconButton touch={true}>
