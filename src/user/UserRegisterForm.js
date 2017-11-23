@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Paper, TextField } from 'material-ui';
+import { Paper, TextField, FlatButton } from 'material-ui';
+import { connect } from 'react-redux';
+import { checkUserNameIsValid } from './userActions';
+
 
 const styles = {
     container: {
@@ -21,23 +24,52 @@ const styles = {
     errorStyle: {
         color: '#990033',
     },
+    buttons: {
+        display: 'flex',
+        align: 'center',
+        direction: 'row',
+        justifyContent: 'center',
+    },
+    button: {
+        margin: 10,
+    }
 };
 
 
-export default class UserRegisterForm extends Component {
+class UserRegisterForm extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             usernameValue: '',
             usernameError: '',
+
+            passwordValue: '',
+            passwordError: '',
+
+            confirmPasswordValue: '',
+            confirmPasswordError: '',
+
+            formValid: false,
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.usernameNotValid) {
+            this.setState({
+                usernameError: 'That username is not available',
+            })
+        } else {
+            this.setState({
+                usernameError: '',
+            })
+        }
     }
 
     render() {
         return (
             <div style={styles.container}>
-                <Paper zDepth={2} >
+                <Paper zDepth={2}>
                     <TextField
                         className="username"
                         floatingLabelText="Username"
@@ -49,7 +81,7 @@ export default class UserRegisterForm extends Component {
                         value={this.state.usernameValue}
                         onChange={this._usernameFieldHandler}
                         onBlur={this._validateUsername}
-                    /><br />
+                    /><br/>
                     <TextField
                         className="firstname"
                         type="name"
@@ -59,7 +91,7 @@ export default class UserRegisterForm extends Component {
                         className="lastname"
                         type="name"
                         floatingLabelText="Last Name"
-                    /><br />
+                    /><br/>
                     <TextField
                         className="email"
                         type="email"
@@ -67,7 +99,7 @@ export default class UserRegisterForm extends Component {
                         errorText="Required field"
                         errorStyle={styles.errorStyle}
                         floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                    /><br />
+                    /><br/>
                     <TextField
                         className="password"
                         floatingLabelText="Password"
@@ -83,6 +115,10 @@ export default class UserRegisterForm extends Component {
                         errorStyle={styles.errorStyle}
                         floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                     />
+                    <span style={styles.buttons}>
+                        <FlatButton hoverColor="lightgreen" style={styles.button}>Submit</FlatButton>
+                        <FlatButton hoverColor="lightblue" style={styles.button}>Cancel</FlatButton>
+                    </span>
                 </Paper>
             </div>
 
@@ -112,11 +148,49 @@ export default class UserRegisterForm extends Component {
 
             this.props.checkUsername(this.state.usernameValue);
         }
-    }
+    };
 
+    _validatePassword = (e) => {
+        e.stopPropagation();
+
+        if (!this.state.passwordValue) {
+            this.setState({
+                passwordError: 'Required',
+            });
+        } else if (this.state.confirmPasswordValue) {
+            if (e.target.value !== this.state.confirmPasswordValue)  {
+                this.setState({
+                    passwordConfirmError: 'Password and Confirmation don\'t match',
+                });
+            } else {
+               this.setState({
+                    passwordConfirmError: '',
+               });
+            }
+        } else {
+            this.setState({
+                    passwordError: '',
+            });
+        }
+    };
 
 }
 
 (UserRegisterForm).propTypes = {
     checkUsername: PropTypes.func,
+    usernameNotValid: PropTypes.bool.isRequired,
 };
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        usernameNotValid: state.users.usernameError,
+    };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        checkUsername: (username) => dispatch(checkUserNameIsValid(username))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserRegisterForm);
