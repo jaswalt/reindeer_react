@@ -61,16 +61,6 @@ export default class UserRegisterForm extends Component {
                         floatingLabelText="Last Name"
                     /><br />
                     <TextField
-                        className="username"
-                        floatingLabelText="Username"
-                        errorText="Required field"
-                        errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        value={this.state.usernameFieldValue}
-                        onBlur={this._checkUsername}
-                        onInput={this._usernameFieldHandler}
-                    />
-                    <TextField
                         className="email"
                         type="email"
                         floatingLabelText="Email"
