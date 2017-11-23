@@ -151,7 +151,6 @@ class UserRegisterForm extends Component {
                     </span>
                 </Paper>
             </div>
-
         );
     }
 
@@ -160,6 +159,15 @@ class UserRegisterForm extends Component {
 
         this.setState({
             usernameValue: e.target.value,
+        });
+
+    };
+
+    _emailFieldHandler = (e) => {
+        e.stopPropagation();
+
+        this.setState({
+            emailValue: e.target.value,
         });
 
     };
@@ -178,15 +186,6 @@ class UserRegisterForm extends Component {
 
             this.props.checkUsername(this.state.usernameValue);
         };
-    };
-
-    _emailFieldHandler = (e) => {
-        e.stopPropagation();
-
-        this.setState({
-            emailValue: e.target.value,
-        });
-
     };
 
     _validateEmail(e) {
