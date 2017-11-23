@@ -101,10 +101,6 @@ export default class UserRegisterForm extends Component {
     }
 }
 
-<<<<<<< HEAD
-(UserRegisterForm).propTypes = {};
-=======
 (UserRegisterForm).propTypes = {
     checkUsername: PropTypes.func,
 };
->>>>>>> 7cc73d0d2af6a4da8ea15e21a908fc32c2e3c6ee
