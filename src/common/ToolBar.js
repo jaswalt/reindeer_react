@@ -13,42 +13,30 @@ export default class ToolBar extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {open: false};
+    this.state = {
+      value: 1,
+    };
   }
 
-  handleToggle = () => this.setState({open: !this.state.open});
-
-  handleClose = () => this.setState({open: false});
+  handleChange = (event, index, value) => this.setState({
+    value,
+  });
 
   render() {
     return (
       <Toolbar>
-        <ToolbarGroup>
-          <DropDownMenu onClick={this.handleToggle}>
-            <MenuItem onClick={this.handleClose} primaryText="Price" />
-            <MenuItem onClick={this.handleClose} primaryText="Category" />
-            <MenuItem onClick={this.handleClose} primaryText="Date Added" />
-            <MenuItem onClick={this.handleClose} primaryText="Location Added" />
-            <MenuItem onClick={this.handleClose} primaryText="Rank" />
+        <ToolbarGroup firstChild={true}>
+          <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+            <MenuItem value={1} primaryText="Sort By" />
+            <MenuItem value={2} primaryText="Price" />
+            <MenuItem value={3} primaryText="Category" />
+            <MenuItem value={4} primaryText="Date Added" />
+            <MenuItem value={5} primaryText="Location Added" />
+            <MenuItem value={6} primaryText="Rank" />
           </DropDownMenu>
         </ToolbarGroup>
-        <ToolbarGroup>
-          <ToolbarTitle text="Options" />
-          <FontIcon className="muidocs-icon-custom-sort" />
-          <ToolbarSeparator />
 
-          <IconMenu
-            iconButtonElement={
-              <IconButton touch={true}>
-                <NavigationExpandMoreIcon />
-              </IconButton>
-            }
-          >
-            <MenuItem primaryText="Download" />
-            <MenuItem primaryText="More Info" />
-          </IconMenu>
-        </ToolbarGroup>
-        <Search />
+        <Search lastChild={true}/>
       </Toolbar>
     );
   }
