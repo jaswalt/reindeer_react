@@ -38,16 +38,6 @@ export default class UserRegisterForm extends Component {
             <div style={styles.container}>
                 <Paper zDepth={2} >
                     <TextField
-                        className="username"
-                        floatingLabelText="Username"
-                        errorText="Required field"
-                        errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-                        value={this.state.usernameFieldValue}
-                        onBlur={this._checkUsername}
-                        onInput={this._usernameFieldHandler}
-                    /><br />
-                    <TextField
                         className="firstname"
                         type="name"
                         floatingLabelText="First Name"
@@ -57,6 +47,16 @@ export default class UserRegisterForm extends Component {
                         type="name"
                         floatingLabelText="Last Name"
                     /><br />
+                    <TextField
+                        className="username"
+                        floatingLabelText="Username"
+                        errorText="Required field"
+                        errorStyle={styles.errorStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        value={this.state.usernameFieldValue}
+                        onBlur={this._checkUsername}
+                        onInput={this._usernameFieldHandler}
+                    />
                     <TextField
                         className="email"
                         type="email"
