@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import AvatarContainer from './AvatarContainer';
 import Login from './Login';
-import Register from './Register';
 
 export default class NavBar extends Component {
     constructor(props) {

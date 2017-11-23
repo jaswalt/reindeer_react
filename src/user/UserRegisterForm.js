@@ -5,16 +5,17 @@ import { Paper, TextField } from 'material-ui';
 const styles = {
     container: {
         margin: '0 auto',
-        maxWidth: 500,
+        maxWidth: '50%',
         marginTop: 30,
     },
     form: {
         display: 'flex',
+        align: 'center',
         direction: 'column',
-        margin: '0 auto',
-        maxWidth: 200,
-    }
-}
+        padding: 5,
+        maxWidth: '25%',
+    },
+};
 
 
 export default class UserRegisterForm extends Component {
@@ -32,15 +33,21 @@ export default class UserRegisterForm extends Component {
                         floatingLabelText="Username"
                     />
                     <TextField
+                        floatingLabelText="First Name"
+                    />
+                    <TextField
+                        floatingLabelText="Last Name"
+                    />
+                    <TextField
+                        floatingLabelText="Email"
+                    />
+                    <TextField
                         floatingLabelText="Password"
                         type="password"
                     />
                     <TextField
                         floatingLabelText="Confirm Password"
                         type="password"
-                    />
-                    <TextField
-                        floatingLabelText="Email"
                     />
                 </Paper>
             </div>
