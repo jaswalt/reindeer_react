@@ -8,15 +8,18 @@ import { checkUserNameIsValid } from './userActions';
 const styles = {
     container: {
         margin: '0 auto',
-        maxWidth: '50%',
+        maxWidth: '30%',
         marginTop: 30,
+        marginBottom: 30,
+    },
+    style: {
+        marginLeft: 14,
+        width: '93%',
     },
     form: {
         display: 'flex',
-        align: 'center',
         direction: 'column',
-        margin: 5,
-        maxWidth: '25%',
+        maxWidth: '100%',
     },
     floatingLabelFocusStyle: {
         color: '#990033',
@@ -32,6 +35,8 @@ const styles = {
     },
     button: {
         margin: 10,
+        backgroundColor: '#990033',
+        color: 'white',
     }
 };
 
@@ -84,16 +89,19 @@ class UserRegisterForm extends Component {
                         value={this.state.usernameValue}
                         onChange={this._usernameFieldHandler}
                         onBlur={this._validateUsername}
+                        style={styles.style}
                     /><br/>
                     <TextField
                         className="firstname"
                         type="name"
                         floatingLabelText="First Name"
+                        style={styles.style}
                     />
                     <TextField
                         className="lastname"
                         type="name"
                         floatingLabelText="Last Name"
+                        style={styles.style}
                     /><br/>
                     <TextField
                         className="email"
@@ -107,6 +115,7 @@ class UserRegisterForm extends Component {
                         value={this.state.emailValue}
                         onChange={this._emailFieldHandler}
                         onBlur={this._validateEmail}
+                        style={styles.style}
                     /><br />
                     <TextField
                         className="password"
@@ -120,6 +129,7 @@ class UserRegisterForm extends Component {
                         value={this.state.passwordValue}
                         onChange={this._passwordFieldHandler}
                         onBlur={this._validatePassword}
+                        style={styles.style}
                     />
                     <TextField
                         floatingLabelText="Confirm Password"
@@ -132,6 +142,7 @@ class UserRegisterForm extends Component {
                         value={this.state.confirmPasswordValue}
                         onChange={this._confirmPasswordFieldHandler}
                         onBlur={this._validateConfirmPassword}
+                        style={styles.style}
                     />
                     <span style={styles.buttons}>
                         <FlatButton hoverColor="lightgreen" style={styles.button}>Submit</FlatButton>
