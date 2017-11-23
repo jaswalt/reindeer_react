@@ -22,7 +22,7 @@ export default class NavBar extends Component {
                     fontFamily: 'Great Vibes',
                 }}
                 showMenuIconButton={false}
-                iconElementRight={isLoggedIn ? <AvatarContainer /> : <span><Login /><Register /></span>}
+                iconElementRight={isLoggedIn ? <AvatarContainer /> : <Login />}
                 iconStyleRight={{ margin: '0' }}
             />
         );
