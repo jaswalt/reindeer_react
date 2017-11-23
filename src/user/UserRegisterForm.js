@@ -32,7 +32,7 @@ const styles = {
     },
     button: {
         margin: 10,
-    }
+    },
 };
 
 
@@ -55,6 +55,8 @@ class UserRegisterForm extends Component {
 
             formValid: false,
         };
+
+        this._validateEmail = this._validateEmail.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -97,7 +99,6 @@ class UserRegisterForm extends Component {
                     /><br/>
                     <TextField
                         className="email"
-                        type="email"
                         floatingLabelText="Email"
                         errorText={this.state.emailError}
                         errorStyle={styles.errorStyle}
@@ -177,18 +178,24 @@ class UserRegisterForm extends Component {
 
     };
 
-    _validateEmail = (e) => {
+    _validateEmail(e) {
         e.stopPropagation();
+
+        const re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
         if (!this.state.emailValue) {
             this.setState({
-                emailError: 'Required field',
+                emailError: 'Required',
+            });
+        } else if (!re.test(this.state.emailValue)) {
+            this.setState({
+                emailError: 'Email address not valid',
             });
         } else {
             this.setState({
                 emailError: '',
             });
-        };
+        }
     };
 
     _passwordFieldHandler = (e) => {
