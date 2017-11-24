@@ -62,7 +62,7 @@ export function registerUser(userForm) {
         // dispatch sending user form pending
         apiRegisterUser(userForm).then(resp => {
                 localStorage.setItem('token', resp.data.token);
-                const profile = jwtDecode(res.data.token);
+                const profile = jwtDecode(resp.data.token);
                 dispatch(addUserSuccess(profile))
             },
             () => dispatch(addUserFailure()),
