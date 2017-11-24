@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchBar from 'material-ui-search-bar';
+import axios from 'axios';
 
 export default class Search extends Component {
     constructor(props) {

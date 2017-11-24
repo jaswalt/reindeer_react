@@ -1,10 +1,11 @@
+import * as jwtDecode from 'jwt-decode';
 import * as types from '../app/types';
 import { apiCheckUsernameIsValid, apiRegisterUser } from '../app/api';
 
-export function addUserSuccess(user) {
+export function addUserSuccess(profile) {
     return {
         type: types.ADD_USER_SUCCESS,
-        user,
+        profile,
     };
 }
 
@@ -53,9 +54,10 @@ export function checkUserNameIsValid(username) {
 export function registerUser(userForm) {
     return (dispatch) => {
         // dispatch sending user form pending
-        apiRegisterUser(userForm).then(
-            resp => dispatch(addUserSuccess(resp.data)),
-            () => dispatch(addUserFailure()),
-        );
+        apiRegisterUser(userForm).then((resp) => {
+            localStorage.setItem('token', resp.data.token);
+            const decoded = jwtDecode(resp.data.token);
+            dispatch(addUserSuccess(decoded));
+        }, () => dispatch(addUserFailure()));
     };
 }
