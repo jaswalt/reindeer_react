@@ -338,6 +338,56 @@ class UserRegisterForm extends Component {
             });
         }
     };
+
+    /**
+     *    Form Submission Handlers
+     */
+
+    _validateForm = (e) => {
+        e.preventDefault();
+
+        this._validateUsername(e);
+        this._validateFirstname(e);
+        this._validateLastname(e);
+        this._validateEmail(e);
+        this._validatePassword(e);
+        this._validateConfirmPassword(e);
+
+        const {
+            usernameError,
+            firstnameError,
+            lastnameError,
+            emailError,
+            passwordError,
+            confirmPasswordError } = this.state;
+        
+        if (usernameError || firstnameError ||
+            lastnameError || emailError || passwordError ||
+            confirmPasswordError) {
+            
+            this.setState({
+                formValid: false,
+            })
+        } else {
+            this.setState({
+                formValid: true,
+            })
+        }
+    }
+
+    _transmitData = (e) => {
+        if (this.state.formValid) {
+            const userForm = {
+                username: this.state.usernameValue,
+                password: this.state.passwordValue,
+                email: this.state.emailValue,
+                firstname: this.state.firstnameValue,
+                lastname: this.state.lastnameValue,
+            };
+
+            
+        }
+    }
 }
 
 (UserRegisterForm).propTypes = {

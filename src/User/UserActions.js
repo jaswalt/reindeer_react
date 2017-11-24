@@ -26,20 +26,30 @@ export function addFriendToUser(user, friend) {
 export function usernameIsValid() {
     return {
         type: types.USERNAME_VALID_SUCCESS,
-    }
+    };
 }
 
 export function usernameIsNotValid() {
     return {
         type: types.USERNAME_VALID_FAILURE,
-    }
+    };
 }
 
 export function checkUserNameIsValid(username) {
     return (dispatch) => {
         apiCheckUsernameIsValid(username).then(
-            resp => dispatch(usernameIsValid()),
+            () => dispatch(usernameIsValid()),
             () => dispatch(usernameIsNotValid()),
         );
-    }
+    };
+}
+
+export function sendNewUserRegistration(userForm) {
+    return (dispatch) => {
+        // dispatch sending user form pending
+        apiCheckUsernameIsValid(username).then(
+            () => dispatch(usernameIsValid()),
+            () => dispatch(usernameIsNotValid()),
+        );
+    };
 }
