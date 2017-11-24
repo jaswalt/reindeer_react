@@ -19,7 +19,10 @@ export default class NavBar extends Component {
                 title="Kaddo"
                 titleStyle={{
                     fontFamily: 'Great Vibes',
+                    fontSize: '4em',
+                    paddingLeft: '2vw',
                 }}
+                style={{ padding: '1em' }}
                 showMenuIconButton={false}
                 iconElementRight={isLoggedIn ? <AvatarContainer /> : <Login />}
                 iconStyleRight={{ margin: '0' }}
