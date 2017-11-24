@@ -26,13 +26,13 @@ export function addFriendToUser(user, friend) {
 export function usernameIsValid() {
     return {
         type: types.USERNAME_VALID_SUCCESS,
-    }
+    };
 }
 
 export function usernameIsNotValid() {
     return {
         type: types.USERNAME_VALID_FAILURE,
-    }
+    };
 }
 
 export function checkUserNameIsValid(username) {
@@ -41,5 +41,5 @@ export function checkUserNameIsValid(username) {
             resp => dispatch(usernameIsValid()),
             () => dispatch(usernameIsNotValid()),
         );
-    }
+    };
 }
