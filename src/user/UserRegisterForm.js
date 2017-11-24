@@ -278,7 +278,7 @@ class UserRegisterForm extends Component {
 
         if (!this.state.emailValue) {
             this.setState({
-                emailError: 'Required',
+                emailError: 'Required field',
             });
         } else if (!re.test(this.state.emailValue)) {
             this.setState({
@@ -296,7 +296,7 @@ class UserRegisterForm extends Component {
 
         if (!this.state.passwordValue) {
             this.setState({
-                passwordError: 'Required',
+                passwordError: 'Required field',
             });
         } else if (this.state.confirmPasswordValue) {
             if (this.state.passwordValue !== this.state.confirmPasswordValue)  {

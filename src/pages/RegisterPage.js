@@ -12,7 +12,7 @@ const styles = {
     },
 };
 
-export default class LoginPage extends Component {
+export default class RegisterPage extends Component {
     constructor(props) {
         super(props);
 
@@ -28,4 +28,4 @@ export default class LoginPage extends Component {
     }
 }
 
-(LoginPage).propTypes = {};
+(RegisterPage).propTypes = {};
