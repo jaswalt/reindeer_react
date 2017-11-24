@@ -9,7 +9,7 @@ import HomePage from '../pages/HomePage';
 import GiftsMain from '../pages/GiftsMain';
 import RegisterPage from '../pages/RegisterPage';
 import LoginPage from '../pages/LoginPage';
-import NavBar from "../common/NavBar";
+import NavBar from '../common/NavBar';
 import ToolBar from '../common/ToolBar';
 
 const muiTheme = getMuiTheme({
@@ -24,15 +24,17 @@ export default function () {
     return (
         <Provider store={Store}>
             <MuiThemeProvider muiTheme={muiTheme}>
-                <NavBar />
-                <ToolBar />
                 <BrowserRouter>
-                    <Switch>
-                        <Route exact path="/users/register" component={RegisterPage} />
-                        <Route exact path="/users/login" component={LoginPage} />
-                        <Route exact path="/gifts/" component={GiftsMain} />
-                        <Route exact path="/" component={HomePage} />
-                    </Switch>
+                    <div>
+                        <NavBar />
+                        <ToolBar />
+                        <Switch>
+                            <Route exact path="/users/register" component={RegisterPage} />
+                            <Route exact path="/users/login" component={LoginPage} />
+                            <Route exact path="/gifts/" component={GiftsMain} />
+                            <Route exact path="/" component={HomePage} />
+                        </Switch>
+                    </div>
                 </BrowserRouter>
             </MuiThemeProvider>
         </Provider>

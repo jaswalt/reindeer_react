@@ -165,9 +165,15 @@ class UserRegisterForm extends Component {
                             style={styles.button}
                             onClick={this._processForm}
                         >
-                            Submit
+                            Register
                         </FlatButton>
-                        <FlatButton hoverColor="lightblue" style={styles.button}>Cancel</FlatButton>
+                        <FlatButton
+                            hoverColor="lightblue"
+                            style={styles.button}
+                            onClick={this._clearForm}
+                        >
+                            Clear
+                        </FlatButton>
                     </span>
                 </Paper>
             </div>
@@ -398,6 +404,33 @@ class UserRegisterForm extends Component {
         };
 
         this.props.transmitForm(userForm);
+    }
+
+    _clearForm = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        this.setState({
+            usernameValue: '',
+            usernameError: '',
+
+            firstnameValue: '',
+            firstnameError: '',
+
+            lastnameValue: '',
+            lastnameError: '',
+
+            passwordValue: '',
+            passwordError: '',
+
+            confirmPasswordValue: '',
+            confirmPasswordError: '',
+
+            emailValue: '',
+            emailError: '',
+
+            formValid: false,
+        })
     }
 }
 

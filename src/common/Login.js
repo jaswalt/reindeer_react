@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 
 export default class Login extends Component {
@@ -13,8 +14,12 @@ export default class Login extends Component {
     render() {
         return (
             <div>
-                <FlatButton {...this.props} label="Login" />
-                <FlatButton {...this.props} label="Register" />
+                <Link to="/users/login">
+                    <FlatButton {...this.props} label="Login" />
+                </Link>
+                <Link to="/users/register">
+                    <FlatButton {...this.props} label="Register" />
+                </Link>
             </div>
         );
     }
