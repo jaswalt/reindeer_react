@@ -8,12 +8,11 @@ const styles = {
         backgroundImage: 'url(' + imageUrl + ')',
         backgroundSize: 'cover',
         height: '100vh',
-    }
+    },
 };
 
 export default function Main() {
     return (
-            <div style={styles.container}>
-            </div>
+        <div style={styles.container} />
     );
 }
