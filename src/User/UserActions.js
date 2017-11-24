@@ -54,7 +54,7 @@ export function registerUser(userForm) {
     return (dispatch) => {
         // dispatch sending user form pending
         apiRegisterUser(userForm).then(
-            resp => dispatch(addUserSuccess(JSON.parse(resp.data))),
+            resp => dispatch(addUserSuccess(resp.data)),
             () => dispatch(addUserFailure()),
         );
     };

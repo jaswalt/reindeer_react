@@ -9,10 +9,18 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case types.ADD_USER: {
+        case types.ADD_USER_SUCCESS: {
             const { user } = action;
             return Object.assign({}, state, {
+                isLoading: false,
+                hasError: false,
                 items: [...state.items, user],
+            });
+        }
+        case types.ADD_USER_FAILURE: {
+            return Object.assign({}, state, {
+                isLoading: false,
+                hasError: true,
             });
         }
         case types.REMOVE_USER: {
