@@ -8,7 +8,7 @@ const styles = {
     container: {
         backgroundImage: 'url(' + imageUrl + ')',
         backgroundSize: 'cover',
-        height: '100vh',
+        height: '120vh',
     },
 };
 

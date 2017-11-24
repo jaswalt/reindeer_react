@@ -89,9 +89,7 @@ class UserRegisterForm extends Component {
                         floatingLabelText="Username"
                         errorText={this.state.usernameError}
                         errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={
-                            styles.floatingLabelFocusStyle
-                        }
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                         value={this.state.usernameValue}
                         onChange={this._usernameFieldHandler}
                         onBlur={this._validateUsername}
@@ -104,6 +102,7 @@ class UserRegisterForm extends Component {
                         value={this.state.firstnameValue}
                         errorText={this.state.firstnameError}
                         errorStyle={styles.errorStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                         onChange={this._firstnameFieldHandler}
                         onBlur={this._validateFirstname}
                         style={styles.field}
@@ -115,6 +114,7 @@ class UserRegisterForm extends Component {
                         value={this.state.lastnameValue}
                         errorText={this.state.lastnameError}
                         errorStyle={styles.errorStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                         onChange={this._lastnameFieldHandler}
                         onBlur={this._validateLastname}
                         style={styles.field}
@@ -124,9 +124,7 @@ class UserRegisterForm extends Component {
                         floatingLabelText="Email"
                         errorText={this.state.emailError}
                         errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={
-                            styles.floatingLabelFocusStyle
-                        }
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                         value={this.state.emailValue}
                         onChange={this._emailFieldHandler}
                         onBlur={this._validateEmail}
@@ -138,9 +136,7 @@ class UserRegisterForm extends Component {
                         type="password"
                         errorText={this.state.passwordError}
                         errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={
-                            styles.floatingLabelFocusStyle
-                        }
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                         value={this.state.passwordValue}
                         onChange={this._passwordFieldHandler}
                         onBlur={this._validatePassword}
@@ -151,9 +147,7 @@ class UserRegisterForm extends Component {
                         type="password"
                         errorText={this.state.confirmPasswordError}
                         errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={
-                            styles.floatingLabelFocusStyle
-                        }
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                         value={this.state.confirmPasswordValue}
                         onChange={this._confirmPasswordFieldHandler}
                         onBlur={this._validateConfirmPassword}
@@ -161,14 +155,14 @@ class UserRegisterForm extends Component {
                     />
                     <span style={styles.buttons}>
                         <FlatButton
-                            hoverColor="lightgreen"
+                            hoverColor="#990033"
                             style={styles.button}
                             onClick={this._processForm}
                         >
                             Register
                         </FlatButton>
                         <FlatButton
-                            hoverColor="lightblue"
+                            hoverColor="#990033"
                             style={styles.button}
                             onClick={this._clearForm}
                         >
@@ -242,7 +236,7 @@ class UserRegisterForm extends Component {
 
         if (!this.state.usernameValue) {
             this.setState({
-                usernameError: 'Required field',
+                usernameError: 'Required',
             });
         } else {
             this.setState({
@@ -290,7 +284,7 @@ class UserRegisterForm extends Component {
 
         if (!this.state.emailValue) {
             this.setState({
-                emailError: 'Required field',
+                emailError: 'Required',
             });
         } else if (!re.test(this.state.emailValue)) {
             this.setState({
@@ -308,7 +302,7 @@ class UserRegisterForm extends Component {
 
         if (!this.state.passwordValue) {
             this.setState({
-                passwordError: 'Required field',
+                passwordError: 'Required',
             });
         } else if (this.state.confirmPasswordValue) {
             if (this.state.passwordValue !== this.state.confirmPasswordValue)  {

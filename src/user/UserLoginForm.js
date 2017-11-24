@@ -98,8 +98,8 @@ class UserLoginForm extends Component {
                         style={styles.style}
                     />
                     <span style={styles.buttons}>
-                        <FlatButton hoverColor="lightgreen" style={styles.button}>Submit</FlatButton>
-                        <FlatButton hoverColor="lightblue" style={styles.button}>Cancel</FlatButton>
+                        <FlatButton hoverColor="#990033" style={styles.button}>Login</FlatButton>
+                        <FlatButton hoverColor="#990033" style={styles.button}>Cancel</FlatButton>
                     </span>
                 </Paper>
             </div>
@@ -120,7 +120,7 @@ class UserLoginForm extends Component {
 
         if (!this.state.usernameValue) {
             this.setState({
-                usernameError: 'Required field',
+                usernameError: 'Required',
             });
         } else {
             this.setState({
@@ -143,7 +143,7 @@ class UserLoginForm extends Component {
 
         if (!this.state.passwordValue) {
             this.setState({
-                passwordError: 'Required field',
+                passwordError: 'Required',
             });
         } else {
             this.setState({
