@@ -11,8 +11,8 @@ export default class Search extends Component {
         };
     }
 
-    onContent = (event) => {
-        this.setState({content: event.target})
+    onContent = (value) => {
+        this.setState({content: value})
     }
 
     onContentEnter = (event) => {
@@ -31,7 +31,7 @@ export default class Search extends Component {
                 onChange={this.onContent}
                 onKeyPress={this.onContentEnter}
                 value={this.state.content}
-                //onRequestSearch={this.onContentEnter}
+                //onRequestSearch={} for handing the search button 
                 hintText="Search for an item"
                 style={{ 
                     margin: '0 auto', 
