@@ -98,8 +98,20 @@ class UserLoginForm extends Component {
                         style={styles.style}
                     />
                     <span style={styles.buttons}>
-                        <FlatButton hoverColor="#990033" style={styles.button}>Login</FlatButton>
-                        <FlatButton hoverColor="#990033" style={styles.button}>Cancel</FlatButton>
+                        <FlatButton
+                            hoverColor="#990033"
+                            style={styles.button}
+                            // onClick={this._processForm}
+                        >
+                            Login
+                        </FlatButton>
+                        <FlatButton
+                            hoverColor="#990033"
+                            style={styles.button}
+                            onClick={this._clearForm}
+                        >
+                            Clear
+                        </FlatButton>
                     </span>
                 </Paper>
             </div>
@@ -152,6 +164,28 @@ class UserLoginForm extends Component {
         }
     };
 
+    // _sendForm = () => {
+    //     const loginForm = {
+    //         // VALIDATE USERNAME AND PASSWORD
+    //     };
+
+    //     this.props.transmitForm(loginForm);
+    // }
+
+    _clearForm = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        this.setState({
+            usernameValue: '',
+            usernameError: '',
+
+            passwordValue: '',
+            passwordError: '',
+
+            formValid: false,
+        });
+    }
 }
 
 export default UserLoginForm;
