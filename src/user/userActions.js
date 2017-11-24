@@ -1,10 +1,16 @@
 import * as types from '../app/types';
-import { apiCheckUsernameIsValid } from '../app/api';
+import { apiCheckUsernameIsValid, apiRegisterUser } from '../app/api';
 
-export function addUser(user) {
+export function addUserSuccess(user) {
     return {
-        type: types.ADD_USER,
+        type: types.ADD_USER_SUCCESS,
         user,
+    };
+}
+
+export function addUserFailure() {
+    return {
+        type: types.ADD_USER_FAILURE,
     };
 }
 
@@ -44,12 +50,12 @@ export function checkUserNameIsValid(username) {
     };
 }
 
-export function sendNewUserRegistration(userForm) {
+export function registerUser(userForm) {
     return (dispatch) => {
         // dispatch sending user form pending
-        apiCheckUsernameIsValid(username).then(
-            () => dispatch(usernameIsValid()),
-            () => dispatch(usernameIsNotValid()),
+        apiRegisterUser(userForm).then(
+            resp => dispatch(addUserSuccess(JSON.parse(resp.data))),
+            () => dispatch(addUserFailure()),
         );
     };
 }
