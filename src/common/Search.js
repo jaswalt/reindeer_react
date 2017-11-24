@@ -17,7 +17,7 @@ export default class Search extends Component {
 
     onContentEnter = (event) => {
         if(event.key == 'Enter'){
-            //this.props.onNewPost('postMessage', this.props.currentUser.name, this.state.content)
+            // send GET request to api with a list of gifts
             this.setState({
               content: ''
             })
@@ -33,7 +33,7 @@ export default class Search extends Component {
                 value={this.state.content}
                 //onRequestSearch={this.onContentEnter}
                 hintText="Search for an item"
-                style={{ margin: '3 px' }}
+                style={{ margin: '0 auto', maxWidth: 800, marginRight:'1vw', marginTop: '0.5vh' }}
             />
         );
     }
