@@ -17,3 +17,7 @@ export function apiCheckUsernameIsValid(username) {
         username,
     });
 }
+
+export function apiRegisterUser(userForm) {
+    return axios.post(`${BASE_API_URL}/users/`, userForm);
+}
