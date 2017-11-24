@@ -7,7 +7,7 @@ const styles = {
     container: {
         margin: '0 auto',
         maxWidth: '30%',
-        marginTop: 30,
+        paddingTop: 30,
         marginBottom: 30,
     },
     style: {

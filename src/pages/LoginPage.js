@@ -21,7 +21,7 @@ export default class LoginPage extends Component {
 
     render() {
         return (
-            <div>
+            <div style={styles.container}>
                 <UserLoginForm/>
             </div>
         );
