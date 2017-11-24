@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import UserRegisterForm from '../user/UserRegisterForm';
+import UserLoginForm from '../user/UserLoginForm';
 
-export default class RegisterPage extends Component {
+export default class LoginPage extends Component {
     constructor(props) {
         super(props);
 
@@ -12,10 +12,10 @@ export default class RegisterPage extends Component {
     render() {
         return (
             <div>
-                <UserRegisterForm/>
+                <UserLoginForm/>
             </div>
         );
     }
 }
 
-(RegisterPage).propTypes = {};
+(LoginPage).propTypes = {};

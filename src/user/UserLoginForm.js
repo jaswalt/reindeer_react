@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Paper, TextField, FlatButton } from 'material-ui';
 import { connect } from 'react-redux';
-import { checkUserNameIsValid } from './userActions';
-
 
 const styles = {
     container: {
@@ -41,7 +39,7 @@ const styles = {
 };
 
 
-class UserRegisterForm extends Component {
+class UserLoginForm extends Component {
     constructor(props) {
         super(props);
 
@@ -52,22 +50,14 @@ class UserRegisterForm extends Component {
             passwordValue: '',
             passwordError: '',
 
-            confirmPasswordValue: '',
-            confirmPasswordError: '',
-
-            emailValue: '',
-            emailError: '',
-
             formValid: false,
         };
-
-        this._validateEmail = this._validateEmail.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.usernameNotValid) {
+        if (nextProps.usernameDoesNotExist) {
             this.setState({
-                usernameError: 'That username is not available',
+                usernameError: 'Username is not valid',
             })
         } else {
             this.setState({
@@ -94,31 +84,6 @@ class UserRegisterForm extends Component {
                         style={styles.style}
                     /><br/>
                     <TextField
-                        className="firstname"
-                        type="name"
-                        floatingLabelText="First Name"
-                        style={styles.style}
-                    />
-                    <TextField
-                        className="lastname"
-                        type="name"
-                        floatingLabelText="Last Name"
-                        style={styles.style}
-                    /><br/>
-                    <TextField
-                        className="email"
-                        floatingLabelText="Email"
-                        errorText={this.state.emailError}
-                        errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={
-                            styles.floatingLabelFocusStyle
-                        }
-                        value={this.state.emailValue}
-                        onChange={this._emailFieldHandler}
-                        onBlur={this._validateEmail}
-                        style={styles.style}
-                    /><br />
-                    <TextField
                         className="password"
                         floatingLabelText="Password"
                         type="password"
@@ -130,19 +95,6 @@ class UserRegisterForm extends Component {
                         value={this.state.passwordValue}
                         onChange={this._passwordFieldHandler}
                         onBlur={this._validatePassword}
-                        style={styles.style}
-                    />
-                    <TextField
-                        floatingLabelText="Confirm Password"
-                        type="password"
-                        errorText={this.state.confirmPasswordError}
-                        errorStyle={styles.errorStyle}
-                        floatingLabelFocusStyle={
-                            styles.floatingLabelFocusStyle
-                        }
-                        value={this.state.confirmPasswordValue}
-                        onChange={this._confirmPasswordFieldHandler}
-                        onBlur={this._validateConfirmPassword}
                         style={styles.style}
                     />
                     <span style={styles.buttons}>
@@ -163,15 +115,6 @@ class UserRegisterForm extends Component {
 
     };
 
-    _emailFieldHandler = (e) => {
-        e.stopPropagation();
-
-        this.setState({
-            emailValue: e.target.value,
-        });
-
-    };
-
     _validateUsername = (e) => {
         e.stopPropagation();
 
@@ -183,29 +126,7 @@ class UserRegisterForm extends Component {
             this.setState({
                 usernameError: '',
             });
-
-            this.props.checkUsername(this.state.usernameValue);
         };
-    };
-
-    _validateEmail(e) {
-        e.stopPropagation();
-
-        const re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-        if (!this.state.emailValue) {
-            this.setState({
-                emailError: 'Required field',
-            });
-        } else if (!re.test(this.state.emailValue)) {
-            this.setState({
-                emailError: 'Email address not valid',
-            });
-        } else {
-            this.setState({
-                emailError: '',
-            });
-        }
     };
 
     _passwordFieldHandler = (e) => {
@@ -224,16 +145,6 @@ class UserRegisterForm extends Component {
             this.setState({
                 passwordError: 'Required field',
             });
-        } else if (this.state.confirmPasswordValue) {
-            if (e.target.value !== this.state.confirmPasswordValue)  {
-                this.setState({
-                    passwordConfirmError: 'Password and Confirmation don\'t match',
-                });
-            } else {
-               this.setState({
-                    passwordConfirmError: '',
-               });
-            }
         } else {
             this.setState({
                     passwordError: '',
@@ -243,21 +154,4 @@ class UserRegisterForm extends Component {
 
 }
 
-(UserRegisterForm).propTypes = {
-    checkUsername: PropTypes.func,
-    usernameNotValid: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state, ownProps) => {
-    return {
-        usernameNotValid: state.users.usernameError,
-    };
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        checkUsername: (username) => dispatch(checkUserNameIsValid(username))
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserRegisterForm);
+export default UserLoginForm;
