@@ -26,7 +26,7 @@ export default class ToolBar extends React.Component {
     return (
       <Toolbar>
         <ToolbarGroup firstChild={true}>
-          <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+          <DropDownMenu value={this.state.value} onChange={this.handleChange} style={{paddingLeft: '5em', paddingRight: '5em'}}>
             <MenuItem value={1} primaryText="Sort By" />
             <MenuItem value={2} primaryText="Price" />
             <MenuItem value={3} primaryText="Category" />
@@ -36,7 +36,7 @@ export default class ToolBar extends React.Component {
           </DropDownMenu>
         </ToolbarGroup>
 
-        <Search lastChild={true}/>
+        <Search lastChild={true} />
       </Toolbar>
     );
   }

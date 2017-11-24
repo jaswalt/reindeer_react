@@ -33,7 +33,13 @@ export default class Search extends Component {
                 value={this.state.content}
                 //onRequestSearch={this.onContentEnter}
                 hintText="Search for an item"
-                style={{ margin: '0 auto', maxWidth: 800, marginRight:'1vw', marginTop: '0.5vh' }}
+                style={{ 
+                    margin: '0 auto', 
+                    maxWidth: 800, 
+                    marginRight: '30vw',
+                    width: '600px',
+                    marginTop: '0.25em'
+                }}
             />
         );
     }
