@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Paper, TextField, FlatButton } from 'material-ui';
 import { connect } from 'react-redux';
-import { checkUserNameIsValid } from './userActions';
+import { checkUserNameIsValid, registerUser } from './userActions';
 
 
 const styles = {
@@ -160,7 +160,13 @@ class UserRegisterForm extends Component {
                         style={styles.field}
                     />
                     <span style={styles.buttons}>
-                        <FlatButton hoverColor="lightgreen" style={styles.button}>Submit</FlatButton>
+                        <FlatButton
+                            hoverColor="lightgreen"
+                            style={styles.button}
+                            onClick={this._processForm}
+                        >
+                            Submit
+                        </FlatButton>
                         <FlatButton hoverColor="lightblue" style={styles.button}>Cancel</FlatButton>
                     </span>
                 </Paper>
@@ -343,9 +349,14 @@ class UserRegisterForm extends Component {
      *    Form Submission Handlers
      */
 
-    _validateForm = (e) => {
+    _processForm = (e) => {
         e.preventDefault();
+        e.stopPropagation();
 
+        this._validateForm(e);
+    }
+
+    _validateForm = (e) => {
         this._validateUsername(e);
         this._validateFirstname(e);
         this._validateLastname(e);
@@ -367,26 +378,26 @@ class UserRegisterForm extends Component {
             
             this.setState({
                 formValid: false,
-            })
+            });
         } else {
             this.setState({
                 formValid: true,
-            })
+            });
+
+            this._sendForm();
         }
     }
 
-    _transmitData = (e) => {
-        if (this.state.formValid) {
-            const userForm = {
-                username: this.state.usernameValue,
-                password: this.state.passwordValue,
-                email: this.state.emailValue,
-                firstname: this.state.firstnameValue,
-                lastname: this.state.lastnameValue,
-            };
+    _sendForm = () => {
+        const userForm = {
+            username: this.state.usernameValue,
+            password: this.state.passwordValue,
+            email: this.state.emailValue,
+            first_name: this.state.firstnameValue,
+            last_name: this.state.lastnameValue,
+        };
 
-            
-        }
+        this.props.transmitForm(userForm);
     }
 }
 
@@ -398,12 +409,15 @@ class UserRegisterForm extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         usernameNotValid: state.users.usernameError,
+        waitingServer: state.users.isLoading,
+        serverError: state.users.hasError,
     };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        checkUsername: (username) => dispatch(checkUserNameIsValid(username))
+        checkUsername: (username) => dispatch(checkUserNameIsValid(username)),
+        transmitForm: (userForm) => dispatch(registerUser(userForm)),
     };
 };
 
