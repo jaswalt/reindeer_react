@@ -9,6 +9,7 @@ import HomePage from '../pages/HomePage';
 import GiftsMain from '../pages/GiftsMain';
 import RegisterPage from '../pages/RegisterPage';
 import LoginPage from '../pages/LoginPage';
+import ProfilePage from '../pages/ProfilePage';
 import NavBar from '../common/NavBar';
 import ToolBar from '../common/ToolBar';
 
@@ -29,6 +30,7 @@ export default function () {
                         <NavBar />
                         <ToolBar />
                         <Switch>
+                            <Route exact path="/user/profile" component={ProfilePage} />
                             <Route exact path="/users/register" component={RegisterPage} />
                             <Route exact path="/users/login" component={LoginPage} />
                             <Route exact path="/gifts/" component={GiftsMain} />

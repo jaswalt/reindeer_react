@@ -9,6 +9,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import Search from './Search';
 
+const styles = {
+  container: {
+      backgroundColor: 'blue',
+  },
+};
+
 export default class ToolBar extends React.Component {
 
   constructor(props) {
@@ -24,7 +30,7 @@ export default class ToolBar extends React.Component {
 
   render() {
     return (
-      <Toolbar>
+      <Toolbar style={styles}>
         <ToolbarGroup firstChild={true}>
           <DropDownMenu value={this.state.value} onChange={this.handleChange} style={{paddingLeft: '5em', paddingRight: '5em'}}>
             <MenuItem value={1} primaryText="Sort By" />
