@@ -21,3 +21,7 @@ export function apiCheckUsernameIsValid(username) {
 export function apiRegisterUser(userForm) {
     return axios.put(`${BASE_API_URL}/users/`, userForm);
 }
+
+export function apiGetSearchedGifts(search) {
+    return axios.get(`${BASE_API_URL}/gifts/${search}`);
+}

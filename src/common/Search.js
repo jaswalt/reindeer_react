@@ -18,9 +18,14 @@ export default class Search extends Component {
     onContentEnter = (event) => {
         if(event.key == 'Enter'){
             // send GET request to api with a list of gifts
-            this.setState({
-              content: ''
-            })
+            axios.get(`http://localhost:8000/api/v1/gifts/${this.state.content}`)
+                .then(resp => {
+                    //do something with the response
+                    console.log(resp.data)
+                    this.setState({
+                        content: ''
+                    })
+                })
         }
     }
 
