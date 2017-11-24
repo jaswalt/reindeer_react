@@ -23,21 +23,21 @@ export default function (state = initialState, action) {
         }
         case types.GIFTS_FETCH_SUCCESS: {
             return Object.assign({}, state, {
-                isLoading: false,
-                hasError: false,
+                loading: false,
+                error: false,
                 items: [...action.gifts],
             });
         }
         case types.GIFTS_FETCH_FAILURE: {
             return Object.assign({}, state, {
-                hasError: true,
-                isLoading: false,
+                error: true,
+                loading: false,
             });
         }
         case types.GIFTS_ARE_LOADING: {
             return Object.assign({}, state, {
-                isLoading: true,
-                hasError: false,
+                loading: true,
+                error: false,
             });
         }
         default: {

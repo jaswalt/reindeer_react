@@ -436,8 +436,8 @@ class UserRegisterForm extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         usernameNotValid: state.users.usernameError,
-        waitingServer: state.users.isLoading,
-        serverError: state.users.hasError,
+        waitingServer: state.users.loading,
+        serverError: state.users.error,
     };
 };
 

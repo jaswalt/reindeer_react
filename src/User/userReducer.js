@@ -1,33 +1,25 @@
 import * as types from '../app/types';
 
 const initialState = {
-    isLoading: false,
-    hasError: false,
+    loading: false,
+    error: false,
     usernameError: false,
-    items: [],
+    profile: null,
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case types.ADD_USER_SUCCESS: {
-            const { user } = action;
             return Object.assign({}, state, {
-                isLoading: false,
-                hasError: false,
-                items: [...state.items, user],
+                loading: false,
+                error: false,
+                profile: { ...action.profile },
             });
         }
         case types.ADD_USER_FAILURE: {
             return Object.assign({}, state, {
-                isLoading: false,
-                hasError: true,
-            });
-        }
-        case types.REMOVE_USER: {
-            const { userId } = action;
-            const items = state.items.filter(user => user.pk !== userId);
-            return Object.assign({}, state, {
-                items,
+                loading: false,
+                error: true,
             });
         }
         case types.USERNAME_VALID_SUCCESS: {

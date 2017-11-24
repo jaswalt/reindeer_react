@@ -1,23 +1,23 @@
+import * as jwtDecode from 'jwt-decode';
 import * as types from '../app/types';
 import { apiCheckUsernameIsValid, apiRegisterUser } from '../app/api';
 
-export function addUserSuccess(user) {
+/**
+ *
+ *   NORMAL ACTIONS
+ *
+ */
+
+export function addUserSuccess(profile) {
     return {
         type: types.ADD_USER_SUCCESS,
-        user,
+        profile,
     };
 }
 
 export function addUserFailure() {
     return {
         type: types.ADD_USER_FAILURE,
-    };
-}
-
-export function removeUser(user) {
-    return {
-        type: types.REMOVE_USER,
-        user,
     };
 }
 
@@ -41,6 +41,13 @@ export function usernameIsNotValid() {
     };
 }
 
+
+/**
+ *
+ *   ASYNC THUNK ACTIONS
+ *
+ */
+
 export function checkUserNameIsValid(username) {
     return (dispatch) => {
         apiCheckUsernameIsValid(username).then(
@@ -53,8 +60,11 @@ export function checkUserNameIsValid(username) {
 export function registerUser(userForm) {
     return (dispatch) => {
         // dispatch sending user form pending
-        apiRegisterUser(userForm).then(
-            resp => dispatch(addUserSuccess(resp.data)),
+        apiRegisterUser(userForm).then(resp => {
+                localStorage.setItem('token', resp.data.token);
+                const profile = jwtDecode(res.data.token);
+                dispatch(addUserSuccess(profile))
+            },
             () => dispatch(addUserFailure()),
         );
     };
