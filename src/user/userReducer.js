@@ -4,17 +4,17 @@ const initialState = {
     isLoading: false,
     hasError: false,
     usernameError: false,
-    profile: null,
+    items: [],
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case types.ADD_USER_SUCCESS: {
-            const { profile } = action;
+            const { user } = action;
             return Object.assign({}, state, {
                 isLoading: false,
                 hasError: false,
-                profile: { ...profile },
+                items: [...state.items, user],
             });
         }
         case types.ADD_USER_FAILURE: {
