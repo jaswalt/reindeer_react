@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
 import AvatarContainer from './AvatarContainer';
 import Login from './Login';
@@ -11,12 +12,11 @@ const styles = {
     },
 };
 
-export default class NavBar extends Component {
+class NavBar extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoggedIn: true,
         };
     }
 
@@ -28,7 +28,7 @@ export default class NavBar extends Component {
                 titleStyle={styles.title}
                 style={{ padding: '1em' }}
                 showMenuIconButton={false}
-                iconElementRight={isLoggedIn ? <AvatarContainer /> : <Login />}
+                iconElementRight={this.props.isLoggedIn ? <AvatarContainer /> : <Login />}
                 iconStyleRight={{ margin: '0' }}
             />
         );
@@ -38,3 +38,9 @@ export default class NavBar extends Component {
 NavBar.propTypes = {
 
 };
+
+const mapStateToProps = (state) => ({
+    isLoggedIn: state.users.profile,
+});
+
+export default connect(mapStateToProps)(NavBar);

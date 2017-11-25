@@ -22,6 +22,9 @@ export default function (state = initialState, action) {
                 error: true,
             });
         }
+        case types.LOGOUT_SUCCESS: {
+            return {...state, profile: null }
+        }
         case types.USERNAME_VALID_SUCCESS: {
             return Object.assign({}, state, {
                 usernameError: false,

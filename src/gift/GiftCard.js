@@ -9,6 +9,7 @@ import EditGift from 'material-ui/svg-icons/editor/mode-edit';
 import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
 import IconButton from 'material-ui/IconButton';
 import { red50 } from 'material-ui/styles/colors';
+import * as Currency from 'currency-formatter';
 
 const styles = {
     container: {
@@ -35,11 +36,13 @@ export default class GiftCard extends Component {
         this.state = {
             cardTextCollapsed: true,
             displayActions: false,
-            cardText: this.props.fields.description,
+            cardText: this.props.description || '',
+            price: (this.props.price_cents / 100).toFixed(2),
+            photo: this.props.photo || "http://4.bp.blogspot.com/-pGUXC8ugtWk/USqy_ppFbCI/AAAAAAAAD6Y/yRSgg40BXlw/s1600/cat+pictures.jpg",
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.setState({
             displayedCardText: this.state.cardText.substring(0, 140),
         });
@@ -49,7 +52,7 @@ export default class GiftCard extends Component {
         return (
             <Card className="gift-card" style={styles.container} onMouseEnter={this._showActionButtons} onMouseLeave={this._collapseCardText}>
                 <CardHeader
-                    title={this.props.fields.name}
+                    title={this.props.name}
                     subtitle="Pet"
                     avatar={<Avatar
                         icon={<Pets />}
@@ -59,9 +62,9 @@ export default class GiftCard extends Component {
                     />}
                 />
                 <CardMedia>
-                    <img src="http://4.bp.blogspot.com/-pGUXC8ugtWk/USqy_ppFbCI/AAAAAAAAD6Y/yRSgg40BXlw/s1600/cat+pictures.jpg" alt="" />
+                    <img src={this.state.photo} alt="" />
                 </CardMedia>
-                <CardTitle title="Card title" subtitle={`$${this.props.fields.price_cents}`} />
+                <CardTitle title="Card title" subtitle={`$${this.state.price}`} />
                 <CardText>
                     {this.state.displayedCardText}
                     {this.state.cardTextCollapsed && <p><ExpandMore onClick={this._expandCardText} /></p>}

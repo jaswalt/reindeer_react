@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUserGifts, deleteGift } from './giftActions';
 import GiftCard from './GiftCard';
@@ -14,27 +14,38 @@ const styles = {
     },
 };
 
-function GiftContainer(props) {
-    return (
-        <div id="container" style={styles.container}>
-            {props.gifts.map(gift => (
+class GiftContainer extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        this.props.fetchGifts();
+    }
+
+    render() {
+        return (
+            <div id="container" style={styles.container}>
+            {this.props.gifts.map(gift => (
                 <GiftCard
                     key={gift.pk}
-                    fields={gift.fields}
-                    deleteMe={() => props.deleteGift(gift.pk)}
+                    {...gift}
+                    deleteMe={() => this.props.deleteGift(gift.pk)}
                 />
             ))}
-        </div>
-    );
+            </div>
+        )
+    };
 }
 
 const mapStateToProps = state => ({
+    userId: state.users.profile.user_id,
     gifts: state.gifts.items,
 });
 
-const mapDispatchToProps = dispatch => ({
-    deleteGift: giftId => dispatch(deleteGift(17, giftId)),
-    reloadGifts: userId => dispatch(fetchUserGifts(userId)),
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    deleteGift: giftId => dispatch(deleteGift(ownProps.userId, giftId)),
+    fetchGifts: () => dispatch(fetchUserGifts()),
 });
 
 export default connect(

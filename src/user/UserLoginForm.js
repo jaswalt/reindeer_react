@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Paper, TextField, FlatButton } from 'material-ui';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { loginUser } from './userActions';
 
 const styles = {
     container: {
@@ -35,6 +37,11 @@ const styles = {
         margin: 10,
         backgroundColor: '#990033',
         color: 'white',
+    },
+    error: {
+        paddingTop: 8,
+        textAlign: 'center',
+        color: '#990033'
     }
 };
 
@@ -55,14 +62,15 @@ class UserLoginForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.usernameDoesNotExist) {
+        if (nextProps.loginOk) {
             this.setState({
-                usernameError: 'Username is not valid',
-            })
-        } else {
-            this.setState({
+                usernameValue: '',
                 usernameError: '',
-            })
+                passwordValue: '',
+                passwordError: '',
+            });
+
+            this.props.history.push('/gifts');
         }
     }
 
@@ -70,6 +78,7 @@ class UserLoginForm extends Component {
         return (
             <div style={styles.container}>
                 <Paper zDepth={2}>
+                    {this.props.error && <h5 style={styles.error}>Oh no! Your credentials weren't correct.</h5>}
                     <TextField
                         className="username"
                         floatingLabelText="Username"
@@ -101,7 +110,7 @@ class UserLoginForm extends Component {
                         <FlatButton
                             hoverColor="#990033"
                             style={styles.button}
-                            // onClick={this._processForm}
+                            onClick={this._processForm}
                         >
                             Login
                         </FlatButton>
@@ -118,6 +127,11 @@ class UserLoginForm extends Component {
         );
     }
 
+    /**
+     *   FORM INPUT HANDLERS
+     *
+     */
+
     _usernameFieldHandler = (e) => {
         e.stopPropagation();
 
@@ -125,20 +139,6 @@ class UserLoginForm extends Component {
             usernameValue: e.target.value,
         });
 
-    };
-
-    _validateUsername = (e) => {
-        e.stopPropagation();
-
-        if (!this.state.usernameValue) {
-            this.setState({
-                usernameError: 'Required',
-            });
-        } else {
-            this.setState({
-                usernameError: '',
-            });
-        };
     };
 
     _passwordFieldHandler = (e) => {
@@ -150,6 +150,26 @@ class UserLoginForm extends Component {
 
     };
 
+    /**
+     *   FORM INPUT VALIDATORS
+     *
+     */
+
+    _validateUsername = (e) => {
+        e.stopPropagation();
+
+        if (!this.state.usernameValue) {
+            this.setState({
+                usernameError: 'Required',
+            });
+        } else {
+            this.setState(prevState => ({
+                usernameValue: prevState.usernameValue.trim(),
+                usernameError: '',
+            }));
+        }
+    };
+
     _validatePassword = (e) => {
         e.stopPropagation();
 
@@ -159,18 +179,24 @@ class UserLoginForm extends Component {
             });
         } else {
             this.setState({
-                    passwordError: '',
+                passwordError: '',
             });
         }
     };
 
-    // _sendForm = () => {
-    //     const loginForm = {
-    //         // VALIDATE USERNAME AND PASSWORD
-    //     };
+    _processForm = (e) => {
+        if (this.state.usernameValue.trim() && this.state.passwordValue) {
+            const loginForm = {
+                username: this.state.usernameValue,
+                password: this.state.passwordValue,
+            };
 
-    //     this.props.transmitForm(loginForm);
-    // }
+            this.props.transmitForm(loginForm);
+        } else {
+            this._validatePassword(e);
+            this._validateUsername(e);
+        }
+    };
 
     _clearForm = (e) => {
         e.preventDefault();
@@ -188,4 +214,14 @@ class UserLoginForm extends Component {
     }
 }
 
-export default UserLoginForm;
+const mapStateToProps = (state) => ({
+    error: state.users.error,
+    loading: state.users.loading,
+    loginOk: !!state.users.profile,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    transmitForm: loginForm => dispatch(loginUser(loginForm)),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserLoginForm));

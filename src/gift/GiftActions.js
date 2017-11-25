@@ -37,13 +37,13 @@ export function giftsFetchFailure(bool) {
     };
 }
 
-export function fetchUserGifts(userId) {
-    return (dispatch) => {
+export function fetchUserGifts() {
+    return (dispatch, getState) => {
         dispatch(giftsAreLoading(true));
 
-        apiGetUserGifts(userId)
+        apiGetUserGifts(getState().users.profile.user_id)
             .then(
-                resp => dispatch(giftsFetchSuccess(JSON.parse(resp.data))),
+                resp => dispatch(giftsFetchSuccess(resp.data)),
                 err => dispatch(giftsFetchFailure(true))
             );
     };
