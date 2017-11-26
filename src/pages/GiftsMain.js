@@ -7,5 +7,6 @@ export default function GiftsMain() {
         <section className="gifts-main">
             <GiftsList />
         </section>
+
     );
 }

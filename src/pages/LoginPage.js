@@ -2,17 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import UserLoginForm from '../user/UserLoginForm';
-
-
-const imageUrl = 'https://static.pexels.com/photos/257855/pexels-photo-257855.jpeg';
-
-const styles = {
-    container: {
-        backgroundImage: 'url(' + imageUrl + ')',
-        backgroundSize: 'cover',
-        height: '100vh',
-    },
-};
+import Main from './HomePage';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -23,7 +13,8 @@ class LoginPage extends Component {
 
     render() {
         return (
-            <div style={styles.container}>
+            <div>
+                <Main />
                 <UserLoginForm />
             </div>
         );
@@ -32,5 +23,5 @@ class LoginPage extends Component {
 
 (LoginPage).propTypes = {};
 
-export default withRouter(LoginPage);
+export default LoginPage;
 

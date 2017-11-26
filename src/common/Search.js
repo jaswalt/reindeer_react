@@ -20,6 +20,9 @@ class Search extends Component {
         if(event.key == 'Enter'){
             // send GET request to api with a list of gifts
             this.props.dispatch(searchGift(this.state.content));
+            this.setState({
+                content: ''
+            })
         }
     }
 
