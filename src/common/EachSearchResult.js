@@ -27,19 +27,18 @@ const styles = {
     hoverActionColor: "#990033"
 };
 
-export default class EachResult extends Component {
+export default class EachSearchResult extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            cardTextCollapsed: true,
             displayActions: false,
         };
     }
 
     render() {
         return (
-            <Card className="gift-card" style={styles.container} onMouseEnter={this._showActionButtons} onMouseLeave={this._collapseCardText}>
+            <Card className="gift-card" style={styles.container} onMouseEnter={this._showActionButtons}>
                 <CardHeader
                     title={this.props.name}
                     subtitle="Gift"
