@@ -34,16 +34,7 @@ export default class EachResult extends Component {
         this.state = {
             cardTextCollapsed: true,
             displayActions: false,
-            cardText: this.props.description,
-            price: this.props.price,
-            photo: this.props.image
         };
-    }
-
-    componentDidMount() {
-        this.setState({
-            displayedCardText: this.state.cardText.substring(0, 140),
-        });
     }
 
     render() {
@@ -60,12 +51,11 @@ export default class EachResult extends Component {
                     />}
                 />
                 <CardMedia>
-                    <img src={this.state.photo} alt="" />
+                    <img src={this.props.image} alt="" />
                 </CardMedia>
-                <CardTitle title="Card title" subtitle={`$${this.state.price}`} />
+                <CardTitle title="Card title" subtitle={`$${this.props.price}`} />
                 <CardText>
-                    {this.state.displayedCardText}
-                    {this.state.cardTextCollapsed && <p><ExpandMore onClick={this._expandCardText} /></p>}
+                    {this.props.description}
                 </CardText>
                 {this.state.displayActions &&
                     <CardActions style={styles.actions}>
@@ -76,16 +66,6 @@ export default class EachResult extends Component {
         );
     }
 
-    _expandCardText = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        this.setState({
-            displayedCardText: this.state.cardText,
-            cardTextCollapsed: false,
-        });
-    };
-
     _showActionButtons = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -95,14 +75,4 @@ export default class EachResult extends Component {
         });
     };
 
-    _collapseCardText = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        this.setState({
-            displayedCardText: this.state.cardText.substring(0, 140),
-            cardTextCollapsed: true,
-            displayActions: false,
-        })
-    }
 }
