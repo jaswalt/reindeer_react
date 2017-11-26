@@ -1,9 +1,9 @@
 import * as jwtDecode from 'jwt-decode';
-import * as types from '../app/types';
+import * as types from './index';
 import {
     apiCheckUsernameIsValid,
     apiRegisterUser,
-    apiLoginUser } from '../app/api';
+    apiLoginUser } from '../api';
 
 /**
  *

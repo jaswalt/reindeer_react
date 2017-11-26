@@ -3,13 +3,11 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import Avatar from 'material-ui/Avatar';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import Gift from 'material-ui/svg-icons/action/card-giftcard';
-import Bookmark from 'material-ui/svg-icons/action/bookmark';
 import AddList from 'material-ui/svg-icons/av/playlist-add';
-import EditGift from 'material-ui/svg-icons/editor/mode-edit';
-import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
 import IconButton from 'material-ui/IconButton';
 import { red50 } from 'material-ui/styles/colors';
 import * as Currency from 'currency-formatter';
+import GiftCard from '../gift/GiftCard';
 
 const styles = {
     container: {
@@ -29,23 +27,14 @@ const styles = {
     hoverActionColor: "#990033"
 };
 
-export default class GiftCard extends Component {
+export default class EachResult extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             cardTextCollapsed: true,
             displayActions: false,
-            cardText: this.props.description || '',
-            price: (this.props.price_cents / 100).toFixed(2),
-            photo: this.props.photo || "http://4.bp.blogspot.com/-pGUXC8ugtWk/USqy_ppFbCI/AAAAAAAAD6Y/yRSgg40BXlw/s1600/cat+pictures.jpg",
         };
-    }
-
-    componentDidMount() {
-        this.setState({
-            displayedCardText: this.state.cardText.substring(0, 140),
-        });
     }
 
     render() {
@@ -53,7 +42,7 @@ export default class GiftCard extends Component {
             <Card className="gift-card" style={styles.container} onMouseEnter={this._showActionButtons} onMouseLeave={this._collapseCardText}>
                 <CardHeader
                     title={this.props.name}
-                    subtitle="Pet"
+                    subtitle="Gift"
                     avatar={<Avatar
                         icon={<Gift />}
                         color={red50}
@@ -62,34 +51,20 @@ export default class GiftCard extends Component {
                     />}
                 />
                 <CardMedia>
-                    <img src={this.state.photo} alt="" />
+                    <img src={this.props.image} alt="" />
                 </CardMedia>
-                <CardTitle title="Card title" subtitle={`$${this.state.price}`} />
+                <CardTitle title="Card title" subtitle={`$${this.props.price}`} />
                 <CardText>
-                    {this.state.displayedCardText}
-                    {this.state.cardTextCollapsed && <p><ExpandMore onClick={this._expandCardText} /></p>}
+                    {this.props.description}
                 </CardText>
                 {this.state.displayActions &&
                     <CardActions style={styles.actions}>
-                        <IconButton tooltip="Reserve" tooltipPosition="top-center"><Bookmark color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
                         <IconButton tooltip="+ List" tooltipPosition="top-center"><AddList color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
-                        <IconButton tooltip="Edit" tooltipPosition="top-center"><EditGift color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
-                        <IconButton tooltip="Delete" tooltipPosition="top-center" onClick={this.props.deleteMe}><DeleteForever color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
                     </CardActions>
                 }
             </Card>
         );
     }
-
-    _expandCardText = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        this.setState({
-            displayedCardText: this.state.cardText,
-            cardTextCollapsed: false,
-        });
-    };
 
     _showActionButtons = (e) => {
         e.preventDefault();
@@ -100,14 +75,4 @@ export default class GiftCard extends Component {
         });
     };
 
-    _collapseCardText = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        this.setState({
-            displayedCardText: this.state.cardText.substring(0, 140),
-            cardTextCollapsed: true,
-            displayActions: false,
-        })
-    }
 }

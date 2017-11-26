@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { checkUserToken } from '../user/userActions';
+import { checkUserToken } from '../store/actions/userActions';
 
 class Authenticator extends Component {
     constructor(props) {

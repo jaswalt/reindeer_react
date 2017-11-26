@@ -1,4 +1,4 @@
-import * as types from '../app/types';
+import * as types from '../actions';
 
 const initialState = {
     loading: false,
@@ -23,7 +23,7 @@ export default function (state = initialState, action) {
             });
         }
         case types.LOGOUT_SUCCESS: {
-            return {...state, profile: null }
+            return { ...state, profile: null };
         }
         case types.USERNAME_VALID_SUCCESS: {
             return Object.assign({}, state, {

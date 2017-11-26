@@ -21,7 +21,6 @@ class NavBar extends Component {
     }
 
     render() {
-        const { isLoggedIn } = this.state;
         return (
             <AppBar
                 title="Kaddo"
@@ -39,7 +38,7 @@ NavBar.propTypes = {
 
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     isLoggedIn: state.users.profile,
 });
 

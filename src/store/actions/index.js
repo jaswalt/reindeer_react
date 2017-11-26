@@ -4,6 +4,7 @@ export const GIFTS_FETCH_SUCCESS = 'GIFTS_FETCH_SUCCESS';
 export const GIFTS_FETCH_FAILURE = 'GIFTS_FETCH_FAILURE';
 export const ADD_GIFT = 'ADD_GIFT';
 export const REMOVE_GIFT = 'REMOVE_GIFT';
+export const SEARCH_GIFT = 'SEARCH_GIFT';
 
 // USERS
 export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';

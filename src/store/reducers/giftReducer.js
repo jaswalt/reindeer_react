@@ -1,9 +1,10 @@
-import * as types from '../app/types';
+import * as types from '../actions';
 
 const initialState = {
     isLoading: false,
     hasError: false,
     items: [],
+    searchResults: [],
 };
 
 export default function (state = initialState, action) {
@@ -19,6 +20,12 @@ export default function (state = initialState, action) {
             const items = state.items.filter(gift => gift.pk !== giftId);
             return Object.assign({}, state, {
                 items,
+            });
+        }
+        case types.SEARCH_GIFT: {
+            const { searchResults } = action;
+            return Object.assign({}, state, {
+                searchResults,
             });
         }
         case types.GIFTS_FETCH_SUCCESS: {

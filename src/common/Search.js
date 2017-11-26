@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { searchGift } from '../store/actions/giftActions';
 import SearchBar from 'material-ui-search-bar';
-import axios from 'axios';
 
-export default class Search extends Component {
+class Search extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             content: '',
-
         };
     }
 
@@ -19,14 +19,7 @@ export default class Search extends Component {
     onContentEnter = (event) => {
         if(event.key == 'Enter'){
             // send GET request to api with a list of gifts
-            axios.get(`http://localhost:8000/api/v1/gifts/${this.state.content}`)
-                .then(resp => {
-                    //do something with the response
-                    console.log(resp.data)
-                    this.setState({
-                        content: ''
-                    })
-                })
+            this.props.dispatch(searchGift(this.state.content));
         }
     }
 
@@ -37,7 +30,6 @@ export default class Search extends Component {
                 onChange={this.onContent}
                 onKeyPress={this.onContentEnter}
                 value={this.state.content}
-                //onRequestSearch={} for handing the search button 
                 hintText="Search for an item"
                 style={{ 
                     margin: '0 auto', 
@@ -47,6 +39,17 @@ export default class Search extends Component {
                     marginTop: '0.25em'
                 }}
             />
+
         );
     }
 }
+
+const mapStateToProps = state => ({
+});
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+});
+
+export default connect(
+    mapStateToProps,
+)(Search);

@@ -7,6 +7,10 @@ module.exports = {
         "mocha": true,
         "es6": true
     },
+    parserOptions: {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
     "rules": {
         "indent": ["error", 4, { "SwitchCase": 1 }],
         "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }],
