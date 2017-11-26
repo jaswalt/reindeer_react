@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Wishlists from './Wishlists';
+// import UserProfileForm from '../user/UserProfileForm';
 
 export default class ProfilePage extends Component {
     constructor(props) {
@@ -9,7 +11,10 @@ export default class ProfilePage extends Component {
 
     render() {
         return (
-            <h1>Hello</h1>
+            <section>
+                <h1>Hello User!</h1>
+                <Wishlists />
+            </section>
         );
     }
 }
