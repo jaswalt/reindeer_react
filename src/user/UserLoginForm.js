@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Paper, TextField, FlatButton } from 'material-ui';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { loginUser } from './userActions';
+import { loginUser } from '../store/actions/userActions';
 
 const styles = {
     container: {

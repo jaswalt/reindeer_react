@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserGifts, deleteGift } from './giftActions';
+import { fetchUserGifts, deleteGift } from '../store/actions/giftActions';
 import GiftCard from './GiftCard';
 
 const styles = {

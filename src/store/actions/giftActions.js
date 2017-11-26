@@ -1,5 +1,5 @@
-import * as types from '../app/types';
-import { apiDeleteUserGift, apiGetUserGifts, apiGetSearchedGifts } from '../app/api';
+import * as types from './index';
+import { apiDeleteUserGift, apiGetUserGifts, apiGetSearchedGifts } from '../api';
 
 export function addGift(user, gift) {
     return {
@@ -51,7 +51,7 @@ export function fetchUserGifts() {
         apiGetUserGifts(getState().users.profile.user_id)
             .then(
                 resp => dispatch(giftsFetchSuccess(resp.data)),
-                err => dispatch(giftsFetchFailure(true)),
+                () => dispatch(giftsFetchFailure(true)),
             );
     };
 }

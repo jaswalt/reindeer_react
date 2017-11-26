@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Paper, TextField, FlatButton } from 'material-ui';
 import { connect } from 'react-redux';
-import { checkUserNameIsValid, registerUser } from './userActions';
+import { checkUserNameIsValid, registerUser } from '../store/actions/userActions';
 
 
 const styles = {

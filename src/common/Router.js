@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import Store from './store';
+import Store from '../store';
 import Authenticator from '../common/Authenticator';
 import HomePage from '../pages/HomePage';
 import GiftsMain from '../pages/GiftsMain';

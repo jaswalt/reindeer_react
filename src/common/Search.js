@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { searchGift } from '../gift/giftActions';
+import { searchGift } from '../store/actions/giftActions';
 import SearchBar from 'material-ui-search-bar';
-import axios from 'axios';
 
 class Search extends Component {
     constructor(props) {

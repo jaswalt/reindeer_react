@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addGift } from '../gift/giftActions';
+import { addGift } from '../store/actions/giftActions';
 import EachResult from './EachResult';
 
 const styles = {
