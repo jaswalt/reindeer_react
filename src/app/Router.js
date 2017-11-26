@@ -11,6 +11,7 @@ import GiftsMain from '../pages/GiftsMain';
 import RegisterPage from '../pages/RegisterPage';
 import LoginPage from '../pages/LoginPage';
 import ProfilePage from '../pages/ProfilePage';
+import SearchResults from '../common/SearchResults';
 import NavBar from '../common/NavBar';
 import ToolBar from '../common/ToolBar';
 import PrivateRoute from '../common/PrivateRoute';
@@ -36,6 +37,7 @@ export default function () {
                             <Route exact path="/users/register" component={RegisterPage} />
                             <Route exact path="/users/login" component={LoginPage} />
                             <PrivateRoute exact path="/gifts/" component={GiftsMain} />
+                            <Route exact path="/gifts/search/results" component={SearchResults} />
                             <Route exact path="/" component={HomePage} />
                         </Switch>
                     </Authenticator>
