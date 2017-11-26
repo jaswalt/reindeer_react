@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
-import Pets from 'material-ui/svg-icons/action/pets';
+import Gift from 'material-ui/svg-icons/action/card-giftcard';
 import Bookmark from 'material-ui/svg-icons/action/bookmark';
 import AddList from 'material-ui/svg-icons/av/playlist-add';
 import EditGift from 'material-ui/svg-icons/editor/mode-edit';
@@ -55,7 +55,7 @@ export default class GiftCard extends Component {
                     title={this.props.name}
                     subtitle="Pet"
                     avatar={<Avatar
-                        icon={<Pets />}
+                        icon={<Gift />}
                         color={red50}
                         backgroundColor="#990033"
     
