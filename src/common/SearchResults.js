@@ -4,7 +4,7 @@ import { addGift } from '../store/actions/giftActions';
 import EachResult from './EachResult';
 
 const styles = {
-    container1: {
+    container: {
         margin: '0 auto',
         paddingTop: 30,
         maxWidth: 1100,
