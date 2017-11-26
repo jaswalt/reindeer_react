@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 
-export default class Login extends Component {
+class Login extends Component {
     static muiName = 'FlatButton';
     constructor(props) {
         super(props);
@@ -24,3 +24,6 @@ export default class Login extends Component {
         );
     }
 }
+
+export default Login;
+

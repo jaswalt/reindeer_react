@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { checkUserToken } from '../store/actions/userActions';
 
 class Authenticator extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentWillMount() {
         this.props.checkToken();
     }
@@ -21,12 +18,11 @@ class Authenticator extends Component {
     }
 }
 
-(Authenticator).propTypes = {};
+(Authenticator).propTypes = {
+};
 
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     checkToken: () => dispatch(checkUserToken())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Authenticator);
+export default withRouter(connect(() => ({}), mapDispatchToProps)(Authenticator));

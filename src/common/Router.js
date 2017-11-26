@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import Store from '../store';
+import { Store } from '../store';
 import Authenticator from '../common/Authenticator';
 import HomePage from '../pages/HomePage';
 import GiftsMain from '../pages/GiftsMain';
@@ -24,7 +24,7 @@ const muiTheme = getMuiTheme({
     },
 });
 
-export default function () {
+export default function rootRouter() {
     return (
         <Provider store={Store}>
             <MuiThemeProvider muiTheme={muiTheme}>
@@ -46,3 +46,4 @@ export default function () {
         </Provider>
     );
 }
+
