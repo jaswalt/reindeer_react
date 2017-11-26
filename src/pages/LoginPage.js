@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import UserLoginForm from '../user/UserLoginForm';
 import Main from './HomePage';
 
@@ -10,7 +9,6 @@ class LoginPage extends Component {
 
         this.state = {};
     }
-
     render() {
         return (
             <div>
@@ -21,7 +19,6 @@ class LoginPage extends Component {
     }
 }
 
-(LoginPage).propTypes = {};
+LoginPage.propTypes = {};
 
 export default LoginPage;
-
