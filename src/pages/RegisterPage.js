@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import UserRegisterForm from '../user/UserRegisterForm';
+import Main from './HomePage';
 
-const imageUrl = 'https://static.pexels.com/photos/257855/pexels-photo-257855.jpeg';
-
-const styles = {
-    container: {
-        backgroundImage: 'url(' + imageUrl + ')',
-        backgroundSize: 'cover',
-        height: '120vh',
-    },
-};
-
-export default class RegisterPage extends Component {
+class RegisterPage extends Component {
     constructor(props) {
         super(props);
 
@@ -21,7 +13,8 @@ export default class RegisterPage extends Component {
 
     render() {
         return (
-            <div style={styles.container}>
+            <div>
+                <Main />
                 <UserRegisterForm />
             </div>
         );
@@ -29,3 +22,6 @@ export default class RegisterPage extends Component {
 }
 
 (RegisterPage).propTypes = {};
+
+export default withRouter(RegisterPage);
+

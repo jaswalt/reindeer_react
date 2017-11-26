@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import AvatarContainer from './AvatarContainer';
 import Login from './Login';
@@ -15,9 +16,6 @@ const styles = {
 class NavBar extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-        };
     }
 
     render() {
@@ -42,4 +40,5 @@ const mapStateToProps = state => ({
     isLoggedIn: state.users.profile,
 });
 
-export default connect(mapStateToProps)(NavBar);
+export default withRouter(connect(mapStateToProps, null, null, {pure: false})(NavBar));
+

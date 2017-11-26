@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addGift } from '../store/actions/giftActions';
-import EachResult from './EachResult';
+import EachSearchResult from './EachSearchResult';
 
 const styles = {
     container: {
@@ -25,21 +25,22 @@ class SearchResults extends Component {
 
     render() {
         return (
+
             <div id="container" style={styles.container}>
-            	{this.props.gifts.map(gift => (
-               		<EachResult
-                    	key={gift.pk}
-                    	{...gift}
-                    	addMe={() => this.props.addGift(gift.pk)}
-                	/>
-            	))}
+                {this.props.gifts.map(gift => (
+                    <EachSearchResult
+                        key={gift.pk}
+                        {...gift}
+                        addMe={() => this.props.addGift(gift.pk)}
+                    />
+                ))}
             </div>
         )
     };
 }
 
 const mapStateToProps = state => ({
-    userId: state.users.profile.user_id,
+    //userId: state.users.profile.user_id,
     gifts: state.gifts.searchResults,
 });
 

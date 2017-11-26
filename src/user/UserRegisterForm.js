@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Paper, TextField, FlatButton } from 'material-ui';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { checkUserNameIsValid, registerUser } from '../store/actions/userActions';
 
 
@@ -448,4 +449,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserRegisterForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserRegisterForm));
