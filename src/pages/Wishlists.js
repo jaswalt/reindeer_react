@@ -74,7 +74,7 @@ export default class GiftList extends Component {
                     cellHeight={180}
                     style={styles.gridList}
                 >
-                    <Subheader>December</Subheader>
+                    <Subheader>My Wishlists</Subheader>
                     {tilesData.map((tile) => (
                         <GridTile
                             key={tile.img}
