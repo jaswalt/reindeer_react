@@ -21,12 +21,17 @@ class Search extends Component {
     onContentEnter = (event) => {
         if(event.key == 'Enter'){
             // send GET request to api with a list of gifts
-            this.props.dispatch(searchGift(this.state.content));
-            this.props.history.push('/gifts/search/results');
-            this.setState({
-                content: ''
-            })
+            if (this.state.content[0] === '@') {
+                const name = this.state.content.substring(1);
 
+
+            } else {
+                this.props.dispatch(searchGift(this.state.content));
+                this.props.history.push('/gifts/search/results');
+                this.setState({
+                    content: ''
+                })
+            }
         }
     }
 

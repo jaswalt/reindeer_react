@@ -30,3 +30,8 @@ export function apiLoginUser(loginForm) {
 export function apiGetSearchedGifts(search) {
     return axios.get(`${API_URL}/gifts/search/${search}`);
 }
+
+export function apiSearchUsers(name) {
+    return axios.get(`${API_URL}/users/search/${name}`);
+}
+
