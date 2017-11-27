@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
     Table,
     TableBody,
@@ -8,7 +9,7 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 
-export default function FriendsPage(props) {
+function FriendsSearchPage(props) {
     return (
         <div>
             <Table>
@@ -51,3 +52,6 @@ export default function FriendsPage(props) {
     );
 }
 
+const mapStateToProps = state => ({ friends: state.users.searchFriends });
+
+export default connect(mapStateToProps)(FriendsSearchPage);
