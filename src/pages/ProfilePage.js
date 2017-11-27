@@ -6,6 +6,12 @@ import UserProfileForm from '../user/UserProfileForm';
 
 const styles = {
     container: {
+        margin: '0 auto',
+        paddingTop: 30,
+        maxWidth: 1100,
+        height: '100%',
+        display: 'flex',
+        flexWrap: 'wrap',
     },
 };
 
