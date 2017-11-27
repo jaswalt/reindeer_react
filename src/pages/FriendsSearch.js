@@ -22,17 +22,17 @@ const styles = {
 function FriendsSearchPage(props) {
     return (
         <div>
-            <Table>
-                <TableHeader>
+            <Table selectable={false}>
+                <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                     <TableRow>
                         <TableHeaderColumn>Username</TableHeaderColumn>
                         <TableHeaderColumn>First Name</TableHeaderColumn>
                         <TableHeaderColumn>Befriend</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody displayRowCheckbox={false}>
                     {props.users.map(user => (
-                        <TableRow key={user.id} userId={user.id}>
+                        <TableRow key={user.id} userId={user.id} selectable={false}>
                             <TableRowColumn>{user.username}</TableRowColumn>
                             <TableRowColumn>{user.first_name}</TableRowColumn>
                             <TableRowColumn>
@@ -41,7 +41,7 @@ function FriendsSearchPage(props) {
                                     style={styles.chip}
                                 >
                                     <Avatar color="#444" icon={<SvgIconFace />} />
-                                    Befriend
+                                    befriend
                                 </Chip>
                             </TableRowColumn>
                         </TableRow>
