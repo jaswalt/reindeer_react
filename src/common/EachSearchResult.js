@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
@@ -27,7 +28,7 @@ const styles = {
     hoverActionColor: "#990033"
 };
 
-export default class EachSearchResult extends Component {
+class EachSearchResult extends Component {
     constructor(props) {
         super(props);
 
@@ -38,7 +39,7 @@ export default class EachSearchResult extends Component {
 
     render() {
         return (
-            <Card className="gift-card" style={styles.container} onMouseEnter={this._showActionButtons}>
+            <Card className="gift-card" style={styles.container} onMouseEnter={this._showActionButtons} onMouseLeave={this._unshowActionButtons}>
                 <CardHeader
                     title={this.props.name}
                     subtitle="Gift"
@@ -56,9 +57,9 @@ export default class EachSearchResult extends Component {
                 <CardText>
                     {this.props.description}
                 </CardText>
-                {this.state.displayActions &&
+                {this.props.isLoggedIn && this.state.displayActions &&
                     <CardActions style={styles.actions}>
-                        <IconButton tooltip="+ List" tooltipPosition="top-center"><AddList color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
+                        <IconButton tooltip="+ List" tooltipPosition="top-center" onClick={this.props.addMe}><AddList color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
                     </CardActions>
                 }
             </Card>
@@ -74,4 +75,23 @@ export default class EachSearchResult extends Component {
         });
     };
 
+    _unshowActionButtons = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        this.setState({
+            displayActions: false,
+        });
+    };
+
 }
+
+const mapStateToProps = (state) => ({
+    isLoggedIn: !!state.users.profile,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+});
+
+export default connect(mapStateToProps
+)(EachSearchResult);
