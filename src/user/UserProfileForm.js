@@ -141,12 +141,12 @@ class UserProfileForm extends Component {
         e.stopPropagation();
 
         this.setState({
-            dobValue: e.target.value.trim(),
+            dobValue: e.target.value,
         });
 
     };
 
-    /**
+    /*
      *   Form Validators
      */
 
@@ -183,13 +183,9 @@ class UserProfileForm extends Component {
     _validateDOB(e) {
         e.stopPropagation();
 
-        const re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        const re = /^(19[5-9][0-9]|20[0-4][0-9]|2050)[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$/;
 
-        if (!this.state.dobValue) {
-            this.setState({
-                dobError: 'Required',
-            });
-        } else if (!re.test(this.state.dobValue)) {
+        if (!re.test(this.state.dobValue)) {
             this.setState({
                 dobError: 'Birthday not valid',
             });
