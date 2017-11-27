@@ -35,7 +35,7 @@ const styles = {
 };
 
 
-class UserProfileForm extends Component {
+class UpdateUserForm extends Component {
     constructor(props) {
         super(props);
 
@@ -185,15 +185,20 @@ class UserProfileForm extends Component {
 
         const re = /^(19[5-9][0-9]|20[0-4][0-9]|2050)[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$/;
 
-        if (!re.test(this.state.dobValue)) {
+        if (!this.state.dobValue) {
+            this.setState({
+                dobError: 'Required',
+            });
+        } else if (!re.test(this.state.dobValue)) {
             this.setState({
                 dobError: 'Birthday not valid',
             });
         } else {
-            this.setState({
+            this.setState(prevState => ({
+                dobValue: prevState.dobValue.trim(),
                 dobError: '',
-            });
-        }
+            }));
+        };
     };
 
 
@@ -216,7 +221,7 @@ class UserProfileForm extends Component {
         const {
             firstnameError,
             lastnameError,
-            dob, } = this.state;
+            dobError, } = this.state;
         
         if (firstnameError ||
             lastnameError || dobError) {
@@ -272,8 +277,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        transmitForm: (userForm) => dispatch(updateUser(userForm)),
+        transmitForm: (updateUserForm) => dispatch(updateUser(updateUserForm)),
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfileForm);
+export default connect(mapStateToProps, mapDispatchToProps)(updateUserForm);
