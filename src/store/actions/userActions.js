@@ -110,7 +110,7 @@ export function checkUserToken() {
     };
 }
 
-export function updateUser() {
+export function updateUser(updateUserForm) {
     return (dispatch) => {
         apiUpdateUser(updateUserForm).then(resp => {
                 dispatch(updateUserSuccess(profile))
