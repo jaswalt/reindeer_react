@@ -14,6 +14,7 @@ import ProfilePage from '../pages/ProfilePage';
 import SearchResults from '../common/SearchResults';
 import NavBar from '../common/NavBar';
 import ToolBar from '../common/ToolBar';
+import FriendsSearchPage from '../pages/FriendsSearch';
 import PrivateRoute from '../common/PrivateRoute';
 
 const muiTheme = getMuiTheme({
@@ -36,6 +37,7 @@ export default function rootRouter() {
                             <Route exact path="/user/profile" component={ProfilePage} />
                             <Route exact path="/users/register" component={RegisterPage} />
                             <Route exact path="/users/login" component={LoginPage} />
+                            <Route exact path="/users/search/results" component={FriendsSearchPage} />
                             <PrivateRoute exact path="/gifts/" component={GiftsMain} />
                             <Route exact path="/gifts/search/results" component={SearchResults} />
                             <Route exact path="/" component={HomePage} />
