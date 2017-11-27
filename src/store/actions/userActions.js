@@ -45,6 +45,12 @@ export function usernameIsNotValid() {
     };
 }
 
+export function searchUsersPending() {
+    return {
+        type: types.SEARCH_USERS,
+    }
+}
+
 export function searchUsersSuccess(users) {
     return {
         type: types.SEARCH_USERS_SUCCESS,
@@ -116,10 +122,10 @@ export function logoutUser() {
     };
 }
 
-
 export function searchUsers(name) {
     return (dispatch) => {
-        // dispatch sending user form pending
+        dispatch(searchUsersPending);
+
         apiSearchUsers(name).then(
             resp =>  dispatch(searchUsersSuccess(resp.data)),
             () => dispatch(searchUsersFailure()),

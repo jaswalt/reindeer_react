@@ -5,6 +5,8 @@ const initialState = {
     error: false,
     usernameError: false,
     profile: null,
+    usersSearch: [],
+    friends: [],
 };
 
 export default function (state = initialState, action) {
@@ -35,7 +37,11 @@ export default function (state = initialState, action) {
                 usernameError: true,
             });
         }
-        case types.BEFRIEND_USER:
+        case types.SEARCH_USERS_SUCCESS: {
+            return Object.assign({}, state, {
+                usersSearch: [...action.users],
+            });
+        }
         default: {
             return state;
         }
