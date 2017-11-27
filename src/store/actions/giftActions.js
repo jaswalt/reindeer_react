@@ -1,15 +1,15 @@
 import * as types from './index';
-import { apiDeleteUserGift, apiGetUserGifts, apiGetSearchedGifts } from '../api';
+import { apiDeleteUserGift, apiGetUserGifts, apiGetSearchedGifts, apiAddUserGift } from '../api';
 
-export function addGift(user, gift) {
+export function addGiftToGifts(userId, gift) {
     return {
         type: types.ADD_GIFT,
-        user,
+        userId,
         gift,
     };
 }
 
-export function removeGift(giftId) {
+export function removeGiftFromGifts(giftId) {
     return {
         type: types.REMOVE_GIFT,
         giftId,
@@ -56,10 +56,19 @@ export function fetchUserGifts() {
     };
 }
 
+export function addGiftToAllGifts(userId, gift) {
+    return (dispatch) => {
+        apiAddUserGift(userId, gift)
+            .then(
+                resp => dispatch(addGiftToGifts(userId, gift))
+            )
+    }
+}
+
 export function deleteGift(userId, giftId) {
     return (dispatch) => {
         apiDeleteUserGift(userId, giftId)
-            .then(() => dispatch(removeGift(giftId)));
+            .then(() => dispatch(removeGiftFromGifts(giftId)));
     };
 }
 

@@ -9,6 +9,12 @@ export function apiGetUserGifts(userId) {
     return axios.get(`${API_URL}/users/${userId}/gifts/`);
 }
 
+export function apiAddUserGift(userId, gift) {
+    return axios.post(`${API_URL}/users/${userId}/gifts/add/`, {
+        gift,
+    });
+}
+
 export function apiDeleteUserGift(userId, giftId) {
     return axios.delete(`${API_URL}/users/${userId}/gifts/${giftId}`);
 }
