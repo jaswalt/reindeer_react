@@ -19,6 +19,10 @@ export function apiCheckUsernameIsValid(username) {
     });
 }
 
+export function apiBefriendUser(userId, friendId) {
+    return axios.patch(`${API_URL}/users/${userId}/befriend/${friendId}`);
+}
+
 export function apiRegisterUser(userForm) {
     return axios.put(`${API_URL}/users/`, userForm);
 }

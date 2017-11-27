@@ -8,6 +8,16 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
+import Chip from 'material-ui/Chip';
+import Avatar from 'material-ui/Avatar';
+import SvgIconFace from 'material-ui/svg-icons/action/face';
+import { addFriendToUser } from '../store/actions/userActions';
+
+const styles = {
+    chip: {
+        margin: 4,
+    },
+};
 
 function FriendsSearchPage(props) {
     return (
@@ -21,11 +31,19 @@ function FriendsSearchPage(props) {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {props.users.map((user, index) => (
-                        <TableRow key={index}>
+                    {props.users.map(user => (
+                        <TableRow key={user.id} userId={user.id}>
                             <TableRowColumn>{user.username}</TableRowColumn>
                             <TableRowColumn>{user.first_name}</TableRowColumn>
-                            <TableRowColumn>Click</TableRowColumn>
+                            <TableRowColumn>
+                                <Chip
+                                    onClick={() => props.addFriend(user.id)}
+                                    style={styles.chip}
+                                >
+                                    <Avatar color="#444" icon={<SvgIconFace />} />
+                                    Befriend
+                                </Chip>
+                            </TableRowColumn>
                         </TableRow>
                     ))}
                 </TableBody>
@@ -36,6 +54,11 @@ function FriendsSearchPage(props) {
 
 const mapStateToProps = state => ({
     users: state.users.usersSearch,
+    currentUser: state.users.profile ? state.users.profile.user_id : null,
 });
 
-export default connect(mapStateToProps)(FriendsSearchPage);
+const mapDispatchToProps = dispatch => ({
+    addFriend: friendId => dispatch(addFriendToUser(friendId)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(FriendsSearchPage);

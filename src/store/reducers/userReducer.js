@@ -42,6 +42,24 @@ export default function (state = initialState, action) {
                 usersSearch: [...action.users],
             });
         }
+        case types.BEFRIEND_USER_LOADING: {
+            return Object.assign({}, state, {
+                loading: true,
+            });
+        }
+        case types.BEFRIEND_USER_SUCCESS: {
+            return Object.assign({}, state, {
+                loading: false,
+                error: false,
+                friends: [...state.friends, { ...action.friend }],
+            });
+        }
+        case types.BEFRIEND_USER_FAILURE: {
+            return Object.assign({}, state, {
+                loading: false,
+                error: true,
+            });
+        }
         default: {
             return state;
         }
