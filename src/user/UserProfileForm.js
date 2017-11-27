@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Paper, TextField, FlatButton } from 'material-ui';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { updateUser } from '../store/actions/userActions';
 
 const styles = {
     container: {
@@ -281,4 +282,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(updateUserForm);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateUserForm);
