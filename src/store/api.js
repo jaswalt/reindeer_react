@@ -34,3 +34,11 @@ export function apiUpdateUser(userId, updateUserForm) {
 export function apiGetSearchedGifts(search) {
     return axios.get(`${API_URL}/gifts/search/${search}`);
 }
+
+export function apiGetUserWishlists(userId) {
+    return axios.get(`${API_URL}/users/${userId}/wishlists/`);
+}
+
+export function apiDeleteUserWishlist(userId, wishlistId) {
+    return axios.delete(`${API_URL}/users/${userId}/wishlists/${wishlistId}`);
+}
