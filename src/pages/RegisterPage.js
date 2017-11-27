@@ -33,4 +33,3 @@ class RegisterPage extends Component {
 (RegisterPage).propTypes = {};
 
 export default withRouter(RegisterPage);
-

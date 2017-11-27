@@ -27,8 +27,20 @@ export function apiLoginUser(loginForm) {
     return axios.post(`${BASE_URL}/api-token-auth/`, loginForm);
 }
 
+export function apiUpdateUser(userId, updateUserForm) {
+    return axios.put(`${API_URL}/users/${userId}/profile`, updateUserForm);
+}
+
 export function apiGetSearchedGifts(search) {
     return axios.get(`${API_URL}/gifts/search/${search}`);
+}
+
+export function apiGetUserWishlists(userId) {
+    return axios.get(`${API_URL}/users/${userId}/gifts/wishlists/`);
+}
+
+export function apiDeleteUserWishlist(userId, wishlistId) {
+    return axios.delete(`${API_URL}/users/${userId}/wishlists/${wishlistId}`);
 }
 
 export function apiSearchUsers(name) {
