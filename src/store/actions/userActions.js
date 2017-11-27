@@ -45,6 +45,13 @@ export function usernameIsNotValid() {
     };
 }
 
+export function searchUsersSuccess(users) {
+    return {
+        type: types.SEARCH_USERS_SUCCESS,
+        users,
+    }
+}
+
 
 /**
  *
