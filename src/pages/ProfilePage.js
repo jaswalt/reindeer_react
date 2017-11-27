@@ -26,8 +26,8 @@ class ProfilePage extends Component {
         return (
             <section style={styles.container}>
                 <h1>Hello User!</h1>
-                <UpdateUserForm />
                 <Wishlists />
+                <UpdateUserForm />
             </section>
         );
     }
