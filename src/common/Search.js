@@ -46,7 +46,7 @@ class Search extends Component {
                 onChange={this.onContent}
                 onKeyPress={this.onContentEnter}
                 value={this.state.content}
-                hintText="Search for an item"
+                hintText="Search for an item or a user"
                 style={{
                     margin: '0 auto',
                     maxWidth: 800,

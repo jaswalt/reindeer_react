@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Wishlists from './Wishlists';
-import UpdateUserForm from '../user/UserProfileForm';
 
 const styles = {
     container: {
@@ -27,7 +26,6 @@ class ProfilePage extends Component {
             <section style={styles.container}>
                 <h1>Hello User!</h1>
                 <Wishlists />
-                <UpdateUserForm />
             </section>
         );
     }
