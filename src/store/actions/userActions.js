@@ -8,6 +8,7 @@ import {
     apiSearchUsers,
     apiBefriendUser, } from '../api';
 
+
 /*
  *
  *   NORMAL ACTIONS
@@ -28,6 +29,19 @@ export function addUserFailure() {
 }
 
 export function updateUserSuccess(profile) {
+    return {
+        type: types.UPDATE_USER_SUCCESS,
+        profile,
+    };
+}
+
+export function updateUserFailure() {
+    return {
+        type: types.UPDATE_USER_FAILURE,
+    };
+}
+
+export function addFriendToUser(user, friend) {
     return {
         type: types.UPDATE_USER_SUCCESS,
         profile,
@@ -138,10 +152,10 @@ export function checkUserToken() {
 export function updateUser(updateUserForm) {
     return (dispatch) => {
         apiUpdateUser(updateUserForm).then(resp => {
-            const profile = jwtDecode(resp.data.token);
-            dispatch(updateUserSuccess(profile))
-        },
-                                           () => dispatch(updateUserFailure()),
+                const profile = jwtDecode(resp.data.token);
+                dispatch(updateUserSuccess(profile))
+            },
+        () => dispatch(updateUserFailure()),
         );
     };
 }

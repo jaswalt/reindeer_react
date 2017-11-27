@@ -34,10 +34,7 @@ export default class AvatarContainer extends Component {
                 </Link>
                 <Link to="/gifts">
                     <MenuItem primaryText="My Items" style={{ color: '#000' }} />
-                </Link>
-                <Link to="/user/wishlists">
-                    <MenuItem primaryText="My Lists" style={{ color: '#000' }} />
-                </Link>
+                </Link>                
                 <Link to="/user/friends">
                     <MenuItem primaryText="Friends" style={{ color: '#000' }} />
                 </Link>
