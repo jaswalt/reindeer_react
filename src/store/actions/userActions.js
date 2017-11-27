@@ -52,6 +52,11 @@ export function searchUsersSuccess(users) {
     }
 }
 
+export function searchUsersFailure() {
+    return {
+        type: types.SEARCH_USERS_FAILURE,
+    }
+}
 
 /**
  *
