@@ -264,6 +264,7 @@ class UserProfileForm extends Component {
             formValid: false,
         })
     }
+}
 
 
 const mapStateToProps = (state, ownProps) => {
