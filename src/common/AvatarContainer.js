@@ -5,10 +5,6 @@ import Avatar from 'material-ui/Avatar';
 import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 import { Link } from 'react-router-dom';
 
-const styles = {
-
-};
-
 export default class AvatarContainer extends Component {
     constructor(props) {
         super(props);
