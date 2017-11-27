@@ -1,29 +1,32 @@
-export function createWishlist(title) {
+import * as types from './index';
+
+export function createWishlist(user, wishlist) {
     return {
-        type: 'CREATE_WISHLIST',
-        title,
+        type: types.CREATE_WISHLIST,
+        user,
+        wishlist,
     };
 }
 
-export function deleteWishlist(wishlist) {
+export function deleteWishlist(wishlistId) {
     return {
-        type: 'DELETE_WISHLIST',
-        wishlist,
+        type: types.DELETE_WISHLIST,
+        wishlistId,
     };
 }
 
 export function addGiftToWishlist(gift, wishlist) {
     return {
-        type: 'ADD_GIFT_TO_WISHLIST',
+        type: types.ADD_GIFT_TO_WISHLIST,
         gift,
         wishlist,
     };
 }
 
-export function removeGiftFromWishlist(gift, wishlist) {
+export function removeGiftFromWishlist(giftId, wishlistId) {
     return {
-        type: 'REMOVE_GIFT_FROM_WISHLIST',
-        gift,
-        wishlist,
+        type: types.REMOVE_GIFT_FROM_WISHLIST,
+        giftId,
+        wishlistId,
     };
 }
