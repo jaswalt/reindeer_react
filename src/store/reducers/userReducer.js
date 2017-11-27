@@ -29,7 +29,7 @@ export default function (state = initialState, action) {
                 profile: { ...action.profile },
             });
         }
-        case types.UPDARE_USER_FAILURE: {
+        case types.UPDATE_USER_FAILURE: {
             return Object.assign({}, state, {
                 loading: false,
                 error: true,
