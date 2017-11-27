@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { searchGift } from '../store/actions/giftActions';
 import SearchBar from 'material-ui-search-bar';
+
 
 class Search extends Component {
     constructor(props) {
@@ -20,9 +22,11 @@ class Search extends Component {
         if(event.key == 'Enter'){
             // send GET request to api with a list of gifts
             this.props.dispatch(searchGift(this.state.content));
+            this.props.history.push('/gifts/search/results');
             this.setState({
                 content: ''
             })
+
         }
     }
 
@@ -37,8 +41,8 @@ class Search extends Component {
                 style={{ 
                     margin: '0 auto', 
                     maxWidth: 800, 
-                    marginRight: '30vw',
-                    width: '600px',
+                    marginRight: '0vw',
+                    width: '300px',
                     marginTop: '0.25em'
                 }}
             />
@@ -53,6 +57,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
-)(Search);
+)(Search));
