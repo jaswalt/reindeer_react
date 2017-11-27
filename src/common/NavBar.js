@@ -18,10 +18,16 @@ class NavBar extends Component {
         super(props);
     }
 
+    handleTitleClick = (e) =>{
+        e.preventDefault();
+        this.props.history.push('/');
+    }
+
     render() {
         return (
             <AppBar
                 title="Kaddo"
+                onTitleTouchTap={this.handleTitleClick}
                 titleStyle={styles.title}
                 style={{ padding: '1em' }}
                 showMenuIconButton={false}
