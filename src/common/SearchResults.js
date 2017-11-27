@@ -19,19 +19,19 @@ class SearchResults extends Component {
 		super(props);
 		this.state = {
 			cardTextCollapsed: true,
-			displayActions: false,
+            displayActions: false,
 		};
     }
 
     render() {
-        return (
 
+        return (
             <div id="container" style={styles.container}>
-                {this.props.gifts.map(gift => (
+                {this.props.gifts.map((gift, i) => (
                     <EachSearchResult
-                        key={gift.pk}
+                        key={i}
                         {...gift}
-                        addMe={() => this.props.addGift(gift.pk)}
+                        addMe={() => this.props.addGift(this.props.user, gift)}
                     />
                 ))}
             </div>
@@ -39,13 +39,13 @@ class SearchResults extends Component {
     };
 }
 
-const mapStateToProps = state => ({
-    //userId: state.users.profile.user_id,
+const mapStateToProps = (state) => ({
     gifts: state.gifts.searchResults,
+    user: !!state.users.profile ? state.users.profile : null
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    addGift: giftId => dispatch(addGift(ownProps.userId, giftId)),
+const mapDispatchToProps = (dispatch) => ({
+    addGift: (user, gift) => dispatch(addGift(user, gift)),
 });
 
 export default connect(
