@@ -3,9 +3,10 @@ import * as types from './index';
 import {
     apiCheckUsernameIsValid,
     apiRegisterUser,
-    apiLoginUser } from '../api';
+    apiLoginUser,
+    apiUpdateUser, } from '../api';
 
-/**
+/*
  *
  *   NORMAL ACTIONS
  *
@@ -45,7 +46,7 @@ export function usernameIsNotValid() {
 }
 
 
-/**
+/*
  *
  *   ASYNC THUNK ACTIONS
  *
@@ -94,6 +95,14 @@ export function checkUserToken() {
             dispatch(addUserSuccess(profile))
         }
     };
+}
+
+export function updateUser() {
+    return (dispatch) => {
+        apiUpdateUser(updateUserForm).then(resp => {
+            
+        })
+    }
 }
 
 export function logoutUser() {

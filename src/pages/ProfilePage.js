@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Wishlists from './Wishlists';
-// import UserProfileForm from '../user/UserProfileForm';
+import UserProfileForm from '../user/UserProfileForm';
 
-export default class ProfilePage extends Component {
+const styles = {
+    container: {
+    },
+};
+
+class ProfilePage extends Component {
     constructor(props) {
         super(props);
 
@@ -11,10 +18,14 @@ export default class ProfilePage extends Component {
 
     render() {
         return (
-            <section>
+            <section style={styles.container}>
                 <h1>Hello User!</h1>
-                <Wishlists />
+                <UserProfileForm />
             </section>
         );
     }
 }
+
+(ProfilePage).propTypes = {};
+
+export default withRouter(ProfilePage);
