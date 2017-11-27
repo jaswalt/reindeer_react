@@ -1,37 +1,43 @@
 import * as types from '../actions';
 
 const initialState = {
+    loading: false,
+    error: false,
     wishlists: [],
     gifts: [],
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case types.CREATE_WISHLIST: {
+        case types.ADD_WISHLIST: {
             return Object.assign({}, state, {
-                wishlists: { ...action.wishlist },
+                wishlists: [...state.wishlists, { ...action.wishlist }],
             });
         }
-        case types.DELETE_WISHLIST: {
+        case types.REMOVE_WISHLIST: {
             const { wishlistId } = action;
             const wishlists = state.wishlists.filter(wishlist => wishlist.pk !== wishlistId);
             return Object.assign({}, state, {
                 wishlists,
             });
         }
-        case types.ADD_GIFT_TO_WISHLIST: {
+        case types.WISHLISTS_FETCH_SUCCESS: {
             return Object.assign({}, state, {
-                wishlists: { ...action.wishlists },
-                gifts: { ...action.gifts },
+                loading: false,
+                error: false,
+                wishlists: [...action.wishlists],
             });
         }
-        case types.REMOVE_GIFT_FROM_WISHLIST: {
-            const { giftId, wishlistId } = action;
-            const gifts = state.gifts.filter(gift => gift.pk !== giftId);
-            const wishlists = state.wishlists.filter(wishlist => wishlist.pk !== wishlistId);
+        case types.WISHLISTS_FETCH_FAILURE: {
             return Object.assign({}, state, {
-                wishlists,
-                gifts,
+                error: true,
+                loading: false,
+            });
+        }
+        case types.WISHLISTS_ARE_LOADING: {
+            return Object.assign({}, state, {
+                loading: true,
+                error: false,
             });
         }
         default: {

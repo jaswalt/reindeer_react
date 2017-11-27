@@ -1,32 +1,59 @@
 import * as types from './index';
+import { apiGetUserWishlists, apiDeleteUserWishlist } from '../api';
 
-export function createWishlist(user, wishlist) {
+
+export function addWishlist(user, wishlist) {
     return {
-        type: types.CREATE_WISHLIST,
+        type: types.ADD_WISHLIST,
         user,
         wishlist,
     };
 }
 
-export function deleteWishlist(wishlistId) {
+export function removeWishlist(wishlistId) {
     return {
-        type: types.DELETE_WISHLIST,
+        type: types.REMOVE_WISHLIST,
         wishlistId,
     };
 }
 
-export function addGiftToWishlist(gift, wishlist) {
+export function wishlistsAreLoading(bool) {
     return {
-        type: types.ADD_GIFT_TO_WISHLIST,
-        gift,
-        wishlist,
+        type: types.WISHLISTS_ARE_LOADING,
+        isLoading: bool,
     };
 }
 
-export function removeGiftFromWishlist(giftId, wishlistId) {
+export function wishlistsFetchSuccess(wishlists) {
     return {
-        type: types.REMOVE_GIFT_FROM_WISHLIST,
-        giftId,
-        wishlistId,
+        type: types.WISHLISTS_FETCH_SUCCESS,
+        wishlists,
+    };
+}
+
+export function wishlistsFetchFailure(bool) {
+    return {
+        type: types.WISHLISTS_FETCH_FAILURE,
+        hasError: bool,
+    };
+}
+
+
+export function fetchUserWishLists() {
+    return (dispatch, getState) => {
+        dispatch(wishlistsAreLoading(true));
+
+        apiGetUserWishlists(getState().users.profile.user_id)
+            .then(
+                resp => dispatch(wishlistsFetchSuccess(resp.data)),
+                () => dispatch(wishlistsFetchFailure(true)),
+            )
+    };
+}
+
+export function deleteWishlist(userId, wishlistId) {
+    return (dispatch) => {
+        apiDeleteUserWishlist(userId, wishlistId)
+            .then(() => dispatch(removeWishlist(wishlistId)));
     };
 }
