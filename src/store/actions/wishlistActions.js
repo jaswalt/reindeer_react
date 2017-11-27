@@ -39,7 +39,7 @@ export function wishlistsFetchFailure(bool) {
 }
 
 
-export function fetchUserWishLists() {
+export function fetchUserWishlists() {
     return (dispatch, getState) => {
         dispatch(wishlistsAreLoading(true));
 

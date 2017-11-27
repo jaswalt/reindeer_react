@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchUserWishlists, deleteWishlist } from '../store/actions/wishlistActions';
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
@@ -17,54 +19,16 @@ const styles = {
     },
 };
 
-const tilesData = [
-    {
-        img: 'images/grid-list/00-52-29-429_640.jpg',
-        title: 'Breakfast',
-        author: 'jill111',
-    },
-    {
-        img: 'images/grid-list/burger-827309_640.jpg',
-        title: 'Tasty burger',
-        author: 'pashminu',
-    },
-    {
-        img: 'images/grid-list/camera-813814_640.jpg',
-        title: 'Camera',
-        author: 'Danson67',
-    },
-    {
-        img: 'images/grid-list/morning-819362_640.jpg',
-        title: 'Morning',
-        author: 'fancycrave1',
-    },
-    {
-        img: 'images/grid-list/hats-829509_640.jpg',
-        title: 'Hats',
-        author: 'Hans',
-    },
-    {
-        img: 'images/grid-list/honey-823614_640.jpg',
-        title: 'Honey',
-        author: 'fancycravel',
-    },
-    {
-        img: 'images/grid-list/vegetables-790022_640.jpg',
-        title: 'Vegetables',
-        author: 'jill111',
-    },
-    {
-        img: 'images/grid-list/water-plant-821293_640.jpg',
-        title: 'Water plant',
-        author: 'BkrmadtyaKarki',
-    },
-];
-
-export default class GiftList extends Component {
+ 
+class WishLists extends Component {
     constructor(props) {
         super(props);
 
         this.state = {};
+    }
+
+    componentDidMount() {
+        this.props.fetchWishlists()
     }
 
     render() {
@@ -74,15 +38,15 @@ export default class GiftList extends Component {
                     cellHeight={180}
                     style={styles.gridList}
                 >
-                    <Subheader>My Wishlists</Subheader>
-                    {tilesData.map((tile) => (
+                    <Subheader style={{marginLeft: '15vw' }}>My Wishlists</Subheader>
+                    {this.props.wishlists.map((wishlist) => (
                         <GridTile
-                            key={tile.img}
-                            title={tile.title}
-                            subtitle={<span>by <b>{tile.author}</b></span>}
+                            key={wishlist.pk}
+                            title={wishlist.title}
+                            subtitle={<span>by <b>{this.props.username}</b></span>}
                             actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
                         >
-                        <img src={tile.img} />
+                        <img src={wishlist.img} />
                         </GridTile>
                     ))}
                 </GridList>
@@ -90,3 +54,20 @@ export default class GiftList extends Component {
         );
     }
 }
+
+
+const mapStateToProps = state => ({
+    username: state.users.profile.username,
+    userId: state.users.profile.user_id,
+    wishlists: !!state.wishlists.wishlists ? state.wishlists.wishlists : null,
+});
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    deleteWishlist: wishlistId => dispatch(deleteWishlist(ownProps.userId, wishlistId)),
+    fetchWishlists: () => dispatch(fetchUserWishlists()),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(WishLists);
