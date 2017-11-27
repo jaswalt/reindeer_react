@@ -4,7 +4,6 @@ import {
     apiCheckUsernameIsValid,
     apiRegisterUser,
     apiLoginUser,
-    apiUpdateUser,
     apiSearchUsers, } from '../api';
 
 /*
@@ -23,19 +22,6 @@ export function addUserSuccess(profile) {
 export function addUserFailure() {
     return {
         type: types.ADD_USER_FAILURE,
-    };
-}
-
-export function updateUserSuccess(profile) {
-    return {
-        type: types.UPDATE_USER_SUCCESS,
-        profile,
-    };
-}
-
-export function updateUserFailure() {
-    return {
-        type: types.UPDATE_USER_FAILURE,
     };
 }
 
@@ -126,17 +112,6 @@ export function checkUserToken() {
             const profile = jwtDecode(token);
             dispatch(addUserSuccess(profile))
         }
-    };
-}
-
-export function updateUser(updateUserForm) {
-    return (dispatch) => {
-        apiUpdateUser(updateUserForm).then(resp => {
-                const profile = jwtDecode(resp.data.token);
-                dispatch(updateUserSuccess(profile))
-            },
-        () => dispatch(updateUserFailure()),
-        );
     };
 }
 
