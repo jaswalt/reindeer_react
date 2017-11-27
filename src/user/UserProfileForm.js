@@ -88,7 +88,7 @@ class UpdateUserForm extends Component {
                     /><br/>
                     <TextField
                         className="dob"
-                        floatingLabelText="Birthday"
+                        floatingLabelText="Birthday yyyy-mm-dd"
                         errorText={this.state.dobError}
                         errorStyle={styles.errorStyle}
                         floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
