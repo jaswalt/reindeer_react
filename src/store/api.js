@@ -35,7 +35,6 @@ export function apiGetSearchedGifts(search) {
     return axios.get(`${API_URL}/gifts/search/${search}`);
 }
 
-<<<<<<< HEAD
 export function apiGetUserWishlists(userId) {
     return axios.get(`${API_URL}/users/${userId}/wishlists/`);
 }
@@ -43,9 +42,8 @@ export function apiGetUserWishlists(userId) {
 export function apiDeleteUserWishlist(userId, wishlistId) {
     return axios.delete(`${API_URL}/users/${userId}/wishlists/${wishlistId}`);
 }
-=======
+
 export function apiSearchUsers(name) {
     return axios.get(`${API_URL}/users/search/${name}`);
 }
 
->>>>>>> 49b97d197537dc9c127d3be65517910ef83a2106
