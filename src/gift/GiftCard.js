@@ -36,9 +36,9 @@ export default class GiftCard extends Component {
         this.state = {
             cardTextCollapsed: true,
             displayActions: false,
-            cardText: this.props.description || '',
-            price: (this.props.price_cents / 100).toFixed(2),
-            photo: this.props.photo || "http://4.bp.blogspot.com/-pGUXC8ugtWk/USqy_ppFbCI/AAAAAAAAD6Y/yRSgg40BXlw/s1600/cat+pictures.jpg",
+            cardText: this.props.description,
+            price: (parseInt(this.props.price)).toFixed(2),
+            photo: this.props.photo || "https://www.jainsusa.com/images/store/landscape/not-available.jpg",
         };
     }
 
@@ -53,7 +53,6 @@ export default class GiftCard extends Component {
             <Card className="gift-card" style={styles.container} onMouseEnter={this._showActionButtons} onMouseLeave={this._collapseCardText}>
                 <CardHeader
                     title={this.props.name}
-                    subtitle="Pet"
                     avatar={<Avatar
                         icon={<Gift />}
                         color={red50}
@@ -62,9 +61,9 @@ export default class GiftCard extends Component {
                     />}
                 />
                 <CardMedia>
-                    <img src={this.state.photo} alt="" />
+                    <img src={this.state.photo} />
                 </CardMedia>
-                <CardTitle title="Card title" subtitle={`$${this.state.price}`} />
+                <CardTitle subtitle={`$${this.state.price}`} />
                 <CardText>
                     {this.state.displayedCardText}
                     {this.state.cardTextCollapsed && <p><ExpandMore onClick={this._expandCardText} /></p>}
