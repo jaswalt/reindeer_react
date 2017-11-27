@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Wishlists from './Wishlists';
-import UserProfileForm from '../user/UserProfileForm';
+import updateUserForm from '../user/UserProfileForm';
 
 const styles = {
     container: {
@@ -26,7 +26,7 @@ class ProfilePage extends Component {
         return (
             <section style={styles.container}>
                 <h1>Hello User!</h1>
-                <UserProfileForm />
+                <updateUserForm />
             </section>
         );
     }

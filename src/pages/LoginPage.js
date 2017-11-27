@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import UserLoginForm from '../User/UserLoginForm';
+import UserLoginForm from '../user/UserLoginForm';
 import Main from './HomePage';
 
 const imageUrl = 'https://static.pexels.com/photos/257855/pexels-photo-257855.jpeg';

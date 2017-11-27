@@ -4,7 +4,8 @@ import {
     apiCheckUsernameIsValid,
     apiRegisterUser,
     apiLoginUser,
-    apiUpdateUser, } from '../api';
+    apiUpdateUser,
+    apiSearchUsers, } from '../api';
 
 /*
  *
@@ -113,6 +114,7 @@ export function checkUserToken() {
 export function updateUser(updateUserForm) {
     return (dispatch) => {
         apiUpdateUser(updateUserForm).then(resp => {
+                const profile = jwtDecode(resp.data.token);
                 dispatch(updateUserSuccess(profile))
             },
         () => dispatch(updateUserFailure()),
@@ -124,5 +126,16 @@ export function logoutUser() {
     return (dispatch) => {
         localStorage.removeItem('token');
         dispatch({ type: types.LOGOUT_SUCCESS });
+    };
+}
+
+
+export function searchUsers(name) {
+    return (dispatch) => {
+        // dispatch sending user form pending
+        apiSearchUsers(name).then(
+            resp =>  dispatch(searchUsersSuccess(resp.data)),
+            () => dispatch(searchUsersFailure()),
+        );
     };
 }
