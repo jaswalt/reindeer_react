@@ -22,6 +22,19 @@ export default function (state = initialState, action) {
                 error: true,
             });
         }
+        case types.UPDATE_USER_SUCCESS: {
+            return Object.assign({}, state, {
+                loading: false,
+                error: false,
+                profile: { ...action.profile },
+            });
+        }
+        case types.UPDARE_USER_FAILURE: {
+            return Object.assign({}, state, {
+                loading: false,
+                error: true,
+            });
+        }
         case types.LOGOUT_SUCCESS: {
             return { ...state, profile: null };
         }

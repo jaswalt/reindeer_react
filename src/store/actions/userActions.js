@@ -25,6 +25,19 @@ export function addUserFailure() {
     };
 }
 
+export function updateUserSuccess(profile) {
+    return {
+        type: types.UPDATE_USER_SUCCESS,
+        profile,
+    };
+}
+
+export function updateUserFailure() {
+    return {
+        type: types.UPDATE_USER_FAILURE,
+    };
+}
+
 export function addFriendToUser(user, friend) {
     return {
         type: types.BEFRIEND_USER,
@@ -100,9 +113,11 @@ export function checkUserToken() {
 export function updateUser() {
     return (dispatch) => {
         apiUpdateUser(updateUserForm).then(resp => {
-            
-        })
-    }
+                dispatch(updateUserSuccess(profile))
+            },
+        () => dispatch(updateUserFailure()),
+        );
+    };
 }
 
 export function logoutUser() {
