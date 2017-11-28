@@ -1,11 +1,17 @@
 import * as types from './index';
-import { apiGetUserWishlists, apiDeleteUserWishlist, apiGetWishlistGifts, apiDeleteWishlistGift } from '../api';
+import { 
+    apiGetUserWishlists, 
+    apiDeleteUserWishlist, 
+    apiGetWishlistGifts, 
+    apiDeleteWishlistGift,
+    apiCreateUserWishlist
+ } from '../api';
 
 
-export function addWishlist(user, wishlist) {
+export function addWishlist(userId, wishlist) {
     return {
         type: types.ADD_WISHLIST,
-        user,
+        userId,
         wishlist,
     };
 }
@@ -85,6 +91,13 @@ export function fetchUserWishlists() {
                 () => dispatch(wishlistsFetchFailure(true)),
             )
     };
+}
+
+export function createWishlist(wishlist) {
+    return (dispatch, getState) => {
+        apiCreateUserWishlist(getState().users.profile.user_id, wishlist)
+            .then(() => dispatch(addWishlist(getState().users.profile.user_id, wishlist)))
+    }
 }
 
 export function deleteWishlist(userId, wishlistId) {
