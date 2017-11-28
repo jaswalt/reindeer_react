@@ -39,14 +39,18 @@ class EachSearchResult extends Component {
 
     render() {
         return (
-            <Card className="gift-card" style={styles.container} onMouseEnter={this._showActionButtons} onMouseLeave={this._unshowActionButtons}>
+            <Card className="gift-card"
+                style={styles.container}
+                onMouseEnter={this._showActionButtons}
+                onMouseLeave={this._unshowActionButtons}
+            >
                 <CardHeader
                     title={this.props.name}
                     avatar={<Avatar
                         icon={<Gift />}
                         color={red50}
                         backgroundColor="#990033"
-    
+
                     />}
                 />
                 <CardMedia>

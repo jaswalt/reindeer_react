@@ -18,11 +18,12 @@ class Authenticator extends Component {
     }
 }
 
-(Authenticator).propTypes = {
+Authenticator.propTypes = {
+    checkToken: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
-    checkToken: () => dispatch(checkUserToken())
+    checkToken: () => dispatch(checkUserToken()),
 });
 
 export default withRouter(connect(() => ({}), mapDispatchToProps)(Authenticator));
