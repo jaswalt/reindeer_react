@@ -22,9 +22,9 @@ const mothersDay =
 let imageURL = 'https://static.pexels.com/photos/39517/rose-flower-blossom-bloom-39517.jpeg';
 '#004D40'
 
-const fathersDay =
+const batMitzvah =
 let imageURL = '';
-'#004D40'
+''
 
 const birthday =
 let imageURL = 'https://i.pinimg.com/736x/05/20/d2/0520d2523ad1b67a1dc6198b8e855b17--printed-balloons-balloon-ceiling.jpg';
