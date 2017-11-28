@@ -5,7 +5,7 @@ import { fetchUserWishlists, deleteWishlist } from '../store/actions/wishlistAct
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
 
 const styles = {
     root: {
@@ -18,6 +18,8 @@ const styles = {
         height: 450,
         overflowY: 'auto',
     },
+    unHoverColor: "rgb(192,192,192)",
+    hoverColor: "#FFFFFF",
 };
 
  
@@ -60,20 +62,19 @@ class WishLists extends Component {
                     <Subheader style={{marginLeft: '15vw' }}>My Wishlists</Subheader>
                     {this.props.wishlists.map((wishlist, index) => (
                         <GridTile
-                            onClick={(e) => this.handleClick(wishlist.id)}
                             key={index}
                             title={wishlist.title}
                             subtitle={<span>by <b>{this.props.username}</b></span>}
-                            actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                            actionIcon={<IconButton tooltip="Delete" tooltipPosition="top-center" onClick={() => this.props.deleteWishlist(this.props.userId, wishlist.id)}><DeleteForever color={styles.unHoverColor} hoverColor={styles.hoverColor}/></IconButton>}
                         >
-                        <img src={pickAPic()} />
+                        <img src={pickAPic()} onMouseOver="" style={{cursor: 'pointer'}} onClick={(e) => this.handleTileClick(wishlist.id)}/>
                         </GridTile>
                     ))}
                 </GridList>
             </div>
         );
     }
-    handleClick = (wishlistId) => {
+    handleTileClick = (wishlistId) => {
         this.props.history.push('/user/profile/wishlist');
     }
 }
@@ -84,8 +85,8 @@ const mapStateToProps = state => ({
     wishlists: !!state.wishlists.wishlists ? state.wishlists.wishlists : null,
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    deleteWishlist: wishlistId => dispatch(deleteWishlist(ownProps.userId, wishlistId)),
+const mapDispatchToProps = (dispatch) => ({
+    deleteWishlist: (userId, wishlistId) => dispatch(deleteWishlist(userId, wishlistId)),
     fetchWishlists: () => dispatch(fetchUserWishlists()),
 });
 
