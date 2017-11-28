@@ -5,6 +5,7 @@ const initialState = {
     error: false,
     usernameError: false,
     profile: null,
+    visitingProfile: null,
     usersSearch: [],
     friends: [],
 };
@@ -68,6 +69,19 @@ export default function (state = initialState, action) {
             });
         }
         case types.LOAD_FRIENDS_FAILURE: {
+            return Object.assign({}, state, {
+                loading: false,
+                error: true,
+            });
+        }
+        case types.LOAD_INFORMATION_SUCCESS: {
+            return Object.assign({}, state, {
+                loading: false,
+                error: false,
+                visitingProfile: { ...action.profileInfo },
+            });
+        }
+        case types.LOAD_INFORMATION_FAILURE: {
             return Object.assign({}, state, {
                 loading: false,
                 error: true,
