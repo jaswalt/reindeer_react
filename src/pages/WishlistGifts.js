@@ -20,7 +20,7 @@ class WishlistGiftsContainer extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchWishlistGifts();
+        this.props.fetchWishlistGifts(this.props.match.params.id);
     }
 
     render() {
@@ -44,7 +44,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
     deleteWishlistGift: giftId => dispatch(deleteWishlistGift(giftId)),
-    fetchWishlistGifts: () => dispatch(fetchWishlistGifts()),
+    fetchWishlistGifts: (wishlistId) => dispatch(fetchWishlistGifts(wishlistId)),
 });
 
 export default connect(

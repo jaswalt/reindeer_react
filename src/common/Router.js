@@ -35,7 +35,7 @@ export default function rootRouter() {
                         <NavBar />
                         <ToolBar />
                         <Switch>
-                            <Route exact path="/users/profile/wishlist/gifts" component={WishlistGifts} />
+                            <Route exact path="/users/profile/wishlists/:id/gifts" component={WishlistGifts} />
                             <Route exact path="/users/profile" component={ProfilePage} />
                             <Route exact path="/users/profile/:id" component={ProfilePage} />
                             <Route exact path="/users/register" component={RegisterPage} />

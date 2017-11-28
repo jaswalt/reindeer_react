@@ -95,8 +95,8 @@ export function deleteWishlist(userId, wishlistId) {
 }
 
 export function fetchWishlistGifts(wishlistId) {
-    return (dispatch) => {
-        apiGetWishlistGifts(wishlistId)
+    return (dispatch, getState) => {
+        apiGetWishlistGifts(getState().users.profile.user_id, wishlistId)
             .then(
                 resp => dispatch(wishlistGiftsFetchSuccess(resp.data)),
                 () => dispatch(wishlistGiftsFetchFailure(true)),
@@ -104,9 +104,9 @@ export function fetchWishlistGifts(wishlistId) {
     };
 }
 
-export function deleteWishlistGift(userId, wishlistId, giftId) {
-    return (dispatch) => {
-        apiDeleteWishlistGift(wishlistId, giftId)
+export function deleteWishlistGift(giftId) {
+    return (dispatch, getState) => {
+        apiDeleteWishlistGift(getState().users.profile.user_id, getState().wishlists.wishlists.pk, giftId)
             .then(() => dispatch(removeGiftFromWishlist(giftId)));
     };
 }
