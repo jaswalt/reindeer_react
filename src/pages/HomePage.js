@@ -7,11 +7,24 @@ const styles = {
         backgroundImage: 'url(' + imageUrl + ')',
         backgroundSize: 'cover',
         height: '100vh',
+        color: 'white',
+    },
+    content: {
+        fontFamily: 'Great Vibes',
+        fontSize: '3em',
+        textAlign: 'center',
+        paddingTop: 200,
+        paddingLeft: 250,
+        paddingRight: 250,
     },
 };
 
 export default function Main() {
     return (
-        <div style={styles.container} />
+        <section style={styles.container}>
+            <div style={styles.content}>
+                <p>Find out what your loved one wants this year!</p>
+            </div>
+        </section>
     );
 }
