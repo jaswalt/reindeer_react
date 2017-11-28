@@ -27,7 +27,8 @@ class NavBar extends Component {
     render() {
         return (
             <AppBar
-                title="Kaddo"
+                title={<span style={{cursor: 'pointer'}}>Kaddo</span>}
+                onMouseOver="" 
                 onTitleTouchTap={this.handleTitleClick}
                 titleStyle={styles.title}
                 style={{ padding: '1em' }}
