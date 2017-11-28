@@ -7,7 +7,8 @@ import {
     apiUpdateUser,
     apiSearchUsers,
     apiBefriendUser,
-    apiRetrieveFriendsList
+    apiRetrieveFriendsList,
+    apiRetrieveUserInformation,
 } from '../api';
 
 
@@ -87,6 +88,19 @@ export function loadFriendsFailure() {
     }
 }
 
+export function loadInformationSuccess(profileInfo) {
+    return {
+        type: types.LOAD_INFORMATION_SUCCESS,
+        profileInfo,
+    }
+}
+
+export function loadInformationFailure() {
+    return {
+        type: types.LOAD_INFORMATION_FAILURE,
+    }
+}
+
 /*
  *
  *   ASYNC THUNK ACTIONS
@@ -147,18 +161,22 @@ export function logoutUser() {
     };
 }
 
-export function loadFriends() {
+export function loadFriends(userId) {
     return (dispatch) => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            const { user_id } = jwtDecode(token);
-
-            apiRetrieveFriendsList(user_id).then(
-                resp => dispatch(loadFriendsSuccess(resp.data)),
-                () => dispatch(loadFriendsFailure()),
-            )
-        }
+        apiRetrieveFriendsList(userId).then(
+            resp => dispatch(loadFriendsSuccess(resp.data)),
+            () => dispatch(loadFriendsFailure()),
+        )
     };
+}
+
+export function loadInformation(userId) {
+    return dispatch => {
+        apiRetrieveUserInformation(userId).then(
+            resp => dispatch(loadInformationSuccess(resp.data)),
+            () => dispatch(loadInformationFailure()),
+        )
+    }
 }
 
 export function searchUsers(name) {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Wishlists from './Wishlists';
 import FriendsList from './FriendsList';
+import { loadFriends, loadInformation } from '../store/actions/userActions';
 
 const styles = {
     container: {
@@ -18,33 +18,53 @@ const styles = {
 };
 
 class ProfilePage extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {};
-    }
-
-    componentDidMount() {
+    componentWillMount() {
+        this.props.dispatch(loadInformation(this.props.userId));
+        if (this.props.ownProfile) {
+            this.props.dispatch(loadFriends(this.props.userId));
+        }
     }
 
     render() {
         return (
             <section style={styles.container}>
-                <div>
-                    <h1>{this.props.currentUser.username}</h1>
-                </div>
-                <Wishlists />
-                <div>
-                    <h3>Friends</h3>
-                    <FriendsList />
-                </div>
+                {this.props.profile &&
+                    <div>
+                        <div>
+                            <h1>{this.props.profile.username}</h1>
+                        </div>
+                        <Wishlists />
+                        {this.props.ownProfile &&
+                            <div>
+                                <h3>Friends</h3>
+                                <FriendsList />
+                            </div>
+                        }
+                    </div>
+                }
             </section>
         );
     }
 }
 
-const mapStateToProps = state => ({
-    currentUser: state.users.profile ? state.users.profile : null,
-});
+const mapStateToProps = (state, ownProps) => {
+    let profile = {};
+
+    if (ownProps.match.params.id) {
+        profile = {
+            userId: ownProps.match.params.id,
+            profile: state.users.visitingProfile,
+            ownProfile: false,
+        };
+    } else {
+        profile = {
+            userId: state.users.profile.user_id,
+            profile: state.users.visitingProfile,
+            ownProfile: true,
+        };
+    }
+
+    return profile;
+};
 
 export default withRouter(connect(mapStateToProps)(ProfilePage));

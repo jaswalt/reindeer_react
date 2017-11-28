@@ -33,6 +33,10 @@ export function apiRetrieveFriendsList(userId) {
     return axios.get(`${API_URL}/users/${userId}/friends/`);
 }
 
+export function apiRetrieveUserInformation(userId) {
+    return axios.get(`${API_URL}/users/${userId}`);
+}
+
 export function apiRegisterUser(userForm) {
     return axios.put(`${API_URL}/users/`, userForm);
 }
@@ -57,10 +61,10 @@ export function apiSearchUsers(name) {
     return axios.get(`${API_URL}/users/search/${name}`);
 }
 
-export function apiGetWishlistGifts(wishlistId) {
-    return axios.get(`${API_URL}/user/profile/${wishlistId}`);
+export function apiGetWishlistGifts(userId, wishlistId) {
+    return axios.get(`${API_URL}/users/${userId}/wishlists/${wishlistId}`);
 }
 
-export function apiDeleteWishlistGift(wishlistId, giftId) {
-    return axios.delete(`${API_URL}/user/profile/${wishlistId}/gifts/${giftId}`);
+export function apiDeleteWishlistGift(userId, wishlistId, giftId) {
+    return axios.delete(`${API_URL}/users/${userId}/wishlists/${wishlistId}/gifts/${giftId}`);
 }

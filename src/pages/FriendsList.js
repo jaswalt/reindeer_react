@@ -10,7 +10,7 @@ import {
 } from 'material-ui/Table';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
-import SvgIconFace from 'material-ui/svg-icons/action/face';
+import SvgIconGift from 'material-ui/svg-icons/action/card-giftcard';
 import { loadFriends } from '../store/actions/userActions';
 
 const styles = {
@@ -44,8 +44,8 @@ class FriendsList extends Component {
                                     <Chip
                                         style={styles.chip}
                                     >
-                                        <Avatar color="#444" icon={<SvgIconFace />} />
-                                        befriend
+                                        <Avatar color="#444" icon={<SvgIconGift />} />
+                                        gifts
                                     </Chip>
                                 </TableRowColumn>
                             </TableRow>
