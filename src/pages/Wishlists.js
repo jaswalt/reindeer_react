@@ -75,7 +75,7 @@ class WishLists extends Component {
         );
     }
     handleTileClick = (wishlistId) => {
-        this.props.history.push('/user/profile/wishlist');
+        this.props.history.push(`/user/profile/wishlist/${wishlistId}/gifts`);
     }
 }
 

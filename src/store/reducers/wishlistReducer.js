@@ -40,6 +40,37 @@ export default function (state = initialState, action) {
                 error: false,
             });
         }
+        case types.ADD_GIFT_TO_WISHLIST: {
+            return Object.assign({}, state, {
+                gifts: [...state.gifts, { ...action.gift }],
+            });
+        }
+        case types.REMOVE_GIFT_FROM_WISHLIST: {
+            const { giftId } = action;
+            const gifts = state.gifts.filter(gift => gift.pk !== giftId);
+            return Object.assign({}, state, {
+                gifts,
+            });
+        }
+        case types.WISHLIST_GIFTS_ARE_LOADING: {
+            return Object.assign({}, state, {
+                loading: true,
+                error: false,
+            });
+        }
+        case types.WISHLIST_GIFTS_FETCH_SUCCESS: {
+            return Object.assign({}, state, {
+                loading: false,
+                error: false,
+                gifts: [...action.gifts],
+            });
+        }
+        case types.WISHLIST_GIFTS_FETCH_FAILURE: {
+            return Object.assign({}, state, {
+                loading: false,
+                error: true,
+            });
+        }
         default: {
             return state;
         }
