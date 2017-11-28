@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const imageUrl = 'https://static.pexels.com/photos/257855/pexels-photo-257855.jpeg';
 
 const styles = {
