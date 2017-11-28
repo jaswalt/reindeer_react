@@ -30,6 +30,7 @@ class NavBar extends Component {
                 onTitleTouchTap={this.handleTitleClick}
                 titleStyle={styles.title}
                 style={{ padding: '1em' }}
+                zDepth={5}
                 showMenuIconButton={false}
                 iconElementRight={this.props.isLoggedIn ? <AvatarContainer /> : <Login />}
                 iconStyleRight={{ margin: '0' }}
