@@ -33,8 +33,16 @@ class EachSearchResult extends Component {
         super(props);
 
         this.state = {
+            cardTextCollapsed: true,
             displayActions: false,
+            cardText: this.props.description
         };
+    }
+
+    componentDidMount() {
+        this.setState({
+            displayedCardText: this.state.cardText.substring(0, 140),
+        });
     }
 
     render() {
@@ -42,7 +50,7 @@ class EachSearchResult extends Component {
             <Card className="gift-card"
                 style={styles.container}
                 onMouseEnter={this._showActionButtons}
-                onMouseLeave={this._unshowActionButtons}
+                onMouseLeave={this._collapseCardText}
             >
                 <CardHeader
                     title={this.props.name}
@@ -54,11 +62,12 @@ class EachSearchResult extends Component {
                     />}
                 />
                 <CardMedia>
-                    <img src={this.props.image} alt="" />
+                    <img src={this.props.image} />
                 </CardMedia>
                 <CardTitle subtitle={`$${this.props.price}`} />
                 <CardText>
-                    {this.props.description}
+                    {this.state.displayedCardText}
+                    {this.state.cardTextCollapsed && <p><ExpandMore onClick={this._expandCardText} /></p>}
                 </CardText>
                 {this.props.isLoggedIn && this.state.displayActions &&
                     <CardActions style={styles.actions}>
@@ -69,6 +78,27 @@ class EachSearchResult extends Component {
         );
     }
 
+    _expandCardText = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        this.setState({
+            displayedCardText: this.state.cardText,
+            cardTextCollapsed: false,
+        });
+    };
+
+
+    _expandCardText = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        this.setState({
+            displayedCardText: this.state.cardText,
+            cardTextCollapsed: false,
+        });
+    };
+
     _showActionButtons = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -78,14 +108,16 @@ class EachSearchResult extends Component {
         });
     };
 
-    _unshowActionButtons = (e) => {
+    _collapseCardText = (e) => {
         e.preventDefault();
         e.stopPropagation();
 
         this.setState({
+            displayedCardText: this.state.cardText.substring(0, 140),
+            cardTextCollapsed: true,
             displayActions: false,
-        });
-    };
+        })
+    }
 
 }
 
