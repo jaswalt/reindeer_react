@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { fetchWishlistGifts, deleteWishlistGift } from '../store/actions/wishlistActions';
 import EachWishlistGift from './EachWishlistGift';
 
@@ -42,12 +43,12 @@ const mapStateToProps = state => ({
     gifts: state.wishlists.gifts,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    deleteWishlistGift: giftId => dispatch(deleteWishlistGift(**WISHLISTID**, giftId)),
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    deleteWishlistGift: giftId => dispatch(deleteWishlistGift(ownProps.match.params.id, giftId)),
     fetchWishlistGifts: (wishlistId) => dispatch(fetchWishlistGifts(wishlistId)),
 });
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps,
-)(WishlistGiftsContainer);
+)(WishlistGiftsContainer));

@@ -47,9 +47,9 @@ export default function (state = initialState, action) {
         }
         case types.REMOVE_GIFT_FROM_WISHLIST: {
             const { giftId } = action;
-            const gifts = state.gifts.filter(gift => gift.pk !== giftId);
+            const gifts = state.gifts.filter(gift => gift.id !== giftId);
             return Object.assign({}, state, {
-                gifts,
+                gifts: [...gifts]
             });
         }
         case types.WISHLIST_GIFTS_ARE_LOADING: {
