@@ -43,7 +43,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    deleteWishlistGift: giftId => dispatch(deleteWishlistGift(**WISHLISTID**, giftId)),
+    //deleteWishlistGift: giftId => dispatch(deleteWishlistGift(**WISHLISTID**, giftId)),
     fetchWishlistGifts: (wishlistId) => dispatch(fetchWishlistGifts(wishlistId)),
 });
 
