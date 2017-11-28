@@ -33,6 +33,10 @@ export function apiRetrieveFriendsList(userId) {
     return axios.get(`${API_URL}/users/${userId}/friends/`);
 }
 
+export function apiRetrieveUserInformation(userId) {
+    return axios.get(`${API_URL}/users/${userId}`);
+}
+
 export function apiRegisterUser(userForm) {
     return axios.put(`${API_URL}/users/`, userForm);
 }
