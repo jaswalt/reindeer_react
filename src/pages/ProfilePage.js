@@ -31,6 +31,10 @@ class ProfilePage extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    currentUser: state.users.profile ? state.users.profile.user_id : null,
+});
+
 (ProfilePage).propTypes = {};
 
 export default withRouter(ProfilePage);
