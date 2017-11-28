@@ -11,6 +11,7 @@ import GiftsMain from '../pages/GiftsMain';
 import RegisterPage from '../pages/RegisterPage';
 import LoginPage from '../pages/LoginPage';
 import ProfilePage from '../pages/ProfilePage';
+import WishlistGifts from '../pages/WishlistGifts';
 import SearchResults from '../common/SearchResults';
 import NavBar from '../common/NavBar';
 import ToolBar from '../common/ToolBar';
@@ -34,6 +35,7 @@ export default function rootRouter() {
                         <NavBar />
                         <ToolBar />
                         <Switch>
+                            <Route exact path="/user/profile/wishlist/" component={WishlistGifts} />
                             <Route exact path="/user/profile" component={ProfilePage} />
                             <Route exact path="/users/register" component={RegisterPage} />
                             <Route exact path="/users/login" component={LoginPage} />
