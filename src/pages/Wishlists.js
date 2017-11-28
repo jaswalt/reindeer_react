@@ -6,6 +6,7 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
+import AddCircle from 'material-ui/svg-icons/content/add-circle';
 
 const styles = {
     root: {
@@ -70,6 +71,7 @@ class WishLists extends Component {
                         <img src={pickAPic()} onMouseOver="" style={{cursor: 'pointer'}} onClick={(e) => this.handleTileClick(wishlist.id)}/>
                         </GridTile>
                     ))}
+                    <IconButton iconStyle={{width: 60, height: 60}}><AddCircle/></IconButton>
                 </GridList>
             </div>
         );
