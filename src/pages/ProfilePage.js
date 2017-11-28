@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -13,6 +14,7 @@ const styles = {
         height: '100%',
         display: 'flex',
         flexWrap: 'wrap',
+        color: '#990033',
     },
 };
 
@@ -29,7 +31,9 @@ class ProfilePage extends Component {
     render() {
         return (
             <section style={styles.container}>
-                <h1>Hello User!</h1>
+                <div>
+                    <h1>{this.props.currentUser.username}</h1>
+                </div>
                 <Wishlists />
                 <FriendsList />
             </section>
@@ -38,7 +42,7 @@ class ProfilePage extends Component {
 }
 
 const mapStateToProps = state => ({
-    profile: state.users.profile,
+    currentUser: state.users.profile ? state.users.profile : null,
 });
 
 export default withRouter(connect(mapStateToProps)(ProfilePage));

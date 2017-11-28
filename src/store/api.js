@@ -57,3 +57,10 @@ export function apiSearchUsers(name) {
     return axios.get(`${API_URL}/users/search/${name}`);
 }
 
+export function apiGetWishlistGifts(wishlistId) {
+    return axios.get(`${API_URL}/user/profile/${wishlistId}`);
+}
+
+export function apiDeleteWishlistGift(wishlistId, giftId) {
+    return axios.delete(`${API_URL}/user/profile/${wishlistId}/gifts/${giftId}`);
+}
