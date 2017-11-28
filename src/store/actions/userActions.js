@@ -4,7 +4,10 @@ import {
     apiCheckUsernameIsValid,
     apiRegisterUser,
     apiLoginUser,
-    apiSearchUsers, } from '../api';
+    apiUpdateUser,
+    apiSearchUsers,
+    apiBefriendUser, } from '../api';
+
 
 /*
  *
@@ -25,11 +28,16 @@ export function addUserFailure() {
     };
 }
 
-export function addFriendToUser(user, friend) {
+export function addFriendToUserSuccess(friend) {
     return {
-        type: types.BEFRIEND_USER,
-        user,
+        type: types.BEFRIEND_USER_SUCCESS,
         friend,
+    };
+}
+
+export function addFriendToUserFailure() {
+    return {
+        type: types.BEFRIEND_USER_FAILURE,
     };
 }
 
@@ -83,11 +91,11 @@ export function registerUser(userForm) {
     return (dispatch) => {
         // dispatch sending user form pending
         apiRegisterUser(userForm).then(resp => {
-                localStorage.setItem('token', resp.data.token);
-                const profile = jwtDecode(resp.data.token);
-                dispatch(addUserSuccess(profile))
-            },
-            () => dispatch(addUserFailure()),
+            localStorage.setItem('token', resp.data.token);
+            const profile = jwtDecode(resp.data.token);
+            dispatch(addUserSuccess(profile))
+        },
+                                       () => dispatch(addUserFailure()),
         );
     };
 }
@@ -96,11 +104,11 @@ export function loginUser(loginForm) {
     return (dispatch) => {
         // dispatch sending user form pending
         apiLoginUser(loginForm).then(resp => {
-                localStorage.setItem('token', resp.data.token);
-                const profile = jwtDecode(resp.data.token);
-                dispatch(addUserSuccess(profile))
-            },
-            () => dispatch(addUserFailure()),
+            localStorage.setItem('token', resp.data.token);
+            const profile = jwtDecode(resp.data.token);
+            dispatch(addUserSuccess(profile))
+        },
+                                     () => dispatch(addUserFailure()),
         );
     };
 }
@@ -131,4 +139,17 @@ export function searchUsers(name) {
             () => dispatch(searchUsersFailure()),
         );
     };
+}
+
+export function addFriendToUser(friendId) {
+    return (dispatch, getState) => {
+        dispatch({ type: types.BEFRIEND_USER_LOADING  }) // TODO: Add this type
+
+        const { user_id } = getState().users.profile;
+
+        apiBefriendUser(user_id, friendId).then(
+            resp => addFriendToUserSuccess(resp.data),
+            () => addFriendToUserFailure(),
+        )
+    }
 }
