@@ -37,9 +37,6 @@ export default class AvatarContainer extends Component {
                 <Link to="/gifts">
                     <MenuItem primaryText="My Items" style={{ color: '#000' }} />
                 </Link>
-                <Link to="/user/friends">
-                    <MenuItem primaryText="Friends" style={{ color: '#000' }} />
-                </Link>
                 <MenuItem primaryText="Logout" style={{ color: '#000' }} onClick={this._logout} />
             </IconMenu>
         );
