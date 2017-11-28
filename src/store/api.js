@@ -68,3 +68,7 @@ export function apiGetWishlistGifts(userId, wishlistId) {
 export function apiDeleteWishlistGift(userId, wishlistId, giftId) {
     return axios.delete(`${API_URL}/users/${userId}/gifts/wishlists/${wishlistId}/gifts/${giftId}`);
 }
+
+export function apiCreateUserWishlist(userId, wishlist) {
+    return axios.post(`${API_URL}/users/${userId}/gifts/wishlists/create`, wishlist);
+}

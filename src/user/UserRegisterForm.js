@@ -4,6 +4,7 @@ import { Paper, TextField, FlatButton } from 'material-ui';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { checkUserNameIsValid, registerUser } from '../store/actions/userActions';
+import { Redirect } from 'react-router';
 
 
 const styles = {
@@ -186,6 +187,7 @@ class UserRegisterForm extends Component {
                         </FlatButton>
                     </span>
                 </Paper>
+                {this.state.formValid && <Redirect to={'/users/profile'}/>}
             </div>
         );
     }
