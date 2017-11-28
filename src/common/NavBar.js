@@ -47,5 +47,8 @@ const mapStateToProps = state => ({
     isLoggedIn: state.users.profile,
 });
 
-export default withRouter(connect(mapStateToProps, null, null, {pure: false})(NavBar));
+const mapDispatchToProps = dispatch => ({
+    logout: dispatch()
+})
 
+export default withRouter(connect(mapStateToProps, null, null, {pure: false})(NavBar));
