@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { fetchUserWishlists, deleteWishlist } from '../store/actions/wishlistActions';
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
 
 const styles = {
     root: {
@@ -17,6 +18,8 @@ const styles = {
         height: 450,
         overflowY: 'auto',
     },
+    unHoverColor: "rgb(192,192,192)",
+    hoverColor: "#FFFFFF",
 };
 
  
@@ -46,8 +49,8 @@ class WishLists extends Component {
 
         // selecting a pic from array of pics
         const pickAPic = function () {
-        const pic = pics[Math.floor(Math.random() * 8)];
-        return pic;
+            const pic = pics[Math.floor(Math.random() * 8)];
+            return pic;
         };
 
         return (
@@ -57,22 +60,24 @@ class WishLists extends Component {
                     style={styles.gridList}
                 >
                     <Subheader style={{marginLeft: '15vw' }}>My Wishlists</Subheader>
-                    {this.props.wishlists.map((wishlist) => (
+                    {this.props.wishlists.map((wishlist, index) => (
                         <GridTile
-                            key={wishlist.pk}
+                            key={index}
                             title={wishlist.title}
                             subtitle={<span>by <b>{this.props.username}</b></span>}
-                            actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                            actionIcon={<IconButton tooltip="Delete" tooltipPosition="top-center" onClick={() => this.props.deleteWishlist(this.props.userId, wishlist.id)}><DeleteForever color={styles.unHoverColor} hoverColor={styles.hoverColor}/></IconButton>}
                         >
-                        <img src={pickAPic()} />
+                        <img src={pickAPic()} onMouseOver="" style={{cursor: 'pointer'}} onClick={(e) => this.handleTileClick(wishlist.id)}/>
                         </GridTile>
                     ))}
                 </GridList>
             </div>
         );
     }
+    handleTileClick = (wishlistId) => {
+        this.props.history.push('/user/profile/wishlist');
+    }
 }
-
 
 const mapStateToProps = state => ({
     username: state.users.profile.username,
@@ -80,12 +85,12 @@ const mapStateToProps = state => ({
     wishlists: !!state.wishlists.wishlists ? state.wishlists.wishlists : null,
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    deleteWishlist: wishlistId => dispatch(deleteWishlist(ownProps.userId, wishlistId)),
+const mapDispatchToProps = (dispatch) => ({
+    deleteWishlist: (userId, wishlistId) => dispatch(deleteWishlist(userId, wishlistId)),
     fetchWishlists: () => dispatch(fetchUserWishlists()),
 });
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps,
-)(WishLists);
+)(WishLists));

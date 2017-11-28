@@ -39,21 +39,24 @@ class EachSearchResult extends Component {
 
     render() {
         return (
-            <Card className="gift-card" style={styles.container} onMouseEnter={this._showActionButtons} onMouseLeave={this._unshowActionButtons}>
+            <Card className="gift-card"
+                style={styles.container}
+                onMouseEnter={this._showActionButtons}
+                onMouseLeave={this._unshowActionButtons}
+            >
                 <CardHeader
                     title={this.props.name}
-                    subtitle="Gift"
                     avatar={<Avatar
                         icon={<Gift />}
                         color={red50}
                         backgroundColor="#990033"
-    
+
                     />}
                 />
                 <CardMedia>
                     <img src={this.props.image} alt="" />
                 </CardMedia>
-                <CardTitle title="Card title" subtitle={`$${this.props.price}`} />
+                <CardTitle subtitle={`$${this.props.price}`} />
                 <CardText>
                     {this.props.description}
                 </CardText>

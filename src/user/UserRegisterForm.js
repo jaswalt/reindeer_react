@@ -51,6 +51,9 @@ class UserRegisterForm extends Component {
             lastnameValue: '',
             lastnameError: '',
 
+            dobValue: '',
+            dobError: '',
+
             passwordValue: '',
             passwordError: '',
 
@@ -66,6 +69,7 @@ class UserRegisterForm extends Component {
         this._validateEmail = this._validateEmail.bind(this);
         this._validateFirstname = this._validateFirstname.bind(this);
         this._validateLastname = this._validateLastname.bind(this);
+        this._validateDOB = this._validateDOB.bind(this);
         this._validateConfirmPassword = this._validateConfirmPassword.bind(this);
     }
 
@@ -118,6 +122,17 @@ class UserRegisterForm extends Component {
                         floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                         onChange={this._lastnameFieldHandler}
                         onBlur={this._validateLastname}
+                        style={styles.field}
+                    /><br/>
+                        <TextField
+                        className="dob"
+                        floatingLabelText="Birthday"
+                        errorText={this.state.dobError}
+                        errorStyle={styles.errorStyle}
+                        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                        value={this.state.dobValue}
+                        onChange={this._dobFieldHandler}
+                        onBlur={this._validateDOB}
                         style={styles.field}
                     /><br/>
                     <TextField
@@ -201,6 +216,15 @@ class UserRegisterForm extends Component {
         this.setState({
             lastnameValue: e.target.value,
         });
+    };
+
+    _dobFieldHandler = (e) => {
+        e.stopPropagation();
+
+        this.setState({
+            dobValue: e.target.value,
+        });
+
     };
 
     _emailFieldHandler = (e) => {
@@ -298,6 +322,27 @@ class UserRegisterForm extends Component {
         }
     };
 
+    _validateDOB(e) {
+        e.stopPropagation();
+
+        const re = /^(19[5-9][0-9]|20[0-4][0-9]|2050)[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$/;
+
+        if (!this.state.dobValue) {
+            this.setState({
+                dobError: 'Required',
+            });
+        } else if (!re.test(this.state.dobValue)) {
+            this.setState({
+                dobError: 'Birthday not valid',
+            });
+        } else {
+            this.setState(prevState => ({
+                dobValue: prevState.dobValue.trim(),
+                dobError: '',
+            }));
+        };
+    };
+
     _validatePassword = (e) => {
         e.stopPropagation();
 
@@ -362,6 +407,7 @@ class UserRegisterForm extends Component {
         this._validateFirstname(e);
         this._validateLastname(e);
         this._validateEmail(e);
+        this._validateDOB(e);
         this._validatePassword(e);
         this._validateConfirmPassword(e);
 
@@ -370,11 +416,12 @@ class UserRegisterForm extends Component {
             firstnameError,
             lastnameError,
             emailError,
+            dobError,
             passwordError,
             confirmPasswordError } = this.state;
         
         if (usernameError || firstnameError ||
-            lastnameError || emailError || passwordError ||
+            lastnameError || emailError || dobError || passwordError ||
             confirmPasswordError) {
             
             this.setState({
@@ -394,6 +441,7 @@ class UserRegisterForm extends Component {
             username: this.state.usernameValue,
             password: this.state.passwordValue,
             email: this.state.emailValue,
+            dob: this.state.dobValue,
             first_name: this.state.firstnameValue,
             last_name: this.state.lastnameValue,
         };
@@ -414,6 +462,9 @@ class UserRegisterForm extends Component {
 
             lastnameValue: '',
             lastnameError: '',
+
+            dobValue: '',
+            dobError: '',
 
             passwordValue: '',
             passwordError: '',

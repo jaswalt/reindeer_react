@@ -9,6 +9,12 @@ export function apiGetUserGifts(userId) {
     return axios.get(`${API_URL}/users/${userId}/gifts/`);
 }
 
+export function apiAddUserGift(userId, gift) {
+    return axios.post(`${API_URL}/users/${userId}/gifts/add/`, {
+        gift,
+    });
+}
+
 export function apiDeleteUserGift(userId, giftId) {
     return axios.delete(`${API_URL}/users/${userId}/gifts/${giftId}`);
 }
@@ -19,16 +25,16 @@ export function apiCheckUsernameIsValid(username) {
     });
 }
 
+export function apiBefriendUser(userId, friendId) {
+    return axios.patch(`${API_URL}/users/${userId}/befriend/${friendId}`);
+}
+
 export function apiRegisterUser(userForm) {
     return axios.put(`${API_URL}/users/`, userForm);
 }
 
 export function apiLoginUser(loginForm) {
     return axios.post(`${BASE_URL}/api-token-auth/`, loginForm);
-}
-
-export function apiUpdateUser(userId, updateUserForm) {
-    return axios.put(`${API_URL}/users/${userId}/profile`, updateUserForm);
 }
 
 export function apiGetSearchedGifts(search) {

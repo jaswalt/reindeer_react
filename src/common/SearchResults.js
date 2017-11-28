@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addGift } from '../store/actions/giftActions';
+import { addGiftToAllGifts } from '../store/actions/giftActions';
 import EachSearchResult from './EachSearchResult';
 
 const styles = {
@@ -31,7 +31,7 @@ class SearchResults extends Component {
                     <EachSearchResult
                         key={i}
                         {...gift}
-                        addMe={() => this.props.addGift(this.props.user, gift)}
+                        addMe={() => this.props.addGift(this.props.user.user_id, gift)}
                     />
                 ))}
             </div>
@@ -45,7 +45,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    addGift: (user, gift) => dispatch(addGift(user, gift)),
+    addGift: (userId, gift) => dispatch(addGiftToAllGifts(userId, gift)),
 });
 
 export default connect(

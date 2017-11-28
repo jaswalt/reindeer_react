@@ -24,19 +24,6 @@ export default function (state = initialState, action) {
                 error: true,
             });
         }
-        case types.UPDATE_USER_SUCCESS: {
-            return Object.assign({}, state, {
-                loading: false,
-                error: false,
-                profile: { ...action.profile },
-            });
-        }
-        case types.UPDATE_USER_FAILURE: {
-            return Object.assign({}, state, {
-                loading: false,
-                error: true,
-            });
-        }
         case types.LOGOUT_SUCCESS: {
             return { ...state, profile: null };
         }
@@ -53,6 +40,24 @@ export default function (state = initialState, action) {
         case types.SEARCH_USERS_SUCCESS: {
             return Object.assign({}, state, {
                 usersSearch: [...action.users],
+            });
+        }
+        case types.BEFRIEND_USER_LOADING: {
+            return Object.assign({}, state, {
+                loading: true,
+            });
+        }
+        case types.BEFRIEND_USER_SUCCESS: {
+            return Object.assign({}, state, {
+                loading: false,
+                error: false,
+                friends: [...state.friends, { ...action.friend }],
+            });
+        }
+        case types.BEFRIEND_USER_FAILURE: {
+            return Object.assign({}, state, {
+                loading: false,
+                error: true,
             });
         }
         default: {

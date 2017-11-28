@@ -185,6 +185,8 @@ class UserLoginForm extends Component {
     };
 
     _processForm = (e) => {
+        e.stopPropagation();
+
         if (this.state.usernameValue.trim() && this.state.passwordValue) {
             const loginForm = {
                 username: this.state.usernameValue,

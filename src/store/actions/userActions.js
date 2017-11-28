@@ -5,7 +5,9 @@ import {
     apiRegisterUser,
     apiLoginUser,
     apiUpdateUser,
-    apiSearchUsers, } from '../api';
+    apiSearchUsers,
+    apiBefriendUser, } from '../api';
+
 
 /*
  *
@@ -26,24 +28,16 @@ export function addUserFailure() {
     };
 }
 
-export function updateUserSuccess(profile) {
+export function addFriendToUserSuccess(friend) {
     return {
-        type: types.UPDATE_USER_SUCCESS,
-        profile,
-    };
-}
-
-export function updateUserFailure() {
-    return {
-        type: types.UPDATE_USER_FAILURE,
-    };
-}
-
-export function addFriendToUser(user, friend) {
-    return {
-        type: types.BEFRIEND_USER,
-        user,
+        type: types.BEFRIEND_USER_SUCCESS,
         friend,
+    };
+}
+
+export function addFriendToUserFailure() {
+    return {
+        type: types.BEFRIEND_USER_FAILURE,
     };
 }
 
@@ -96,7 +90,8 @@ export function checkUserNameIsValid(username) {
 export function registerUser(userForm) {
     return (dispatch) => {
         // dispatch sending user form pending
-        apiRegisterUser(userForm).then(resp => {
+        apiRegisterUser(userForm).then(
+            resp => {
                 localStorage.setItem('token', resp.data.token);
                 const profile = jwtDecode(resp.data.token);
                 dispatch(addUserSuccess(profile))
@@ -109,7 +104,8 @@ export function registerUser(userForm) {
 export function loginUser(loginForm) {
     return (dispatch) => {
         // dispatch sending user form pending
-        apiLoginUser(loginForm).then(resp => {
+        apiLoginUser(loginForm).then(
+            resp => {
                 localStorage.setItem('token', resp.data.token);
                 const profile = jwtDecode(resp.data.token);
                 dispatch(addUserSuccess(profile))
@@ -129,17 +125,6 @@ export function checkUserToken() {
     };
 }
 
-export function updateUser(updateUserForm) {
-    return (dispatch) => {
-        apiUpdateUser(updateUserForm).then(resp => {
-                const profile = jwtDecode(resp.data.token);
-                dispatch(updateUserSuccess(profile))
-            },
-        () => dispatch(updateUserFailure()),
-        );
-    };
-}
-
 export function logoutUser() {
     return (dispatch) => {
         localStorage.removeItem('token');
@@ -156,4 +141,17 @@ export function searchUsers(name) {
             () => dispatch(searchUsersFailure()),
         );
     };
+}
+
+export function addFriendToUser(friendId) {
+    return (dispatch, getState) => {
+        dispatch({ type: types.BEFRIEND_USER_LOADING  }) // TODO: Add this type
+
+        const { user_id } = getState().users.profile;
+
+        apiBefriendUser(user_id, friendId).then(
+            resp => addFriendToUserSuccess(resp.data),
+            () => addFriendToUserFailure(),
+        )
+    }
 }
