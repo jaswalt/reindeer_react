@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Wishlists from './Wishlists';
 
@@ -11,26 +12,32 @@ const styles = {
         height: '100%',
         display: 'flex',
         flexWrap: 'wrap',
+        color: '#990033',
     },
 };
 
-function ProfilePage(props) {
-    return (
-        <section style={styles.container}>
-            {props.users.map(user => (
+class ProfilePage extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+    }
+
+    render() {
+        return (
+            <section style={styles.container}>
                 <div>
-                    <h1>{user.username}</h1>
-                    {user.first_name}
+                    <h1>{this.props.username}</h1>
                 </div>
-            ))}
-            <Wishlists />
-        </section>
-    );
+                <Wishlists />
+            </section>
+        );
+    }
 }
 
 const mapStateToProps = state => ({
-    users: state.users.usersSearch,
-    currentUser: state.users.profile ? state.users.profile.user_id : null,
+    username: state.users.profile.username,
+    currentUser: state.users.profile ? state.users.profile : null,
 });
 
-export default connect(mapStateToProps)(ProfilePage);
+export default withRouter(connect(mapStateToProps)(ProfilePage));
