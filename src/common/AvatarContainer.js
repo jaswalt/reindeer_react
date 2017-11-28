@@ -23,6 +23,8 @@ export default class AvatarContainer extends Component {
                         style={{
                             backgroundColor: '#d9a4b7',
                             margin: '0',
+                            marginTop: 10,
+                            marginRight: 5,
                         }}
                     />
                 }
@@ -34,14 +36,21 @@ export default class AvatarContainer extends Component {
                 </Link>
                 <Link to="/gifts">
                     <MenuItem primaryText="My Items" style={{ color: '#000' }} />
-                </Link>                
+                </Link>
                 <Link to="/user/friends">
                     <MenuItem primaryText="Friends" style={{ color: '#000' }} />
                 </Link>
-                <Link to="/">
-                    <MenuItem primaryText="Logout" style={{ color: '#000' }} />
-                </Link>
+                <MenuItem primaryText="Logout" style={{ color: '#000' }} onClick={this._logout} />
             </IconMenu>
         );
+    }
+
+    _logout = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        console.log('logging out');
+
+        this.props.logout();
     }
 }

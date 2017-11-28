@@ -90,12 +90,13 @@ export function checkUserNameIsValid(username) {
 export function registerUser(userForm) {
     return (dispatch) => {
         // dispatch sending user form pending
-        apiRegisterUser(userForm).then(resp => {
-            localStorage.setItem('token', resp.data.token);
-            const profile = jwtDecode(resp.data.token);
-            dispatch(addUserSuccess(profile))
-        },
-                                       () => dispatch(addUserFailure()),
+        apiRegisterUser(userForm).then(
+            resp => {
+                localStorage.setItem('token', resp.data.token);
+                const profile = jwtDecode(resp.data.token);
+                dispatch(addUserSuccess(profile))
+            },
+            () => dispatch(addUserFailure()),
         );
     };
 }
@@ -103,12 +104,13 @@ export function registerUser(userForm) {
 export function loginUser(loginForm) {
     return (dispatch) => {
         // dispatch sending user form pending
-        apiLoginUser(loginForm).then(resp => {
-            localStorage.setItem('token', resp.data.token);
-            const profile = jwtDecode(resp.data.token);
-            dispatch(addUserSuccess(profile))
-        },
-                                     () => dispatch(addUserFailure()),
+        apiLoginUser(loginForm).then(
+            resp => {
+                localStorage.setItem('token', resp.data.token);
+                const profile = jwtDecode(resp.data.token);
+                dispatch(addUserSuccess(profile))
+            },
+            () => dispatch(addUserFailure()),
         );
     };
 }
