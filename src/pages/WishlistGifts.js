@@ -28,9 +28,9 @@ class WishlistGiftsContainer extends Component {
             <div id="container" style={styles.container}>
                 {this.props.gifts.map(gift => (
                     <EachWishlistGift
-                        key={gift.pk}
+                        key={gift.id}
                         {...gift}
-                        deleteMe={() => this.props.deleteWishlistGift(gift.pk)}
+                        deleteMe={() => this.props.deleteWishlistGift(gift.id)}
                     />
                 ))}
             </div>
@@ -43,7 +43,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    deleteWishlistGift: giftId => dispatch(deleteWishlistGift(giftId)),
+    deleteWishlistGift: giftId => dispatch(deleteWishlistGift(**WISHLISTID**, giftId)),
     fetchWishlistGifts: (wishlistId) => dispatch(fetchWishlistGifts(wishlistId)),
 });
 

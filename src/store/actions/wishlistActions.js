@@ -104,9 +104,9 @@ export function fetchWishlistGifts(wishlistId) {
     };
 }
 
-export function deleteWishlistGift(giftId) {
+export function deleteWishlistGift(wishlistId, giftId) {
     return (dispatch, getState) => {
-        apiDeleteWishlistGift(getState().users.profile.user_id, getState().wishlists.wishlists.pk, giftId)
+        apiDeleteWishlistGift(getState().users.profile.user_id, wishlistId, giftId)
             .then(() => dispatch(removeGiftFromWishlist(giftId)));
     };
 }
