@@ -6,7 +6,9 @@ import {
     apiLoginUser,
     apiUpdateUser,
     apiSearchUsers,
-    apiBefriendUser, } from '../api';
+    apiBefriendUser,
+    apiRetrieveFriendsList
+} from '../api';
 
 
 /*
@@ -72,6 +74,19 @@ export function searchUsersFailure() {
     }
 }
 
+export function loadFriendsSuccess(friends) {
+    return {
+        type: types.LOAD_FRIENDS_SUCCESS,
+        friends,
+    }
+}
+
+export function loadFriendsFailure() {
+    return {
+        type: types.LOAD_FRIENDS_FAILURE,
+    }
+}
+
 /*
  *
  *   ASYNC THUNK ACTIONS
@@ -129,6 +144,20 @@ export function logoutUser() {
     return (dispatch) => {
         localStorage.removeItem('token');
         dispatch({ type: types.LOGOUT_SUCCESS });
+    };
+}
+
+export function loadFriends() {
+    return (dispatch) => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            const { user_id } = jwtDecode(token);
+
+            apiRetrieveFriendsList(user_id).then(
+                resp => dispatch(loadFriendsSuccess(resp.data)),
+                () => dispatch(loadFriendsFailure()),
+            )
+        }
     };
 }
 

@@ -60,6 +60,19 @@ export default function (state = initialState, action) {
                 error: true,
             });
         }
+        case types.LOAD_FRIENDS_SUCCESS: {
+            return Object.assign({}, state, {
+                loading: false,
+                error: false,
+                friends: [...action.friends],
+            });
+        }
+        case types.LOAD_FRIENDS_FAILURE: {
+            return Object.assign({}, state, {
+                loading: false,
+                error: true,
+            });
+        }
         default: {
             return state;
         }

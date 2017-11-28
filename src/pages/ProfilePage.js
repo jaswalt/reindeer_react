@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Wishlists from './Wishlists';
+import FriendsList from './FriendsList';
 
 const styles = {
     container: {
@@ -21,16 +23,22 @@ class ProfilePage extends Component {
         this.state = {};
     }
 
+    componentDidMount() {
+    }
+
     render() {
         return (
             <section style={styles.container}>
                 <h1>Hello User!</h1>
                 <Wishlists />
+                <FriendsList />
             </section>
         );
     }
 }
 
-(ProfilePage).propTypes = {};
+const mapStateToProps = state => ({
+    profile: state.users.profile,
+});
 
-export default withRouter(ProfilePage);
+export default withRouter(connect(mapStateToProps)(ProfilePage));

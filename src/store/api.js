@@ -29,6 +29,10 @@ export function apiBefriendUser(userId, friendId) {
     return axios.patch(`${API_URL}/users/${userId}/befriend/${friendId}`);
 }
 
+export function apiRetrieveFriendsList(userId) {
+    return axios.get(`${API_URL}/users/${userId}/friends/`);
+}
+
 export function apiRegisterUser(userForm) {
     return axios.put(`${API_URL}/users/`, userForm);
 }

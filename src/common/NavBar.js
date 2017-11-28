@@ -43,10 +43,6 @@ class NavBar extends Component {
     }
 }
 
-NavBar.propTypes = {
-
-};
-
 const mapStateToProps = state => ({
     isLoggedIn: state.users.profile,
 });
