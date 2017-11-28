@@ -50,7 +50,11 @@ export default class GiftCard extends Component {
 
     render() {
         return (
-            <Card className="gift-card" style={styles.container} onMouseEnter={this._showActionButtons} onMouseLeave={this._collapseCardText}>
+            <Card className="gift-card" 
+                style={styles.container} 
+                onMouseEnter={this._showActionButtons} 
+                onMouseLeave={this._collapseCardText}
+            >
                 <CardHeader
                     title={this.props.name}
                     avatar={<Avatar
