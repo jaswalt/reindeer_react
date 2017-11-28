@@ -28,19 +28,6 @@ export function addUserFailure() {
     };
 }
 
-export function updateUserSuccess(profile) {
-    return {
-        type: types.UPDATE_USER_SUCCESS,
-        profile,
-    };
-}
-
-export function updateUserFailure() {
-    return {
-        type: types.UPDATE_USER_FAILURE,
-    };
-}
-
 export function addFriendToUserSuccess(friend) {
     return {
         type: types.BEFRIEND_USER_SUCCESS,
