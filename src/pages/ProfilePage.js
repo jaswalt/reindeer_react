@@ -32,11 +32,11 @@ class ProfilePage extends Component {
                 <div>
                     <h1>{this.props.currentUser.username}</h1>
                 </div>
+                <Wishlists />
                 <div>
-                    <Wishlists />
+                    <h3>Friends</h3>
                     <FriendsList />
                 </div>
-                
             </section>
         );
     }
