@@ -104,7 +104,7 @@ export function fetchWishlistGifts(wishlistId) {
     };
 }
 
-export function deleteWishlistGift(wishlistId, giftId) {
+export function deleteWishlistGift(userId, wishlistId, giftId) {
     return (dispatch) => {
         apiDeleteWishlistGift(wishlistId, giftId)
             .then(() => dispatch(removeGiftFromWishlist(giftId)));

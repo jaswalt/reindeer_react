@@ -31,7 +31,7 @@ export default class AvatarContainer extends Component {
                 targetOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <Link to="/user/profile">
+                <Link to="/users/profile">
                     <MenuItem primaryText="My Profile" style={{ color: '#000' }} />
                 </Link>
                 <Link to="/gifts">
