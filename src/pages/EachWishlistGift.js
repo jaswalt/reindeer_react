@@ -37,7 +37,7 @@ export default class EachWishlistGift extends Component {
             displayActions: false,
             cardText: this.props.description,
             price: (parseInt(this.props.price)).toFixed(2),
-            photo: this.props.image || "https://www.jainsusa.com/images/store/landscape/not-available.jpg",
+            photo: this.props.photo || "https://www.jainsusa.com/images/store/landscape/not-available.jpg",
         };
     }
 
