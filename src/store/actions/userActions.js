@@ -101,6 +101,13 @@ export function loadInformationFailure() {
     }
 }
 
+export function changeTheme(themeKey) {
+    return {
+        type: types.CHANGE_THEME,
+        themeKey,
+    }
+}
+
 /*
  *
  *   ASYNC THUNK ACTIONS

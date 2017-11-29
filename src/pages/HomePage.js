@@ -1,13 +1,8 @@
 import React from 'react';
-
-const imageUrl = 'https://static.pexels.com/photos/257855/pexels-photo-257855.jpeg';
+import { connect } from 'react-redux';
 
 const styles = {
     container: {
-        backgroundImage: 'url(' + imageUrl + ')',
-        backgroundSize: 'cover',
-        height: '100vh',
-        color: 'white',
     },
     content: {
         fontFamily: 'Great Vibes',
@@ -19,12 +14,50 @@ const styles = {
     },
 };
 
-export default function Main() {
-    return (
-        <section style={styles.container}>
-            <div style={styles.content}>
-                <p zDepth={5}>Find out what your loved one wants this year!</p>
-            </div>
-        </section>
-    );
+class Main extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            theme: {
+                container: {
+                    backgroundImage: 'url(' + this.props.theme.image + ')',
+                    backgroundSize: 'cover',
+                    height: '100vh',
+                    color: 'white',
+                },
+            },
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.theme.image !== nextProps.theme.image) {
+            this.setState({
+                theme: {
+                    container: {
+                        backgroundImage: 'url(' + nextProps.theme.image + ')',
+                        backgroundSize: 'cover',
+                        height: '100vh',
+                        color: 'white',
+                    },
+                },
+            });
+        }
+    }
+
+    render() {
+        return (
+            <section style={this.state.theme.container}>
+                <div style={styles.content}>
+                    <p zDepth={5}>Find out what your loved one wants this year!</p>
+                </div>
+            </section>
+        );
+    }
 }
+
+const mapStateToProps = state => ({
+    theme: state.users.activeTheme,
+});
+
+export default connect(mapStateToProps)(Main);

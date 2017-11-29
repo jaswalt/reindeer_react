@@ -1,4 +1,5 @@
 import * as types from '../actions';
+import { themesList } from '../../themes';
 
 const initialState = {
     loading: false,
@@ -8,6 +9,8 @@ const initialState = {
     vprofile: null,
     usersSearch: [],
     friends: [],
+    themes: { ...themesList },
+    activeTheme: null,
 };
 
 export default function (state = initialState, action) {
@@ -85,6 +88,12 @@ export default function (state = initialState, action) {
             return Object.assign({}, state, {
                 loading: false,
                 error: true,
+            });
+        }
+        case types.CHANGE_THEME: {
+            const theme = state.themes[action.themeKey];
+            return Object.assign({}, state, {
+                activeTheme: { ...theme },
             });
         }
         default: {

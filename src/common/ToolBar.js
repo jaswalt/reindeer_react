@@ -6,8 +6,10 @@ import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-mo
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
+import { connect } from 'react-redux';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import Search from './Search';
+import { changeTheme } from '../store/actions/userActions'
 
 const styles = {
   container: {
@@ -15,30 +17,22 @@ const styles = {
   },
 };
 
-const themes = [
-  {'theme': 'christmas',
-   'image': 'https://static.pexels.com/photos/257855/pexels-photo-257855.jpeg',
-   'color': '#990033'},
-  {'theme': 'chanukah',
-   'image': 'https://www.orbitz.com/blog/wp-content/uploads/2015/12/Cool-Hanukkah-gifts.1265x725.jpg',
-   'color': '#1565C0'},
-  {'theme': 'kwanzaa',
-   'image': 'https://img.huffingtonpost.com/asset/567acc631600000001eb9839.jpeg?ops=scalefit_960_noupscale',
-   'color': '#FFC107'}
-];
-
-export default class ToolBar extends React.Component {
+class ToolBar extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      value: 1,
+      value: "Theme",
     };
   }
 
-  handleChange = (event, index, value) => this.setState({
-    value,
-  });
+  handleChange = (event, index, value) => {
+    this.setState({
+      value,
+    });
+
+    this.props.dispatch(changeTheme(value));
+  };
 
   render() {
     return (
@@ -63,19 +57,21 @@ export default class ToolBar extends React.Component {
 
         <ToolbarGroup firstChild={true}>
           <DropDownMenu value={this.state.value} onChange={this.handleChange} style={{paddingLeft: '5em', paddingRight: '5em'}}>
-            <MenuItem value={1} primaryText="Theme" />
-            <MenuItem value={2} primaryText="Birthday" />
-            <MenuItem value={3} primaryText="Christmas" />
-            <MenuItem value={4} primaryText="Chanukah" />
-            <MenuItem value={5} primaryText="Kwanzaa" />
-            <MenuItem value={6} primaryText="Diwali" />
-            <MenuItem value={7} primaryText="Lunar New Year" />
-            <MenuItem value={8} primaryText="Mother's & Father's Day" />
-            <MenuItem value={9} primaryText="Graduation" />
-            <MenuItem value={10} primaryText="Baby Shower" />
-            <MenuItem value={11} primaryText="Bridal Shower" />
-            <MenuItem value={12} primaryText="Wedding" />
-            <MenuItem value={13} primaryText="Bar & Bat Mitzvah" />
+            <MenuItem value="Theme" primaryText="Theme" />
+            <MenuItem value="Birthday" primaryText="Birthday" />
+            <MenuItem value="Christmas" primaryText="Christmas" />
+            <MenuItem value="Chanukah" primaryText="Chanukah" />
+            <MenuItem value="Kwanzaa" primaryText="Kwanzaa" />
+            <MenuItem value="Diwali" primaryText="Diwali" />
+            <MenuItem value="LunarNewYear" primaryText="Lunar New Year" />
+            <MenuItem value="MothersDay" primaryText="Mother's Day" />
+            <MenuItem value="FathersDay" primaryText="Father's Day" />
+            <MenuItem value="Graduation" primaryText="Graduation" />
+            <MenuItem value="BabyShower" primaryText="Baby Shower" />
+            <MenuItem value="BridalShower" primaryText="Bridal Shower" />
+            <MenuItem value="Wedding" primaryText="Wedding" />
+            <MenuItem value="BarMitzvah" primaryText="Bar Mitzvah" />
+            <MenuItem value="BatMitzvah" primaryText="Bat Mitzvah" />
           </DropDownMenu>
         </ToolbarGroup>
 
@@ -84,3 +80,5 @@ export default class ToolBar extends React.Component {
     );
   }
 }
+
+export default connect(() => {})(ToolBar);
