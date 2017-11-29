@@ -16,7 +16,7 @@ export default function (state = initialState, action) {
         }
         case types.REMOVE_WISHLIST: {
             const { wishlistId } = action;
-            const wishlists = state.wishlists.filter(wishlist => wishlist.pk !== wishlistId);
+            const wishlists = state.wishlists.filter(wishlist => wishlist.id !== wishlistId);
             return Object.assign({}, state, {
                 wishlists,
             });
