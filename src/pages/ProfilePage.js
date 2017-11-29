@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import Wishlists from './Wishlists';
-import FriendsList from './FriendsList';
+import Wishlists from '../gift/Wishlists';
+import FriendsList from '../user/FriendsList';
 import { loadFriends, loadInformation } from '../store/actions/userActions';
 
 const styles = {

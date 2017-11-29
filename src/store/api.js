@@ -5,8 +5,16 @@ const API_URL = BASE_URL + '/api/v1';
 
 // Add all API call functions here
 
-export function apiGetUserGifts(userId) {
-    return axios.get(`${API_URL}/users/${userId}/gifts/`);
+export function apiGetUserGifts(userId, token) {
+    if (token) {
+        return axios.get(`${API_URL}/users/${userId}/gifts/`, {
+            headers: {
+                'Authorization': 'JWT ' + token,
+            }
+        });
+    } else {
+        return axios.get(`${API_URL}/users/${userId}/gifts/`);
+    }
 }
 
 export function apiAddUserGift(userId, gift) {
@@ -71,4 +79,20 @@ export function apiDeleteWishlistGift(userId, wishlistId, giftId) {
 
 export function apiCreateUserWishlist(userId, wishlist) {
     return axios.post(`${API_URL}/users/${userId}/gifts/wishlists/create`, wishlist);
+}
+
+export function apiHoldGift(userId, giftId, token) {
+    return axios.patch(`${API_URL}/users/${userId}/gifts/${giftId}/hold/`, {
+        headers: {
+            'Authorization': 'JWT ' + token,
+        }
+    })
+}
+
+export function apiRemoveHoldGift(userId, giftId, token) {
+    return axios.delete(`${API_URL}/users/${userId}/gifts/${giftId}/hold/`, {
+        headers: {
+            'Authorization': 'JWT ' + token,
+        }
+    })
 }

@@ -41,15 +41,13 @@ class GiftContainer extends Component {
     render() {
         return (
             <div id="container" style={styles.container}>
-                {this.props.gifts.length > 0 ?
-                    this.props.gifts.map(gift => (
+                {this.props.gifts.map(gift => (
                     <GiftCard
                         key={gift.pk}
                         {...gift}
                         deleteMe={() => this.props.deleteGift(gift.pk)}
                     />
-                )) :
-                <p>NO GIFTS FOR YOU</p>}
+                ))}
             </div>
         );
     }

@@ -1,5 +1,17 @@
 import * as types from './index';
-import { apiDeleteUserGift, apiGetUserGifts, apiGetSearchedGifts, apiAddUserGift } from '../api';
+import {
+    apiDeleteUserGift,
+    apiGetUserGifts,
+    apiGetSearchedGifts,
+    apiAddUserGift,
+    apiHoldGift,
+    apiRemoveHoldGift, } from '../api';
+
+
+/**
+ *   NORMAL PURE ACTIONS
+ *
+ */
 
 export function addGiftToGifts(userId, gift) {
     return {
@@ -44,11 +56,41 @@ export function giftsFetchFailure(bool) {
     };
 }
 
-export function fetchUserGifts() {
+export function holdGiftSuccess() {
+    return {
+        type: types.HOLD_GIFT_SUCCESS,
+    };
+}
+
+export function holdGiftFailure() {
+    return {
+        type: types.HOLD_GIFT_FAILURE,
+    };
+}
+
+export function removeHoldGiftSuccess() {
+    return {
+        type: types.REMOVE_HOLD_GIFT_SUCCESS,
+    };
+}
+
+export function removeHoldGiftFailure() {
+    return {
+        type: types.REMOVE_HOLD_GIFT_FAILURE,
+    };
+}
+
+/**
+ *   ASYNC THUNK ACTIONS
+ *
+ */
+
+export function fetchUserGifts(userId) {
     return (dispatch, getState) => {
         dispatch(giftsAreLoading(true));
+        const token = localStorage.getItem('token');
 
-        apiGetUserGifts(getState().users.profile.user_id)
+        apiGetUserGifts(userId, token)
             .then(
                 resp => dispatch(giftsFetchSuccess(resp.data)),
                 () => dispatch(giftsFetchFailure(true)),
@@ -76,5 +118,27 @@ export function searchGift(search) {
     return (dispatch) => {
         apiGetSearchedGifts(search)
             .then(resp => dispatch(searchGifts(resp.data)));
+    };
+}
+
+export function holdGift(userId, giftId) {
+    return (dispatch) => {
+        const token = localStorage.getItem('token');
+
+        apiHoldGift(userId, giftId, token).then(
+            resp => dispatch(holdGiftSuccess()),
+            () => dispatch(holdGiftFailure())
+        );
+    };
+}
+
+export function removeHoldGift(userId, giftId) {
+    return (dispatch) => {
+        const token = localStorage.getItem('token');
+
+        apiRemoveHoldGift(userId, giftId, token).then(
+            resp => dispatch(holdGiftSuccess()),
+            () => dispatch(holdGiftFailure())
+        );
     };
 }

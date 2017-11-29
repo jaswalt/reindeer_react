@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import users from './userReducer.js';
-import gifts from './giftReducer.js';
-import wishlists from './wishlistReducer.js';
+import users from './userReducer';
+import gifts from './giftReducer';
+import wishlists from './wishlistReducer';
 
 /**
  * Create the Root Reducer by combining all

@@ -65,7 +65,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     fetchGifts: userId => dispatch(fetchUserGifts(userId)),
 });
 
+<<<<<<< Updated upstream
+export default connect(mapStateToProps, mapDispatchToProps)(GiftContainer);
+=======
 export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps,
 )(GiftContainer));
+>>>>>>> Stashed changes

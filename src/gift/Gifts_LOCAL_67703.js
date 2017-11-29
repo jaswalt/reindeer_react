@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { fetchUserGifts, deleteGift } from '../store/actions/giftActions';
 import GiftCard from './GiftCard';
 
@@ -18,24 +17,10 @@ const styles = {
 class GiftContainer extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            ownProfile: false,
-        }
     }
 
-    componentWillMount() {
-        if (this.props.match.params.id) {
-            this.props.fetchGifts(this.props.match.params.id);
-            this.setState({
-                ownProfile: false,
-            })
-        } else if (this.props.userId && !this.props.match.params.id) {
-            this.props.fetchGifts(this.props.userId);
-            this.setState({
-                ownProfile: true,
-            })
-        }
+    componentDidMount() {
+        this.props.fetchGifts();
     }
 
     render() {
@@ -62,10 +47,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     deleteGift: giftId => dispatch(deleteGift(ownProps.userId, giftId)),
-    fetchGifts: userId => dispatch(fetchUserGifts(userId)),
+    fetchGifts: () => dispatch(fetchUserGifts()),
 });
 
-export default withRouter(connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(GiftContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(GiftContainer);

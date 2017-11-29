@@ -11,12 +11,12 @@ import GiftsMain from '../pages/GiftsMain';
 import RegisterPage from '../pages/RegisterPage';
 import LoginPage from '../pages/LoginPage';
 import ProfilePage from '../pages/ProfilePage';
-import WishlistGifts from '../pages/WishlistGifts';
+import WishlistGifts from '../gift/WishlistGifts';
 import SearchResults from '../common/SearchResults';
 import CreateWishlistPage from '../pages/CreateWishlistPage';
 import NavBar from '../common/NavBar';
 import ToolBar from '../common/ToolBar';
-import FriendsSearchPage from '../pages/FriendsSearch';
+import FriendsSearchPage from '../user/FriendsSearch';
 import PrivateRoute from '../common/PrivateRoute';
 
 const muiTheme = getMuiTheme({
