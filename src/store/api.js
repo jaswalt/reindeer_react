@@ -86,7 +86,9 @@ export function apiCreateUserWishlist(userId, wishlist) {
 }
 
 export function apiHoldGift(userId, giftId, token) {
-    return axios.patch(`${API_URL}/users/${userId}/gifts/${giftId}/hold/`, {
+    return axios({
+        method: 'patch',
+        url: `${API_URL}/users/${userId}/gifts/${giftId}/hold/`,
         headers: {
             'Authorization': 'JWT ' + token,
         }

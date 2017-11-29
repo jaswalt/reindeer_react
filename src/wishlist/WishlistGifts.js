@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchWishlistGifts, deleteWishlistGift } from '../store/actions/wishlistActions';
+import { holdGift } from '../store/actions/giftActions';
+
 import EachWishlistGift from '../gift/EachWishlistGift';
 
 const imageUrl = 'https://78.media.tumblr.com/58aa0024f8c0faded38d71decf1d055c/tumblr_inline_mxyiybl7ke1r9zbix.jpg';
@@ -42,6 +44,7 @@ class WishlistGiftsContainer extends Component {
                             key={gift.id}
                             {...gift}
                             deleteMe={() => this.props.deleteWishlistGift(gift.id)}
+                            holdMe={() => this.props.holdWishlistGift(this.props.userId, gift.id)}
                         />
                     )) :
                     <p style={styles.noGifts}></p>}
@@ -52,11 +55,13 @@ class WishlistGiftsContainer extends Component {
 
 const mapStateToProps = state => ({
     gifts: state.wishlists.gifts,
+    userId: state.users.vprofile.id
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     deleteWishlistGift: giftId => dispatch(deleteWishlistGift(ownProps.match.params.id, giftId)),
-    fetchWishlistGifts: (wishlistId) => dispatch(fetchWishlistGifts(wishlistId)),
+    fetchWishlistGifts: wishlistId => dispatch(fetchWishlistGifts(wishlistId)),
+    holdWishlistGift: (userId, giftId) => dispatch(holdGift(userId, giftId))
 });
 
 export default withRouter(connect(
