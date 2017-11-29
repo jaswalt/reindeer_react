@@ -41,8 +41,10 @@ export default function (state = initialState, action) {
             });
         }
         case types.ADD_GIFT_TO_WISHLIST: {
+            const { giftId } = action;
+            const addGift = state.gifts.filter(gift => gift.id === giftId);
             return Object.assign({}, state, {
-                gifts: [...state.gifts, { ...action.gift }],
+                gifts: [...state.gifts, { addGift }],
             });
         }
         case types.REMOVE_GIFT_FROM_WISHLIST: {

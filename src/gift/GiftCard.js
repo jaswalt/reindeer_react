@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { addWishlistGift } from '../store/actions/wishlistActions';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
@@ -38,7 +39,7 @@ class GiftCard extends Component {
         super(props);
 
         this.state = {
-            wishlistValue: null,
+            wishlistId: null,
             cardTextCollapsed: true,
             displayActions: false,
             cardText: this.props.description,
@@ -81,9 +82,9 @@ class GiftCard extends Component {
                         <IconMenu
                             iconButtonElement={<IconButton tooltip="+ Wishlist" tooltipPosition="top-center"><AddList color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>}
                             onChange={this.handleWishlistChange}
-                            value={this.state.wishlistValue}
+                            value={this.state.wishlistId}
                         >{this.props.wishlists.map((wishlist) => (
-                            <MenuItem value={wishlist.id} primaryText={wishlist.title} />
+                            <MenuItem value={wishlist.id} primaryText={wishlist.title} onClick={() => this.props.addGift(wishlist.id, this.props.id)} />
                         ))}
                         </IconMenu>
                         <IconButton tooltip="Delete" tooltipPosition="top-center" onClick={this.props.deleteMe}><DeleteForever color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
@@ -94,7 +95,7 @@ class GiftCard extends Component {
 
     handleWishlistChange = (event, value) => {
         this.setState({
-          wishlistValue: value,
+          wishlistId: value,
         });
       };
 
@@ -134,6 +135,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    addGift: (wishlistId, giftId) => dispatch(addWishlistGift(wishlistId, giftId)),
 });
 
 export default withRouter(connect(
