@@ -19,9 +19,9 @@ export default class AvatarContainer extends Component {
                 style={{ padding: '0' }}
                 iconButtonElement={
                     <Avatar
-                        icon={<AccountCircle />}
+                        icon={<AccountCircle style={{size: '200%'}}/>}
                         style={{
-                            backgroundColor: '#d9a4b7',
+                            // backgroundColor: '#990033',
                             margin: '0',
                             marginTop: 10,
                             marginRight: 5,

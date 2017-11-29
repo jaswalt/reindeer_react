@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import { fetchUserGifts, deleteGift } from '../store/actions/giftActions';
 import GiftCard from './GiftCard';
 
+const imageUrl = 'http://sendalumpofcoal.com/wp-content/uploads/2015/11/Dollarphotoclub_59806766.jpg';
+
 const styles = {
     container: {
         margin: '0 auto',
@@ -12,6 +14,13 @@ const styles = {
         height: '100%',
         display: 'flex',
         flexWrap: 'wrap',
+    },
+    noGifts: {
+        color: 'black',
+        backgroundImage: 'url(' + imageUrl + ')',
+        backgroundSize: 'cover',
+        height: '80vh',
+        width: '100vh',
     },
 };
 
@@ -49,7 +58,7 @@ class GiftContainer extends Component {
                         deleteMe={() => this.props.deleteGift(gift.id)}
                     />
                 )) :
-                <p>NO GIFTS FOR YOU</p>}
+                <p style={styles.noGifts}></p>}
             </div>
         );
     }

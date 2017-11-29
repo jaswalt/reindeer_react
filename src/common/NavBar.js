@@ -9,8 +9,10 @@ import { logoutUser } from '../store/actions/userActions';
 const styles = {
     title: {
         fontFamily: 'Great Vibes',
-        fontSize: '4em',
+        fontSize: '4.5em',
         paddingLeft: '3vw',
+        paddingTop: '0.5vw',
+        paddingBottom: '0.5vw',
     },
 };
 
@@ -29,7 +31,7 @@ class NavBar extends Component {
             <AppBar
                 title={<span onClick={this.handleTitleClick} style={{cursor: 'pointer'}}>Kaddo</span>}
                 titleStyle={styles.title}
-                style={{ padding: '1em' }}
+                style={{ padding: '2em' }}
                 zDepth={5}
                 showMenuIconButton={false}
                 iconElementRight={this.props.isLoggedIn
