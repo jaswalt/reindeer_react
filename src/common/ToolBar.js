@@ -32,7 +32,7 @@ export default class ToolBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 1,
+      value: "Theme",
     };
   }
 
@@ -63,7 +63,7 @@ export default class ToolBar extends React.Component {
 
         <ToolbarGroup firstChild={true}>
           <DropDownMenu value={this.state.value} onChange={this.handleChange} style={{paddingLeft: '5em', paddingRight: '5em'}}>
-            <MenuItem value={1} primaryText="Theme" />
+            <MenuItem value="Theme" primaryText="Theme" />
             <MenuItem value={2} primaryText="Birthday" />
             <MenuItem value={3} primaryText="Christmas" />
             <MenuItem value={4} primaryText="Chanukah" />
