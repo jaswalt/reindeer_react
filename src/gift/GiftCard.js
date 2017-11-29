@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { addWishlistGift } from '../store/actions/wishlistActions';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
@@ -9,6 +12,8 @@ import EditGift from 'material-ui/svg-icons/editor/mode-edit';
 import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
 import IconButton from 'material-ui/IconButton';
 import { red50 } from 'material-ui/styles/colors';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
 import * as Currency from 'currency-formatter';
 
 const styles = {
@@ -29,11 +34,12 @@ const styles = {
     hoverActionColor: "#990033"
 };
 
-export default class GiftCard extends Component {
+class GiftCard extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            wishlistId: null,
             cardTextCollapsed: true,
             displayActions: false,
             cardText: this.props.description,
@@ -72,17 +78,26 @@ export default class GiftCard extends Component {
                     {this.state.displayedCardText}
                     {this.state.cardTextCollapsed && <p><ExpandMore onClick={this._expandCardText} /></p>}
                 </CardText>
-                {this.state.displayActions &&
                     <CardActions style={styles.actions}>
-                        <IconButton tooltip="Reserve" tooltipPosition="top-center"><Bookmark color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
-                        <IconButton tooltip="+ List" tooltipPosition="top-center"><AddList color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
-                        <IconButton tooltip="Edit" tooltipPosition="top-center"><EditGift color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
+                        <IconMenu
+                            iconButtonElement={<IconButton tooltip="+ Wishlist" tooltipPosition="top-center"><AddList color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>}
+                            onChange={this.handleWishlistChange}
+                            value={this.state.wishlistId}
+                        >{this.props.wishlists.map((wishlist) => (
+                            <MenuItem value={wishlist.id} primaryText={wishlist.title} onClick={() => this.props.addGift(wishlist.id, this.props.id)} />
+                        ))}
+                        </IconMenu>
                         <IconButton tooltip="Delete" tooltipPosition="top-center" onClick={this.props.deleteMe}><DeleteForever color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
                     </CardActions>
-                }
             </Card>
         );
     }
+
+    handleWishlistChange = (event, value) => {
+        this.setState({
+          wishlistId: value,
+        });
+      };
 
     _expandCardText = (e) => {
         e.preventDefault();
@@ -114,3 +129,16 @@ export default class GiftCard extends Component {
         })
     }
 }
+
+const mapStateToProps = state => ({
+    wishlists: state.wishlists.wishlists
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    addGift: (wishlistId, giftId) => dispatch(addWishlistGift(wishlistId, giftId)),
+});
+
+export default withRouter(connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(GiftCard));
