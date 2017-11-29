@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchWishlistGifts, deleteWishlistGift } from '../store/actions/wishlistActions';
-import EachWishlistGift from './EachWishlistGift';
+import EachWishlistGift from '../gift/EachWishlistGift';
 
 const styles = {
     container: {

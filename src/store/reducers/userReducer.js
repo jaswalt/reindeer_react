@@ -78,7 +78,7 @@ export default function (state = initialState, action) {
             return Object.assign({}, state, {
                 loading: false,
                 error: false,
-                visitingProfile: { ...action.profileInfo },
+                vprofile: { ...action.profileInfo },
             });
         }
         case types.LOAD_INFORMATION_FAILURE: {

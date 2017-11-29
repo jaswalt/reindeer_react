@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import Wishlists from '../gift/Wishlists';
+import Wishlists from '../wishlist/Wishlists';
 import FriendsList from '../user/FriendsList';
 import { loadFriends, loadInformation } from '../store/actions/userActions';
 

@@ -32,7 +32,7 @@ class WishLists extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchWishlists()
+        this.props.fetchWishlists(this.props.user.id)
     }
 
     render() {
@@ -65,8 +65,8 @@ class WishLists extends Component {
                         <GridTile
                             key={index}
                             title={wishlist.title}
-                            subtitle={<span>by <b>{this.props.username}</b></span>}
-                            actionIcon={<IconButton tooltip="Delete" tooltipPosition="top-center" onClick={() => this.props.deleteWishlist(this.props.userId, wishlist.id)}><DeleteForever color={styles.unHoverColor} hoverColor={styles.hoverColor}/></IconButton>}
+                            subtitle={<span>by <b>{this.props.user.username}</b></span>}
+                            actionIcon={<IconButton tooltip="Delete" tooltipPosition="top-center" onClick={() => this.props.deleteWishlist(this.props.user.id, wishlist.id)}><DeleteForever color={styles.unHoverColor} hoverColor={styles.hoverColor}/></IconButton>}
                         >
                         <img src={pickAPic()} onMouseOver="" style={{cursor: 'pointer'}} onClick={(e) => this.handleTileClick(wishlist.id)}/>
                         </GridTile>
@@ -85,14 +85,13 @@ class WishLists extends Component {
 }
 
 const mapStateToProps = state => ({
-    username: state.users.profile.username,
-    userId: state.users.profile.user_id,
+    user: state.users.vprofile,
     wishlists: !!state.wishlists.wishlists ? state.wishlists.wishlists : null,
 });
 
 const mapDispatchToProps = (dispatch) => ({
     deleteWishlist: (userId, wishlistId) => dispatch(deleteWishlist(userId, wishlistId)),
-    fetchWishlists: () => dispatch(fetchUserWishlists()),
+    fetchWishlists: (userId) => dispatch(fetchUserWishlists(userId)),
 });
 
 export default withRouter(connect(

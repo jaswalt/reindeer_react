@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CreateWishlistForm from '../pages/CreateWishlistForm';
+import CreateWishlistForm from './CreateWishlistForm';
 
 const imageUrl = 'https://static.pexels.com/photos/257855/pexels-photo-257855.jpeg';
 

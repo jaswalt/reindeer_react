@@ -81,11 +81,11 @@ export function wishlistGiftsFetchFailure(bool) {
 }
 
 
-export function fetchUserWishlists() {
-    return (dispatch, getState) => {
+export function fetchUserWishlists(userId) {
+    return (dispatch) => {
         dispatch(wishlistsAreLoading(true));
 
-        apiGetUserWishlists(getState().users.profile.user_id)
+        apiGetUserWishlists(userId)
             .then(
                 resp => dispatch(wishlistsFetchSuccess(resp.data)),
                 () => dispatch(wishlistsFetchFailure(true)),
