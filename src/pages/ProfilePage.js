@@ -65,16 +65,16 @@ class ProfilePage extends Component {
                 {this.props.profile &&
                     <div>
                         <div>
-                            <h1 style={{ color: this.props.theme.color }}>
+                            <h1 style={{ color: this.props.theme.color, fontFamily: "'Alegreya', serif" }}>
                                 {this.props.ownProfile
-                                    ? `Welcome back, ${this.props.profile.username}!`
+                                    ? `welcome back, ${this.props.profile.username}!`
                                     : `visiting ${this.props.profile.username}'s`
                                 }
                             </h1>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
                             <div>
-                                <h3 style={{ color: this.props.theme.color }}>Wish Lists</h3>
+                                <h3 style={{ color: this.props.theme.color, fontFamily: "'Alegreya', serif" }}>wish lists</h3>
                                 <Wishlists
                                     user={this.props.profile}
                                     wishlists={this.props.wishlists}
@@ -83,7 +83,7 @@ class ProfilePage extends Component {
                             </div>
                             {this.props.ownProfile &&
                             <div style={{ marginLeft: 15 }}>
-                                <h3 style={{ color: this.props.theme.color }}>Friends</h3>
+                                <h3 style={{ color: this.props.theme.color, fontFamily: "'Alegreya', serif" }}>friends</h3>
                                 <FriendsList friends={this.props.friends} />
                             </div>
                             }
@@ -104,7 +104,7 @@ const mapStateToProps = (state, ownProps) => {
             userId: ownProps.match.params.id,
             profile: state.users.vprofile,
             ownProfile: false,
-            wishlists: !state.wishlists.wishlists ? state.wishlists.wishlists : null,
+            wishlists: state.wishlists.wishlists,
             theme: state.users.activeTheme,            
         };
     } else if (state.users.profile) {
@@ -112,7 +112,7 @@ const mapStateToProps = (state, ownProps) => {
             userId: state.users.profile ? state.users.profile.user_id : null,
             profile: state.users.vprofile,
             ownProfile: true,
-            wishlists: state.wishlists.wishlists ? state.wishlists.wishlists : null,
+            wishlists: state.wishlists.wishlists,
             friends: state.users.profile ? state.users.friends : null,
             theme: state.users.activeTheme,            
         };
