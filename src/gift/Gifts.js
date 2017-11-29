@@ -56,6 +56,7 @@ class GiftContainer extends Component {
                         key={gift.id}
                         {...gift}
                         deleteMe={() => this.props.deleteGift(gift.id)}
+                        openSnackBar={this.props.openSnackBar}
                     />
                 )) :
                 <p style={styles.noGifts}></p>}

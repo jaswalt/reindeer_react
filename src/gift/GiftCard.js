@@ -85,13 +85,18 @@ class GiftCard extends Component {
                             onChange={this.handleWishlistChange}
                             value={this.state.wishlistId}
                         >{this.props.wishlists.map((wishlist) => (
-                            <MenuItem value={wishlist.id} primaryText={wishlist.title} onClick={() => this.props.addGift(wishlist.id, this.props.id)} />
+                            <MenuItem value={wishlist.id} primaryText={wishlist.title} onClick={() => this.handleAddGift(wishlist.id)} />
                         ))}
                         </IconMenu>
                         <IconButton tooltip="Delete" tooltipPosition="top-center" onClick={this.props.deleteMe}><DeleteForever color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
                     </CardActions>
             </Card>
         );
+    }
+
+    handleAddGift = (wishlistId) => {
+        this.props.addGift(wishlistId, this.props.id)
+        this.props.openSnackBar();
     }
 
     handleWishlistChange = (event, value) => {
