@@ -49,7 +49,7 @@ class Main extends React.Component {
         return (
             <section style={this.state.theme.container}>
                 <div style={styles.content}>
-                    <p zDepth={5}>Find out what your loved one wants this year!</p>
+                    <p>Find out what your loved one wants this year!</p>
                 </div>
             </section>
         );
