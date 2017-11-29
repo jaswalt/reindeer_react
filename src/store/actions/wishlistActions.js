@@ -45,11 +45,11 @@ export function wishlistsFetchFailure(bool) {
     };
 }
 
-export function addGiftToWishlist(wishlistId, giftId) {
+export function addGiftToWishlist(wishlistId, gift) {
     return {
         type: types.ADD_GIFT_TO_WISHLIST,
         wishlistId,
-        giftId,
+        gift,
     };
 }
 
@@ -121,7 +121,7 @@ export function fetchWishlistGifts(wishlistId) {
 export function addWishlistGift(wishlistId, giftId) {
     return (dispatch, getState) => {
         apiAddGiftToWishlist(getState().users.profile.user_id, wishlistId, giftId)
-            .then(() => dispatch(addGiftToWishlist(wishlistId, giftId)));
+            .then(resp => dispatch(addGiftToWishlist(wishlistId, resp.data)));
     };
 }
 
