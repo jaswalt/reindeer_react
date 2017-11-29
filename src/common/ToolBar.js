@@ -15,6 +15,18 @@ const styles = {
   },
 };
 
+const themes = [
+  {'theme': 'christmas',
+   'image': 'https://static.pexels.com/photos/257855/pexels-photo-257855.jpeg',
+   'color': '#990033'},
+  {'theme': 'chanukah',
+   'image': 'https://www.orbitz.com/blog/wp-content/uploads/2015/12/Cool-Hanukkah-gifts.1265x725.jpg',
+   'color': '#1565C0'},
+  {'theme': 'kwanzaa',
+   'image': 'https://img.huffingtonpost.com/asset/567acc631600000001eb9839.jpeg?ops=scalefit_960_noupscale',
+   'color': '#FFC107'}
+];
+
 export default class ToolBar extends React.Component {
 
   constructor(props) {
@@ -31,7 +43,7 @@ export default class ToolBar extends React.Component {
   render() {
     return (
       <Toolbar style={styles}>
-        <ToolbarGroup firstChild={true}>
+        {/* <ToolbarGroup firstChild={true}>
           <ToolbarTitle text="Sort By" />
           <FontIcon className="muidocs-icon-custom-sort" />
           <IconMenu
@@ -47,9 +59,9 @@ export default class ToolBar extends React.Component {
             <MenuItem primaryText="Location Added" />
             <MenuItem primaryText="Rank" />
           </IconMenu>
-        </ToolbarGroup>
+        </ToolbarGroup> */}
 
-        <ToolbarGroup >
+        <ToolbarGroup firstChild={true}>
           <DropDownMenu value={this.state.value} onChange={this.handleChange} style={{paddingLeft: '5em', paddingRight: '5em'}}>
             <MenuItem value={1} primaryText="Theme" />
             <MenuItem value={2} primaryText="Birthday" />
