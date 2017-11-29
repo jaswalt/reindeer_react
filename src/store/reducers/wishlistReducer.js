@@ -50,7 +50,7 @@ export default function (state = initialState, action) {
             const { giftId } = action;
             const gifts = state.gifts.filter(gift => gift.id !== giftId);
             return Object.assign({}, state, {
-                gifts: [...gifts]
+                gifts: [...gifts],
             });
         }
         case types.WISHLIST_GIFTS_ARE_LOADING: {
