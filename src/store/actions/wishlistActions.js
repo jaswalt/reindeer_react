@@ -96,7 +96,7 @@ export function fetchUserWishlists(userId) {
 export function createWishlist(wishlist) {
     return (dispatch, getState) => {
         apiCreateUserWishlist(getState().users.profile.user_id, wishlist)
-            .then(() => dispatch(addWishlist(getState().users.profile.user_id, wishlist)))
+            .then(resp => dispatch(addWishlist(getState().users.profile.user_id, resp.data)))
     }
 }
 
