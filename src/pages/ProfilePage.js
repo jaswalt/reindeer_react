@@ -19,13 +19,24 @@ const styles = {
 };
 
 class ProfilePage extends Component {
-    componentWillMount() {
-        this.props.dispatch(loadInformation(this.props.userId));
-        this.props.dispatch(fetchUserWishlists(this.props.userId));
-        if (this.props.ownProfile) {
-            this.props.dispatch(loadFriends(this.props.userId));
+    componentDidMount() {
+        this.fetchData(this.props);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const profileId = nextProps.match.params.id;
+        if (profileId && profileId !== this.props.userId) {
+            this.fetchData(nextProps);
         }
     }
+
+    fetchData(props) {
+        props.dispatch(loadInformation(props.userId));
+        props.dispatch(fetchUserWishlists(props.userId));
+        if (props.ownProfile) {
+            props.dispatch(loadFriends(props.userId));
+        }
+    };
 
     render() {
         return (
@@ -33,19 +44,30 @@ class ProfilePage extends Component {
                 {this.props.profile &&
                     <div>
                         <div>
-                            <h1>{this.props.profile.username}</h1>
+                            <h1 style={{fontFamily: '\'Indie Flower\', cursive'}}>
+                                {this.props.ownProfile
+                                    ? `welcome back, ${this.props.profile.username}!`
+                                    : `visiting ${this.props.profile.username}'s`
+                                }
+                            </h1>
                         </div>
-                        <Wishlists
-                            user={this.props.profile}
-                            wishlists={this.props.wishlists}
-                            own={this.props.ownProfile}
-                        />
-                        {this.props.ownProfile &&
+                        <div style={{display: 'flex', justifyContent: 'space-around' }}>
                             <div>
-                                <h3>Friends</h3>
-                                <FriendsList />
+                                <h3 style={{fontFamily: '\'Indie Flower\', cursive'}}>wish lists</h3>
+                                <Wishlists
+                                    user={this.props.profile}
+                                    wishlists={this.props.wishlists}
+                                    own={this.props.ownProfile}
+                                />
+                            </div>
+                        {this.props.ownProfile &&
+                            <div style={{marginLeft: 15}}>
+                                <h3 style={{fontFamily: '\'Indie Flower\', cursive'}}>friends</h3>
+                                <FriendsList friends={this.props.friends} />
                             </div>
                         }
+                        </div>
+
                     </div>
                 }
             </section>
@@ -63,12 +85,13 @@ const mapStateToProps = (state, ownProps) => {
             ownProfile: false,
             wishlists: !!state.wishlists.wishlists ? state.wishlists.wishlists : null,
         };
-    } else {
+    } else if (state.users.profile) {
         profile = {
-            userId: state.users.profile.user_id,
+            userId: state.users.profile ? state.users.profile.user_id : null,
             profile: state.users.vprofile,
             ownProfile: true,
-            wishlists: !!state.wishlists.wishlists ? state.wishlists.wishlists : null,
+            wishlists: state.wishlists.wishlists ? state.wishlists.wishlists : null,
+            friends: state.users.profile ? state.users.friends : null,
         };
     }
 

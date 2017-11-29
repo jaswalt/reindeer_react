@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchUserWishlists, deleteWishlist } from '../store/actions/wishlistActions';
+import { deleteWishlist } from '../store/actions/wishlistActions';
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
-import Subheader from 'material-ui/Subheader';
 import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 
@@ -25,25 +24,36 @@ const styles = {
 
  
 class WishLists extends Component {
+
     render() {
         return (
             <div style={styles.root}>
+                {this.renderGrid()}
+            </div>
+        );
+    }
+
+    renderGrid = () => {
+        if (this.props.own) {
+            return (
                 <GridList
                     cellHeight={180}
                     style={styles.gridList}
                 >
-                    <Subheader style={{marginLeft: '15vw' }}>My Wishlists</Subheader>
-                        {this.props.wishlists.map(wishlist => this.renderGridTile(wishlist))}
-                    <IconButton onClick={this.handleCreateWishlist}
-                                tooltip="Create Wishlist"
-                                tooltipPosition="bottom-right"
-                                iconStyle={{width: 60, height: 60}}
-                    >
-                        <AddCircle/>
-                    </IconButton>
+                    {this.props.wishlists.map(wishlist => this.renderGridTile(wishlist))}
+                    {this.renderCreateButton()}
                 </GridList>
-            </div>
-        );
+            )
+        } else {
+            return (
+                <GridList
+                    cellHeight={180}
+                    style={styles.gridList}
+                >
+                    {this.props.wishlists.map(wishlist => this.renderGridTile(wishlist))}
+                </GridList>
+            )
+        }
     }
 
     renderGridTile = (wishlist) => {
@@ -77,13 +87,23 @@ class WishLists extends Component {
                     subtitle={<span>by <b>{this.props.user.username}</b></span>}
                 >
                     <img src={wishlist.image || 'http://www.goodwp.com/images/201211/goodwp.com_25947.jpg'}
-                             onMouseOver=""
                              style={{cursor: 'pointer'}}
                              onClick={(e) => this.handleTileClick(wishlist.id)}
                     />
                 </GridTile>
             )
         }
+    };
+
+    renderCreateButton = () => {
+        return (
+            <IconButton onClick={this.handleCreateWishlist}
+                        tooltipPosition="bottom-right"
+                        iconStyle={{width: 60, height: 60}}
+            >
+                <AddCircle/>
+            </IconButton>
+        )
     };
 
     handleTileClick = (wishlistId) => {
@@ -95,14 +115,11 @@ class WishLists extends Component {
     };
 }
 
-const mapStateToProps = state => ({
-});
-
 const mapDispatchToProps = (dispatch) => ({
     deleteWishlist: (userId, wishlistId) => dispatch(deleteWishlist(userId, wishlistId)),
 });
 
 export default withRouter(connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps,
 )(WishLists));

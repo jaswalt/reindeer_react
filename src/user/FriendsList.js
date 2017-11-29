@@ -21,10 +21,6 @@ const styles = {
 };
 
 class FriendsList extends Component {
-    componentDidMount() {
-        this.props.dispatch(loadFriends());
-    }
-
     render() {
         return (
             <div>
@@ -33,7 +29,7 @@ class FriendsList extends Component {
                         <TableRow>
                             <TableHeaderColumn>Username</TableHeaderColumn>
                             <TableHeaderColumn>First Name</TableHeaderColumn>
-                            <TableHeaderColumn>Befriend</TableHeaderColumn>
+                            <TableHeaderColumn>Gifts</TableHeaderColumn>
                         </TableRow>
                     </TableHeader>
                     <TableBody displayRowCheckbox={false}>
@@ -60,9 +56,4 @@ class FriendsList extends Component {
     }
 }
 
-
-const mapStateToProps = state => ({
-    friends: state.users.profile ? state.users.friends : null,
-});
-
-export default connect(mapStateToProps)(FriendsList);
+export default FriendsList;
