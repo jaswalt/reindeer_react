@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addWishlistGift } from '../store/actions/wishlistActions';
+import { addWishlistGift, fetchUserWishlists } from '../store/actions/wishlistActions';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
@@ -52,6 +52,7 @@ class GiftCard extends Component {
         this.setState({
             displayedCardText: this.state.cardText.substring(0, 140),
         });
+        this.props.fetchWishlists(this.props.userId);
     }
 
     render() {
@@ -131,11 +132,14 @@ class GiftCard extends Component {
 }
 
 const mapStateToProps = state => ({
-    wishlists: state.wishlists.wishlists
+    wishlists: state.wishlists.wishlists,
+    userId: state.users.profile.user_id,
 });
 
 const mapDispatchToProps = (dispatch) => ({
     addGift: (wishlistId, giftId) => dispatch(addWishlistGift(wishlistId, giftId)),
+    fetchWishlists: (userId) => dispatch(fetchUserWishlists(userId)),
+    
 });
 
 export default withRouter(connect(
