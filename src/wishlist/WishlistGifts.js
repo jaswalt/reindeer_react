@@ -44,7 +44,7 @@ class WishlistGiftsContainer extends Component {
                             deleteMe={() => this.props.deleteWishlistGift(gift.id)}
                         />
                     )) :
-                    <p style={styles.noGifts}></p>}
+                    <p style={styles.noGifts}>Add some gifts!</p>}
             </div>
         );
     }
