@@ -25,7 +25,7 @@ class NavBar extends Component {
         e.preventDefault();
         this.props.history.push('/');
     }
-
+    
     render() {
         return (
             <AppBar
@@ -46,6 +46,7 @@ class NavBar extends Component {
 
 const mapStateToProps = state => ({
     isLoggedIn: state.users.profile,
+    theme: state.users.activeTheme,
 });
 
 export default withRouter(connect(mapStateToProps)(NavBar));

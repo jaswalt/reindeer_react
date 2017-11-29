@@ -1,4 +1,4 @@
-export const themes = {
+export const themesList = {
     Christmas:
         {
             image: 'https://static.pexels.com/photos/257855/pexels-photo-257855.jpeg',

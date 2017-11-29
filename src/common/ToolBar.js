@@ -6,8 +6,10 @@ import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-mo
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
+import { connect } from 'react-redux';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import Search from './Search';
+import { changeTheme } from '../store/actions/userActions'
 
 const styles = {
   container: {
@@ -15,7 +17,7 @@ const styles = {
   },
 };
 
-export default class ToolBar extends React.Component {
+class ToolBar extends React.Component {
 
   constructor(props) {
     super(props);
@@ -24,9 +26,13 @@ export default class ToolBar extends React.Component {
     };
   }
 
-  handleChange = (event, index, value) => this.setState({
-    value,
-  });
+  handleChange = (event, index, value) => {
+    this.setState({
+      value,
+    });
+
+    this.props.dispatch(changeTheme(value));
+  };
 
   render() {
     return (
@@ -74,3 +80,5 @@ export default class ToolBar extends React.Component {
     );
   }
 }
+
+export default connect(() => {})(ToolBar);

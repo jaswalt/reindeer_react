@@ -30,6 +30,21 @@ class Main extends React.Component {
         };
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.theme.image !== nextProps.theme.image) {
+            this.setState({
+                theme: {
+                    container: {
+                        backgroundImage: 'url(' + nextProps.theme.image + ')',
+                        backgroundSize: 'cover',
+                        height: '100vh',
+                        color: 'white',
+                    },
+                },
+            });
+        }
+    }
+
     render() {
         return (
             <section style={this.state.theme.container}>

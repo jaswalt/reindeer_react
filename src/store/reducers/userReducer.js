@@ -1,5 +1,5 @@
 import * as types from '../actions';
-import { themes } from '../../themes';
+import { themesList } from '../../themes';
 
 const initialState = {
     loading: false,
@@ -9,8 +9,8 @@ const initialState = {
     vprofile: null,
     usersSearch: [],
     friends: [],
-    themes,
-    activeTheme: themes.christmas,
+    themes: { ...themesList },
+    activeTheme: null,
 };
 
 export default function (state = initialState, action) {
