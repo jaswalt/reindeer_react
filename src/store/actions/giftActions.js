@@ -107,9 +107,9 @@ export function addGiftToAllGifts(userId, gift) {
     }
 }
 
-export function deleteGift(userId, giftId) {
-    return (dispatch) => {
-        apiDeleteUserGift(userId, giftId)
+export function deleteGift(giftId) {
+    return (dispatch, getState) => {
+        apiDeleteUserGift(getState().users.profile.user_id, giftId)
             .then(() => dispatch(removeGiftFromGifts(giftId)));
     };
 }

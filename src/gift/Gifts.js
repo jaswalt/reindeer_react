@@ -44,9 +44,9 @@ class GiftContainer extends Component {
                 {this.props.gifts.length > 0 ?
                     this.props.gifts.map(gift => (
                     <GiftCard
-                        key={gift.pk}
+                        key={gift.id}
                         {...gift}
-                        deleteMe={() => this.props.deleteGift(gift.pk)}
+                        deleteMe={() => this.props.deleteGift(gift.id)}
                     />
                 )) :
                 <p>NO GIFTS FOR YOU</p>}
@@ -60,8 +60,8 @@ const mapStateToProps = state => ({
     gifts: state.gifts.items,
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    deleteGift: giftId => dispatch(deleteGift(ownProps.userId, giftId)),
+const mapDispatchToProps = (dispatch) => ({
+    deleteGift: giftId => dispatch(deleteGift(giftId)),
     fetchGifts: userId => dispatch(fetchUserGifts(userId)),
 });
 

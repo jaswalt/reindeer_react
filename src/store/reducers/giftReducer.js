@@ -17,7 +17,7 @@ export default function (state = initialState, action) {
         }
         case types.REMOVE_GIFT: {
             const { giftId } = action;
-            const items = state.items.filter(gift => gift.pk !== giftId);
+            const items = state.items.filter(gift => gift.id !== giftId);
             return Object.assign({}, state, {
                 items,
             });
