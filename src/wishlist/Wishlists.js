@@ -25,35 +25,7 @@ const styles = {
 
  
 class WishLists extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {};
-    }
-
-    componentDidMount() {
-        this.props.fetchWishlists(this.props.user.id)
-    }
-
     render() {
-        const pics = [
-            'http://s1.1zoom.me/big0/449/345838-admin.jpg', 
-            'https://www.legarrick.co.uk/wp-content/uploads/2014/05/xmas-le-garrick-700x400.jpg',
-            'http://www.goodwp.com/images/201211/goodwp.com_25947.jpg',
-            'http://longwallpapers.com/Desktop-Wallpaper/gold-holiday-wallpapers-for-iphone-For-Desktop-Wallpaper.jpg',
-            'http://starliteloungewinebar.com/wp-content/uploads/new-years-glassware-700x614.jpg',
-            'http://www.crossfitbothell.com/wp-content/uploads/2016/12/eating-chocolate-daily-is-good-for-health980-1456212647_980x457.jpg',
-            'http://www.goodwp.com/large/201103/15589.jpg',
-            'https://i.pinimg.com/736x/a5/0a/96/a50a96b6f408404cc71a014652708d77--christmas-wedding-christmas-drinks.jpg',
-            'https://i.pinimg.com/originals/63/c2/90/63c290f0666144c5662d5b374d3bf295.jpg'
-        ]
-
-        // selecting a pic from array of pics
-        const pickAPic = function () {
-            const pic = pics[Math.floor(Math.random() * 8)];
-            return pic;
-        };
-
         return (
             <div style={styles.root}>
                 <GridList
@@ -61,37 +33,73 @@ class WishLists extends Component {
                     style={styles.gridList}
                 >
                     <Subheader style={{marginLeft: '15vw' }}>My Wishlists</Subheader>
-                    {this.props.wishlists.map((wishlist, index) => (
-                        <GridTile
-                            key={index}
-                            title={wishlist.title}
-                            subtitle={<span>by <b>{this.props.user.username}</b></span>}
-                            actionIcon={<IconButton tooltip="Delete" tooltipPosition="top-center" onClick={() => this.props.deleteWishlist(this.props.user.id, wishlist.id)}><DeleteForever color={styles.unHoverColor} hoverColor={styles.hoverColor}/></IconButton>}
-                        >
-                        <img src={pickAPic()} onMouseOver="" style={{cursor: 'pointer'}} onClick={(e) => this.handleTileClick(wishlist.id)}/>
-                        </GridTile>
-                    ))}
-                    <IconButton onClick={this.handleCreateWishlist} tooltip="Create Wishlist" tooltipPosition="bottom-right" iconStyle={{width: 60, height: 60}}><AddCircle/></IconButton>
+                        {this.props.wishlists.map(wishlist => this.renderGridTile(wishlist))}
+                    <IconButton onClick={this.handleCreateWishlist}
+                                tooltip="Create Wishlist"
+                                tooltipPosition="bottom-right"
+                                iconStyle={{width: 60, height: 60}}
+                    >
+                        <AddCircle/>
+                    </IconButton>
                 </GridList>
             </div>
         );
     }
+
+    renderGridTile = (wishlist) => {
+        if (this.props.own) {
+            return (
+                <GridTile
+                    key={wishlist.id}
+                    title={wishlist.title}
+                    subtitle={<span>by <b>{this.props.user.username}</b></span>}
+                    actionIcon={
+                        <IconButton
+                            tooltip="Delete"
+                            tooltipPosition="top-center"
+                            onClick={
+                                () => this.props.deleteWishlist(this.props.user.id, wishlist.id)
+                            }
+                        >
+                            <DeleteForever color={styles.unHoverColor} hoverColor={styles.hoverColor}/>
+                        </IconButton>}>
+                    <img src={wishlist.image || 'http://www.goodwp.com/images/201211/goodwp.com_25947.jpg'}
+                             style={{cursor: 'pointer'}}
+                             onClick={(e) => this.handleTileClick(wishlist.id)}
+                    />
+                </GridTile>
+            )
+        } else {
+            return (
+                <GridTile
+                    key={wishlist.id}
+                    title={wishlist.title}
+                    subtitle={<span>by <b>{this.props.user.username}</b></span>}
+                >
+                    <img src={wishlist.image || 'http://www.goodwp.com/images/201211/goodwp.com_25947.jpg'}
+                             onMouseOver=""
+                             style={{cursor: 'pointer'}}
+                             onClick={(e) => this.handleTileClick(wishlist.id)}
+                    />
+                </GridTile>
+            )
+        }
+    };
+
     handleTileClick = (wishlistId) => {
         this.props.history.push(`/users/profile/wishlists/${wishlistId}/gifts`);
-    }
+    };
+
     handleCreateWishlist = () => {
         this.props.history.push(`profile/wishlists/create`);
-    }
+    };
 }
 
 const mapStateToProps = state => ({
-    user: state.users.vprofile,
-    wishlists: !!state.wishlists.wishlists ? state.wishlists.wishlists : null,
 });
 
 const mapDispatchToProps = (dispatch) => ({
     deleteWishlist: (userId, wishlistId) => dispatch(deleteWishlist(userId, wishlistId)),
-    fetchWishlists: (userId) => dispatch(fetchUserWishlists(userId)),
 });
 
 export default withRouter(connect(
