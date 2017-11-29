@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Route, Redirect} from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 const PrivateRoute = ({component: Component, ...rest}) => {
     return (
@@ -10,8 +9,6 @@ const PrivateRoute = ({component: Component, ...rest}) => {
         )} />
     )
 };
-
-(PrivateRoute).propTypes = {};
 
 const mapStateToProps = (state) => ({
     loggedIn: !!state.users.profile,

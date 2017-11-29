@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import UserLoginForm from '../user/UserLoginForm';
 import Main from './HomePage';
 
@@ -27,7 +26,5 @@ class LoginPage extends Component {
         );
     }
 }
-
-LoginPage.propTypes = {};
 
 export default LoginPage;

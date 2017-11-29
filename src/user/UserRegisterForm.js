@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import { Paper, TextField, FlatButton } from 'material-ui';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -481,11 +480,6 @@ class UserRegisterForm extends Component {
         })
     }
 }
-
-(UserRegisterForm).propTypes = {
-    checkUsername: PropTypes.func,
-    usernameNotValid: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => {
     return {

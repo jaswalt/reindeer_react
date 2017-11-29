@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { checkUserToken } from '../store/actions/userActions';
 
 class Authenticator extends Component {
@@ -17,10 +16,6 @@ class Authenticator extends Component {
         );
     }
 }
-
-Authenticator.propTypes = {
-    checkToken: PropTypes.func.isRequired,
-};
 
 const mapDispatchToProps = dispatch => ({
     checkToken: () => dispatch(checkUserToken()),
