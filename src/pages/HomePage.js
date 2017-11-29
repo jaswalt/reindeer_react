@@ -23,7 +23,7 @@ export default function Main() {
     return (
         <section style={styles.container}>
             <div style={styles.content}>
-                <p>Find out what your loved one wants this year!</p>
+                <p zDepth={5}>Find out what your loved one wants this year!</p>
             </div>
         </section>
     );
