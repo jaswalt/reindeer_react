@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
@@ -9,6 +11,8 @@ import EditGift from 'material-ui/svg-icons/editor/mode-edit';
 import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
 import IconButton from 'material-ui/IconButton';
 import { red50 } from 'material-ui/styles/colors';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
 import * as Currency from 'currency-formatter';
 
 const styles = {
@@ -29,11 +33,12 @@ const styles = {
     hoverActionColor: "#990033"
 };
 
-export default class GiftCard extends Component {
+class GiftCard extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            wishlistValue: null,
             cardTextCollapsed: true,
             displayActions: false,
             cardText: this.props.description,
@@ -72,15 +77,31 @@ export default class GiftCard extends Component {
                     {this.state.displayedCardText}
                     {this.state.cardTextCollapsed && <p><ExpandMore onClick={this._expandCardText} /></p>}
                 </CardText>
-                {this.state.displayActions &&
                     <CardActions style={styles.actions}>
-                        <IconButton tooltip="+ Wishlist" tooltipPosition="top-center"><AddList color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
+                        <IconMenu
+                            iconButtonElement={<IconButton tooltip="+ Wishlist" tooltipPosition="top-center"><AddList color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>}
+                            onChange={this.handleWishlistChange}
+                            value={this.state.wishlistValue}
+                        >{this.props.wishlists.map((wishlist, index) => (
+                            <MenuItem value={index} primaryText={wishlist.title} />
+                        ))}
+                            {/* <MenuItem value="1" primaryText="Refresh" />
+                            <MenuItem value="2" primaryText="Send feedback" />
+                            <MenuItem value="3" primaryText="Settings" />
+                            <MenuItem value="4" primaryText="Help" />
+                            <MenuItem value="5" primaryText="Sign out" /> */}
+                        </IconMenu>
                         <IconButton tooltip="Delete" tooltipPosition="top-center" onClick={this.props.deleteMe}><DeleteForever color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
                     </CardActions>
-                }
             </Card>
         );
     }
+
+    handleWishlistChange = (event, value) => {
+        this.setState({
+          wishlistValue: value,
+        });
+      };
 
     _expandCardText = (e) => {
         e.preventDefault();
@@ -112,3 +133,15 @@ export default class GiftCard extends Component {
         })
     }
 }
+
+const mapStateToProps = state => ({
+    wishlists: state.wishlists.wishlists
+});
+
+const mapDispatchToProps = (dispatch) => ({
+});
+
+export default withRouter(connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(GiftCard));
