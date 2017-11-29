@@ -12,6 +12,8 @@ import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
 import SvgIconFace from 'material-ui/svg-icons/action/face';
 import { addFriendToUser } from '../store/actions/userActions';
+import Snackbar from 'material-ui/Snackbar';
+
 
 const styles = {
     chip: {
@@ -19,37 +21,66 @@ const styles = {
     },
 };
 
-function FriendsSearchPage(props) {
-    return (
-        <div>
-            <Table selectable={false}>
-                <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-                    <TableRow>
-                        <TableHeaderColumn>Username</TableHeaderColumn>
-                        <TableHeaderColumn>First Name</TableHeaderColumn>
-                        <TableHeaderColumn>Befriend</TableHeaderColumn>
-                    </TableRow>
-                </TableHeader>
-                <TableBody displayRowCheckbox={false}>
-                    {props.users.map(user => (
-                        <TableRow key={user.id} userId={user.id} selectable={false}>
-                            <TableRowColumn>{user.username}</TableRowColumn>
-                            <TableRowColumn>{user.first_name}</TableRowColumn>
-                            <TableRowColumn>
-                                <Chip
-                                    onClick={() => props.addFriend(user.id)}
-                                    style={styles.chip}
-                                >
-                                    <Avatar color="#444" icon={<SvgIconFace />} />
-                                    befriend
-                                </Chip>
-                            </TableRowColumn>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </div>
-    );
+class FriendsSearchPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+        }
+    }
+    render() {
+        return (
+            <div>
+                <div>
+                    <Table selectable={false}>
+                        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                            <TableRow>
+                                <TableHeaderColumn>Username</TableHeaderColumn>
+                                <TableHeaderColumn>First Name</TableHeaderColumn>
+                                <TableHeaderColumn>Befriend</TableHeaderColumn>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody displayRowCheckbox={false}>
+                            {this.props.users.map(user => (
+                                <TableRow key={user.id} userId={user.id} selectable={false}>
+                                    <TableRowColumn>{user.username}</TableRowColumn>
+                                    <TableRowColumn>{user.first_name}</TableRowColumn>
+                                    <TableRowColumn>
+                                        <Chip
+                                            onClick={(userId) => this.handleAddFriend(user.id)}
+                                            style={styles.chip}
+                                        >
+                                            <Avatar color="#444" icon={<SvgIconFace />} />
+                                            befriend
+                                        </Chip>
+                                    </TableRowColumn>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </div>
+                <Snackbar
+                    open={this.state.open}
+                    message="Friend has been added!"
+                    autoHideDuration={4000}
+                    onRequestClose={this.handleRequestClose}
+                />
+            </div>
+        )
+    }
+
+    handleAddFriend = (userId) => {
+        this.setState({
+            open: true,
+        })
+        this.props.addFriend(userId);
+    }
+
+    handleRequestClose = () => {
+        this.setState({
+            open: false,
+        });
+    };
 }
 
 const mapStateToProps = state => ({

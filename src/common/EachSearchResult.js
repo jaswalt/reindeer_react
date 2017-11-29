@@ -79,7 +79,7 @@ class EachSearchResult extends Component {
     }
 
     handleAddGift = () => {
-        this.props.addMe;
+        this.props.addMe();
         this.props.openSnackBar();
     }
 

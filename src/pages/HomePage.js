@@ -6,7 +6,7 @@ const styles = {
     },
     content: {
         fontFamily: 'Great Vibes',
-        fontSize: '3em',
+        fontSize: '4em',
         textAlign: 'center',
         paddingTop: 200,
         paddingLeft: 250,
