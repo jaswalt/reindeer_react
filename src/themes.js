@@ -7,7 +7,7 @@ export const themesList = {
     Chanukah:
         {
             image: 'https://www.orbitz.com/blog/wp-content/uploads/2015/12/Cool-Hanukkah-gifts.1265x725.jpg',
-            color: '#1565C0',
+            color: '#004080',
         },
     Kwanzaa:
         {
@@ -22,7 +22,7 @@ export const themesList = {
     LunarNewYear:
         {
             image: 'http://cdn.history.com/sites/2/2015/05/HITH-8-things-you-should-know-about-chinese-new-year.jpg',
-            color: '#D50000',
+            color: '#CE0624',
         },
     MothersDay:
         {
@@ -36,17 +36,17 @@ export const themesList = {
     },
     BatMitzvah:
         {
-            image: 'https://i.pinimg.com/originals/3a/40/8f/3a408f40f311ab562828aa24840d6968.jpg',
+            image: 'https://i.ytimg.com/vi/WL4KyNVT8vA/maxresdefault.jpg',
             color: '#1de9b6',
         },
     BarMitzvah:
         {
-            image: 'https://i.pinimg.com/originals/3a/40/8f/3a408f40f311ab562828aa24840d6968.jpg',
+            image: 'https://i.ytimg.com/vi/WL4KyNVT8vA/maxresdefault.jpg',
             color: '#1de9b6',
         },
     Birthday:
     {
-        image: 'https://i.pinimg.com/736x/05/20/d2/0520d2523ad1b67a1dc6198b8e855b17--printed-balloons-balloon-ceiling.jpg',
+        image: 'https://i.cbc.ca/1.4287373.1505315771!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_620/balloons.jpg',
         color: '#00897B',
     },
     BabyShower:
@@ -61,8 +61,8 @@ export const themesList = {
     },
     Graduation:
     {
-        image: 'https://static.pexels.com/photos/111755/pexels-photo-111755.jpeg',
-        color: '#1de9b6',
+        image: 'http://westmeadhotel.co.uk/wp-content/uploads/2016/02/5402157745_c2ba66fc2d_o.jpg',
+        color: '#036f4b',
     },
     Wedding:
     {
