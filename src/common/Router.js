@@ -13,6 +13,7 @@ import LoginPage from '../pages/LoginPage';
 import ProfilePage from '../pages/ProfilePage';
 import WishlistGifts from '../pages/WishlistGifts';
 import SearchResults from '../common/SearchResults';
+import CreateWishlistPage from '../pages/CreateWishlistPage';
 import NavBar from '../common/NavBar';
 import ToolBar from '../common/ToolBar';
 import FriendsSearchPage from '../pages/FriendsSearch';
@@ -35,6 +36,7 @@ export default function rootRouter() {
                         <NavBar />
                         <ToolBar />
                         <Switch>
+                            <Route exact path="/users/profile/wishlists/create" component={CreateWishlistPage} />
                             <Route exact path="/users/profile/wishlists/:id/gifts" component={WishlistGifts} />
                             <Route exact path="/users/profile" component={ProfilePage} />
                             <Route exact path="/users/profile/:id" component={ProfilePage} />

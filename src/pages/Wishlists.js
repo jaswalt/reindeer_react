@@ -71,13 +71,16 @@ class WishLists extends Component {
                         <img src={pickAPic()} onMouseOver="" style={{cursor: 'pointer'}} onClick={(e) => this.handleTileClick(wishlist.id)}/>
                         </GridTile>
                     ))}
-                    <IconButton iconStyle={{width: 60, height: 60}}><AddCircle/></IconButton>
+                    <IconButton onClick={this.handleCreateWishlist} tooltip="Create Wishlist" tooltipPosition="bottom-right" iconStyle={{width: 60, height: 60}}><AddCircle/></IconButton>
                 </GridList>
             </div>
         );
     }
     handleTileClick = (wishlistId) => {
         this.props.history.push(`/users/profile/wishlists/${wishlistId}/gifts`);
+    }
+    handleCreateWishlist = () => {
+        this.props.history.push(`profile/wishlists/create`);
     }
 }
 
