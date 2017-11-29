@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Wishlists from '../wishlist/Wishlists';
 import FriendsList from '../user/FriendsList';
 import { loadFriends, loadInformation } from '../store/actions/userActions';
+import { fetchUserWishlists } from "../store/actions/wishlistActions";
 
 const styles = {
     container: {
@@ -20,6 +21,7 @@ const styles = {
 class ProfilePage extends Component {
     componentWillMount() {
         this.props.dispatch(loadInformation(this.props.userId));
+        this.props.dispatch(fetchUserWishlists(this.props.userId));
         if (this.props.ownProfile) {
             this.props.dispatch(loadFriends(this.props.userId));
         }
@@ -33,7 +35,11 @@ class ProfilePage extends Component {
                         <div>
                             <h1>{this.props.profile.username}</h1>
                         </div>
-                        <Wishlists />
+                        <Wishlists
+                            user={this.props.profile}
+                            wishlists={this.props.wishlists}
+                            own={this.props.ownProfile}
+                        />
                         {this.props.ownProfile &&
                             <div>
                                 <h3>Friends</h3>
@@ -55,12 +61,14 @@ const mapStateToProps = (state, ownProps) => {
             userId: ownProps.match.params.id,
             profile: state.users.vprofile,
             ownProfile: false,
+            wishlists: !!state.wishlists.wishlists ? state.wishlists.wishlists : null,
         };
     } else {
         profile = {
             userId: state.users.profile.user_id,
             profile: state.users.vprofile,
             ownProfile: true,
+            wishlists: !!state.wishlists.wishlists ? state.wishlists.wishlists : null,
         };
     }
 
