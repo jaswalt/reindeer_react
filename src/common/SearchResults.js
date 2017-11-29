@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addGiftToAllGifts } from '../store/actions/giftActions';
 import EachSearchResult from './EachSearchResult';
+import Snackbar from 'material-ui/Snackbar';
+
 
 const styles = {
     container: {
@@ -20,6 +22,7 @@ class SearchResults extends Component {
 		this.state = {
 			cardTextCollapsed: true,
             displayActions: false,
+            open: false,
 		};
     }
 
@@ -32,10 +35,28 @@ class SearchResults extends Component {
                         key={i}
                         {...gift}
                         addMe={() => this.props.addGift(this.props.user.user_id, gift)}
+                        openSnackBar={this.handleAddGift}
                     />
                 ))}
+                <Snackbar
+                    open={this.state.open}
+                    message="Gift added to your list!"
+                    autoHideDuration={4000}
+                    onRequestClose={this.handleRequestClose}
+                />
             </div>
         )
+    };
+    handleAddGift = () => {
+        this.setState({
+            open: true,
+        })
+    }
+
+    handleRequestClose = () => {
+        this.setState({
+            open: false,
+        });
     };
 }
 

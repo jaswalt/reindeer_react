@@ -71,11 +71,16 @@ class EachSearchResult extends Component {
                 </CardText>
                 {this.props.isLoggedIn && this.state.displayActions &&
                     <CardActions style={styles.actions}>
-                        <IconButton tooltip="+ List" tooltipPosition="top-center" onClick={this.props.addMe}><AddList color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
+                        <IconButton tooltip="+ List" tooltipPosition="top-center" onClick={this.handleAddGift}><AddList color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
                     </CardActions>
                 }
             </Card>
         );
+    }
+
+    handleAddGift = () => {
+        this.props.addMe;
+        this.props.openSnackBar();
     }
 
     _expandCardText = (e) => {
