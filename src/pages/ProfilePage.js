@@ -53,13 +53,13 @@ const mapStateToProps = (state, ownProps) => {
     if (ownProps.match.params.id) {
         profile = {
             userId: ownProps.match.params.id,
-            profile: state.users.visitingProfile,
+            profile: state.users.vprofile,
             ownProfile: false,
         };
     } else {
         profile = {
             userId: state.users.profile.user_id,
-            profile: state.users.visitingProfile,
+            profile: state.users.vprofile,
             ownProfile: true,
         };
     }

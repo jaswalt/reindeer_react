@@ -5,7 +5,7 @@ const initialState = {
     error: false,
     usernameError: false,
     profile: null,
-    visitingProfile: null,
+    vprofile: null,
     usersSearch: [],
     friends: [],
 };
