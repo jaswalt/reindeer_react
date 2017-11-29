@@ -69,7 +69,7 @@ export default class EachWishlistGift extends Component {
                 </CardText>
                 {this.state.displayActions &&
                     <CardActions style={styles.actions}>
-                        <IconButton tooltip="Reserve" tooltipPosition="top-center"><Bookmark color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
+                        <IconButton tooltip="Reserve" tooltipPosition="top-center" onClick={this.props.holdMe}>><Bookmark color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
                         <IconButton tooltip="Delete" tooltipPosition="top-center" onClick={this.props.deleteMe}><DeleteForever color={styles.actionColor} hoverColor={styles.hoverActionColor} /></IconButton>
                     </CardActions>
                 }
