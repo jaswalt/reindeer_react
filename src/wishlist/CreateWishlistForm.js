@@ -16,18 +16,16 @@ const styles = {
       width: '93%',
   },
   floatingLabelFocusStyle: {
-      color: '#990033',
   },
   buttons: {
-      display: 'flex',
-      align: 'center',
-      direction: 'row',
-      justifyContent: 'center',
+    display: 'flex',
+    align: 'center',
+    direction: 'row',
+    justifyContent: 'center',
   },
   button: {
-      margin: 10,
-      backgroundColor: '#990033',
-      color: 'white',
+    margin: 10,
+    color: 'white',
   },
 };
 
@@ -38,8 +36,30 @@ class CreateWishlistForm extends Component {
             titleValue: '',
             dateValue: '',
             formValid: false,
+            theme: {
+                fontFamily: 'Roboto, sans-serif',
+                floatingLabelFocusStyle: {
+                    textColor: '#000',
+                    primary1Color: '#990033',
+                },
+                buttons: {
+                    backgroundColor: '#990033',
+                },
+                button: {
+                    margin: 10,
+                    color: 'white',
+                    backgroundColor: '#990033',
+                },
+            },
         };
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.theme.color !== nextProps.theme.color) {
+            this.forceUpdate();
+        }
+    }
+
     render() {
         return (
             <div style={styles.container}>
@@ -66,15 +86,13 @@ class CreateWishlistForm extends Component {
                     />
                     <span style={styles.buttons}>
                         <FlatButton
-                            hoverColor="#990033"
-                            style={styles.button}
+                            style={{ backgroundColor: this.props.theme.color, color: 'white' , margin: 10, }}
                             onClick={this._processForm}
                         >
                             Create
                         </FlatButton>
                         <FlatButton
-                            hoverColor="#990033"
-                            style={styles.button}
+                            style={{ backgroundColor: this.props.theme.color, color: 'white' , margin: 10, }}
                             onClick={this._clearForm}
                         >
                             Clear
@@ -134,6 +152,7 @@ class CreateWishlistForm extends Component {
 }
 
 const mapStateToProps = state => ({
+    theme: state.users.activeTheme,
 });
 
 const mapDispatchToProps = dispatch => ({

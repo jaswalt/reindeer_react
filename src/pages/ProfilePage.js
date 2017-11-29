@@ -5,7 +5,6 @@ import Wishlists from '../wishlist/Wishlists';
 import FriendsList from '../user/FriendsList';
 import { loadFriends, loadInformation } from '../store/actions/userActions';
 import { fetchUserWishlists } from "../store/actions/wishlistActions";
-import { changeTheme } from '../store/actions/userActions';
 
 const styles = {
     container: {
