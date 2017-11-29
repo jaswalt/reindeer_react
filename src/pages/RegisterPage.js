@@ -3,13 +3,13 @@ import { withRouter } from 'react-router-dom';
 import UserRegisterForm from '../user/UserRegisterForm';
 import Main from './HomePage';
 
-const imageUrl = 'https://static.pexels.com/photos/257855/pexels-photo-257855.jpeg';
+const imageUrl = 'https://i.pinimg.com/originals/10/e9/2c/10e92cc87b01faca927f20b2cf748dbf.jpg';
 
 const styles = {
     container: {
         backgroundImage: 'url(' + imageUrl + ')',
         backgroundSize: 'cover',
-        height: '100vh',
+        height: '120vh',
     },
 };
 
