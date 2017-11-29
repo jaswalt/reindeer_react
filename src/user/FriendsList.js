@@ -8,6 +8,7 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
+import { Link } from 'react-router-dom';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
 import SvgIconGift from 'material-ui/svg-icons/action/card-giftcard';
@@ -41,12 +42,14 @@ class FriendsList extends Component {
                                 <TableRowColumn>{user.username}</TableRowColumn>
                                 <TableRowColumn>{user.first_name}</TableRowColumn>
                                 <TableRowColumn>
-                                    <Chip
-                                        style={styles.chip}
-                                    >
-                                        <Avatar color="#444" icon={<SvgIconGift />} />
-                                        gifts
-                                    </Chip>
+                                    <Link to={`/users/profile/${user.id}`}>
+                                        <Chip
+                                            style={styles.chip}
+                                        >
+                                            <Avatar color="#444" icon={<SvgIconGift />} />
+                                            gifts
+                                        </Chip>
+                                    </Link>
                                 </TableRowColumn>
                             </TableRow>
                         ))}
