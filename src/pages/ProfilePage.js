@@ -24,8 +24,9 @@ class ProfilePage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const profileId = nextProps.match.params.id;
-        if (profileId && profileId !== this.props.userId) {
+        const thisProfileId = this.props.match.params.id;
+        const nextProfileId = nextProps.match.params.id;
+        if (thisProfileId !== nextProfileId) {
             this.fetchData(nextProps);
         }
     }
